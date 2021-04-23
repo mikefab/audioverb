@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import styles from './Search.module.css';
+import { useDispatch } from 'react-redux';
+import styles from '../Features.module.css';
 import {
-  getResults2,
-  selectResults
-} from './searchSlice';
+  getResults
+} from '../results/resultsSlice';
 
 export function Search() {
-  const results = useSelector(selectResults);
   const dispatch = useDispatch();
   const [query, setQuery] = useState('');
   const _onSubmit = (e) => {
@@ -26,21 +24,11 @@ export function Search() {
           />
           <button
             className={styles.button}
-            onClick={() => dispatch(getResults2(query))}
+            onClick={() => dispatch(getResults(query))}
           >
             Send
           </button>
         </form>
-      </div>
-      <div className={styles.row}>
-        <div className="container">
-          {results.map(r => (
-              <div className={styles.row}>
-                {r[1]}
-                </div>
-              )
-            )}
-        </div>
       </div>
     </div>
   );

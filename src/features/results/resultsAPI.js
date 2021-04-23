@@ -5,11 +5,10 @@ export function fetchResults(query) {
   return new Promise((resolve, reject) => {
     axios.get(base + 'search/spa/amorosa%20soledad/' + query)
       .then(res => {
-        if (res.data.children.length == 0) {
-          console.log('0000')
+        if (res.data.children.length === 0) {
           resolve([])
         }
-        window.zzz = res.data.children[0].children
+
         const results = res.data.children[0].children;
         const ary = Object.keys(results).map(k => {
           delete results[k].name
