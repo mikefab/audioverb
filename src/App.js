@@ -11,13 +11,17 @@ function App() {
     <Container maxWidth="sm" >
       <div className="App">
         <header className="App-header">
+          <Grid container justify="center" className="grid">
+            <Grid container justify="center">
+              <Grid item>
+                <Search />
+              </Grid>
+              <Grid item>
+                <Player />
+              </Grid>
+            </Grid>
+          </Grid>
           <Grid container justify="center">
-            <Grid item>
-              <Search />
-            </Grid>
-            <Grid item>
-              <Player />
-            </Grid>
             <Grid item>
               <Results />
             </Grid>
