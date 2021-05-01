@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search } from './features/search/Search';
 import { Results } from './features/results/Results';
+import { Tenses } from './features/tenses/Tenses';
 import { Player } from './features/player/Player';
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
@@ -13,6 +14,9 @@ function App() {
         <header className="App-header">
           <Grid container justify="center" className="grid">
             <Grid container justify="center">
+              <Grid item>
+                <Tenses />
+              </Grid>
               <Grid item>
                 <Search />
               </Grid>
