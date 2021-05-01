@@ -14,11 +14,11 @@ function App() {
         <header className="App-header">
           <Grid container justify="center" className="grid">
             <Grid container justify="center">
-              <Grid item>
-                <Tenses />
-              </Grid>
-              <Grid item>
+              <Grid item xs={12}>
                 <Search />
+              </Grid>
+              <Grid item style={{overflow: 'auto', border: "1px solid blue"}} item xs={12}>
+                <Tenses />
               </Grid>
               <Grid item>
                 <Player />
