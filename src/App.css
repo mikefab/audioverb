@@ -16,8 +16,9 @@ input {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 .grid {
-  border: 1px solid green;
+  overflow: 'auto'
 }
 .App-header {
   background-color: #282c34;

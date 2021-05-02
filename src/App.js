@@ -19,13 +19,13 @@ function App() {
               <Grid item xs={12}>
                 <Search />
               </Grid>
-              <Grid item style={{overflow: 'auto', border: "1px solid blue"}} item xs={12}>
+              <Grid item xs={12}>
                 <Tenses />
               </Grid>
               <Grid item xs={12}>
                 <Conjugation />
               </Grid>
-              <Grid item style={{overflow: 'auto', border: "1px solid blue"}} item xs={12}>
+              <Grid item xs={12}>
                 <Conjugations />
               </Grid>
 
@@ -34,8 +34,8 @@ function App() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid container justify="center">
-            <Grid item>
+          <Grid container>
+            <Grid item style={{textAlign: 'left'}}>
               <Results />
             </Grid>
           </Grid>
