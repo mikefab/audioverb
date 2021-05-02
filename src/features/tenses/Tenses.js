@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { selectTenses, getTenses } from './tensesSlice';
+import { selectTenses, getTenses} from './tensesSlice';
+import { getConjugations} from '../conjugations/conjugationsSlice';
 
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
@@ -16,11 +17,16 @@ export function Tenses() {
   }, []);
 
   return (
-    <Container style={{height: 500, overflow: 'auto'}}>
-      <Grid container spacing={2}>
+    <Container style={{height: 200, overflow: 'auto'}}>
+      <Grid container spacing={1}>
       {tenses.map((tense, i) => (
-        <Grid item xs={6}>
-          {tense}
+        <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
+          <div
+            style={{ fontSize: '14px'}}
+            onClick={() => dispatch(getConjugations(tense))}
+          >
+            {tense}
+          </div>
         </Grid>
         ))}
 
