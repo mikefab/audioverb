@@ -22,7 +22,7 @@ export function Tenses() {
       {tenses.map((tense, i) => (
         <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
           <div
-            style={{ fontSize: '14px'}}
+            style={{ fontSize: '14px', cursor: 'pointer'}}
             onClick={() => dispatch(getConjugations(tense))}
           >
             {tense}

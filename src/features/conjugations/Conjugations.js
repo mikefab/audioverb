@@ -15,7 +15,7 @@ export function Conjugations() {
       {Object.keys(conjugations).map((conjugation, i) => (
         <Grid item xs={6} key={ i }>
           <div
-            style={{ fontSize: '14px'}}
+            style={{ fontSize: '14px', cursor: 'pointer'}}
             onClick={(e) => dispatch(setConjugation(conjugation))}
           >
             {conjugation}

@@ -8,22 +8,8 @@ export function fetchResults(query) {
         if (res.data.children.length === 0) {
           resolve([])
         }
-
-        let results = []
-        let ary = []
-
-        if (res.data.children.length > 0) {
-          results = res.data.children[0].children;
-          ary = Object.keys(results).map(k => {
-            delete results[k].name
-            return Object.values(results[k])
-          },
-            [])
-
-        }
-        console.log(ary, "****")
         return resolve({
-          data: ary
+          data: res.data
         })
       }).catch(console)
   })

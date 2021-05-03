@@ -28,7 +28,7 @@ export function Conjugation() {
     {instances.map((instance, i) => (
         <span
           key = {i}
-          style={{ fontSize: '14px', paddingLeft: '5px'}}
+          style={{ fontSize: '14px', cursor: 'pointer', paddingLeft: '5px'}}
         >
           <span onClick={() => dispatch(getResults(instance))}>
             {instance}

@@ -3,11 +3,10 @@ const base = 'http://localhost:5000/'
 
 export function fetchAudio(r) {
   return new Promise((resolve, reject) => {
-
-    const name = r[0].replace('.', '_')
+    const name = r.nam.replace(/\./g, '_')
     // const cap = r[1]
-    const start = r[2]
-    const stop = r[3]
+    const start = r.start
+    const stop = r.stop
     console.log(name, 'nnn')
     // URL to concat mp3s
     const createAudioURL = base + 'combine/mp3/movies/' +

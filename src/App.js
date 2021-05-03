@@ -34,8 +34,8 @@ function App() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid container>
-            <Grid item style={{textAlign: 'left'}}>
+          <Grid container justify="center">
+            <Grid item justify="center" style={{textAlign: 'left'}}>
               <Results />
             </Grid>
           </Grid>

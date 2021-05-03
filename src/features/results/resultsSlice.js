@@ -20,7 +20,7 @@ export const getResults = createAsyncThunk(
   async (query) => {
     const response = await fetchResults(query);
     // The value we return becomes the `fulfilled` action payload
-    return response.data || [];
+    return response.data.children || [];
   }
 );
 

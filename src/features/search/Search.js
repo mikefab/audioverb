@@ -24,7 +24,6 @@ export function Search() {
               <Grid item>
                 <TextField
                   onKeyPress={(ev) => {
-                    console.log(`Pressed keyCode ${ev.key}`);
                     if (ev.key === 'Enter') {
                       // Do code here
                       dispatch(getResults(query))
