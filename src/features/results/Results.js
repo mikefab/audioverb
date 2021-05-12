@@ -36,7 +36,7 @@ export function Results() {
   const dispatch = useDispatch();
   const results = useSelector(selectResults);
   const classes = useStyles();
-  window.z = results
+
   return (
     <Container  style={{height: '200px', overflow: 'auto'}} >
           {results.map((result, i) => (

@@ -38,13 +38,6 @@ export const playerSlice = createSlice({
       .addCase(getAudio.fulfilled, (state, action) => {
         state.status = 'idle';
         state.audioURL = action.payload;
-        setTimeout(() => {
-          const audio = document.querySelector('audio');
-          console.log(audio)
-          audio.load();
-          audio.play();
-          console.log('play')
-        }, 3000)
       })
   },
 
