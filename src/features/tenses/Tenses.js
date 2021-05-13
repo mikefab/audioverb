@@ -1,7 +1,11 @@
 import React, {useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { selectTenses, getTenses} from './tensesSlice';
+import {
+  selectTenses,
+  getTenses,
+  setTense
+} from './tensesSlice';
 import { getConjugations} from '../conjugations/conjugationsSlice';
 
 import Grid from '@material-ui/core/Grid';
@@ -15,7 +19,11 @@ export function Tenses() {
     // Update the document title using the browser API
     dispatch(getTenses('spanish'))
   }, []);
-
+  const handleClick = (tense) => {
+    dispatch(getConjugations(tense))
+    dispatch(setTense(tense))
+  }
+  console.log(setTense)
   return (
     <Container style={{height: 200, overflow: 'auto'}}>
       <Grid container spacing={1}>
@@ -23,7 +31,7 @@ export function Tenses() {
         <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
           <div
             style={{ fontSize: '14px', cursor: 'pointer'}}
-            onClick={() => dispatch(getConjugations(tense))}
+            onClick={() => handleClick(tense)}
           >
             {tense}
           </div>
