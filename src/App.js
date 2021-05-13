@@ -11,16 +11,16 @@ import './App.css';
 
 function App() {
   return (
-    <Container maxWidth="sm" >
+    <Container maxWidth="sm" justify="center" >
       <div className="App">
         <header className="App-header">
-          <Grid container justify="center" className="grid">
-            <Grid container justify="center">
+          <Grid container  className="grid">
+            <Grid container justify="center" >
               <Grid item xs={12}>
                 <Search />
               </Grid>
               <Grid item xs={12}>
-                <Tenses />
+                <Tenses style={{visibility: 'hidden'}} />
               </Grid>
               <Grid item xs={12}>
                 <Conjugation />
@@ -29,13 +29,13 @@ function App() {
                 <Conjugations />
               </Grid>
 
-              <Grid item>
+              <Grid item >
                 <Player />
               </Grid>
             </Grid>
           </Grid>
-          <Grid container justify="center">
-            <Grid item justify="center" style={{textAlign: 'left'}}>
+          <Grid container>
+            <Grid item style={{textAlign: 'left'}}>
               <Results />
             </Grid>
           </Grid>
