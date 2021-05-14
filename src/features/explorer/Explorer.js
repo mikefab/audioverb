@@ -9,8 +9,7 @@ export function Explorer() {
   const state = useSelector(selectState);
   return (
     <>
-      {state}
-        {state ? <Tenses /> : <Conjugations />}
+      {state ? <Tenses /> : <Conjugations />}
     </>
   );
 }

@@ -31,6 +31,7 @@ export function Tenses() {
 
   return (
     <Container style={{height: 200, overflow: 'auto'}}>
+    Verbs
       <Grid container spacing={1}>
       {tenses.map((tense, i) => (
         <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
