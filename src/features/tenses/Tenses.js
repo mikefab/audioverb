@@ -6,6 +6,9 @@ import {
   getTenses,
   setTense
 } from './tensesSlice';
+
+import { setExplorerState } from '../explorer/explorerSlice';
+
 import { getConjugations} from '../conjugations/conjugationsSlice';
 
 import Grid from '@material-ui/core/Grid';
@@ -20,10 +23,12 @@ export function Tenses() {
     dispatch(getTenses('spanish'))
   }, []);
   const handleClick = (tense) => {
+
     dispatch(getConjugations(tense))
     dispatch(setTense(tense))
+    dispatch(setExplorerState(0))
   }
-  console.log(setTense)
+
   return (
     <Container style={{height: 200, overflow: 'auto'}}>
       <Grid container spacing={1}>

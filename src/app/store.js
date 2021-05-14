@@ -4,6 +4,7 @@ import tensesReducer from '../features/tenses/tensesSlice';
 import conjugationsReducer from '../features/conjugations/conjugationsSlice';
 import conjugationReducer from '../features/conjugation/conjugationSlice';
 import playerReducer from '../features/player/playerSlice';
+import explorerReducer from '../features/explorer/explorerSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     conjugation: conjugationReducer,
     results: resultsReducer,
     player: playerReducer,
+    explorer: explorerReducer
   },
 });
