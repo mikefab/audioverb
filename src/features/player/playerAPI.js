@@ -1,6 +1,6 @@
 import axios from 'axios';
 import env from "react-dotenv";
-const base = env.REACT_APP_HOST + env.REACT_APP_PORT
+const base = env.REACT_APP_HOST
 
 export function fetchAudio(r) {
   return new Promise((resolve, reject) => {

@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { setConjugation} from '../conjugation/conjugationSlice';
 import { selectTense} from '../tenses/tensesSlice';
 import { selectConjugations } from '../conjugations/conjugationsSlice';
-import { selectConjugation} from './conjugationSlice';
 import { Results } from '../results/Results';
 import { Player } from '../player/Player';
 import {
@@ -13,16 +12,12 @@ import {
 
 import {
   Link,
-  useLocation,
-  useHistory,
   useParams
 } from "react-router-dom";
 
 import Container from '@material-ui/core/Container'
 
 export function Conjugation() {
-  const location = useLocation()
-  const history = useHistory()
   const { conjugation } = useParams();
   const dispatch = useDispatch();
   const conjugations = useSelector(selectConjugations);

@@ -10,6 +10,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import Translate from '@material-ui/icons/Translate';
 
 const useStyles = makeStyles({
   root: {
@@ -37,7 +38,12 @@ export function Results() {
   const dispatch = useDispatch();
   const results = useSelector(selectResults);
   const classes = useStyles();
-
+  function handleTranslate(cap) {
+    window.open(
+      `https://translate.google.com/?sl=es&tl=en&text=${cap}&op=translate`,
+      '_blank'
+    )
+  }
   return (
     <Container  style={{height: '200px', overflow: 'auto'}} >
           {results.map((result, i) => (
@@ -48,12 +54,16 @@ export function Results() {
                     </Typography>
 
                     {result.children.map((cap, i2) => (
+                      <div key={i2+1000} >
                         <Paper variant="outlined" elevation={3} className={classes.clickable}
                           key={i2}
                           onClick={() => dispatch(getAudio(cap))}
                           >
                           {cap.cap}
+
                         </Paper>
+                      <Translate key={i2+100} style={{cursor: 'pointer'}} onClick={() => handleTranslate(cap.cap)}/>
+                          </div>
                       ))}
 
                   </CardContent>
