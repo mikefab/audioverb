@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectConjugations} from './conjugationsSlice';
-import { getConjugations} from '../conjugations/conjugationsSlice';
+import { selectVerns} from './verbsSlice';
+import { getVerbs, selectVerbs} from '../verbs/verbsSlice';
 import {setTense} from '../tenses/tensesSlice';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
@@ -12,12 +12,12 @@ import {
   useParams,
 } from "react-router-dom";
 
-function Conjugations() {
+function Verbs() {
   const history = useHistory()
   const location = useLocation()
 
   const dispatch = useDispatch();
-  const conjugations = useSelector(selectConjugations);
+  const verbs = useSelector(selectVerbs);
 
 const { tense } = useParams();
   // Similar to componentDidMount and componentDidUpdate:
@@ -25,16 +25,16 @@ const { tense } = useParams();
     history.push(location.pathname)
     // Update the document title using the browser API
     dispatch(setTense(tense))
-    dispatch(getConjugations(tense))
+    dispatch(getVerbs(tense))
   }, [tense]);
 
   return (
     <Container style={{height: 300, overflow: 'auto'}}>
     <Link to='/tenses'>tenses</Link>  - {tense}
       <Grid container spacing={1}>
-      {Object.keys(conjugations).map((conjugation, i) => (
+      {Object.keys(verbs).map((verb, i) => (
         <Grid item xs={6} key={ i }>
-          <Link to={`/tenses/${tense}/${conjugation}`}>{conjugation}</Link>
+          <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link>
         </Grid>
         ))}
 
@@ -42,4 +42,4 @@ const { tense } = useParams();
     </Container>
   );
 }
-export default Conjugations;
+export default Verbs;

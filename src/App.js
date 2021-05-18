@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tenses } from './features/tenses/Tenses';
 import { Conjugation } from './features/conjugation/Conjugation';
-import Conjugations from './features/conjugations/Conjugations';
+import Verbs from './features/verbs/Verbs';
 import Container from '@material-ui/core/Container'
 
 import {
@@ -16,8 +16,8 @@ function App() {
       <Container maxWidth="sm" justify="center">
         <Switch>
           <Route exact path="/" component = {Tenses} />
-          <Route path={`/tenses/:tense/:conjugation`} component={Conjugation}/>
-          <Route path={`/tenses/:tense`} component={Conjugations}/>
+          <Route path={`/tenses/:tense/:verb`} component={Conjugation}/>
+          <Route path={`/tenses/:tense`} component={Verbs}/>
           <Route path="/tenses" component={Tenses} />
         </Switch>
       </Container>
