@@ -25,7 +25,7 @@ export function Tenses() {
   }, []);
 
   return (
-    <Container style={{height: 200, overflow: 'auto'}}>
+    <Container>
     Tenses
       <Grid container spacing={1}>
       {tenses.map((tense, i) => (

@@ -45,7 +45,7 @@ export function Results() {
     )
   }
   return (
-    <Container  style={{height: '200px', overflow: 'auto'}} >
+    <Container  style={{height: '600px', overflow: 'auto'}} >
           {results.map((result, i) => (
             <Card className={classes.root} key={i}>
                   <CardContent>

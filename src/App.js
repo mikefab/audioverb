@@ -13,7 +13,7 @@ import './App.css';
 
 function App() {
   return (
-      <Container maxWidth="sm" justify="center">
+      <Container maxWidth="sm" justify="center" >
         <Switch>
           <Route exact path="/" component = {Tenses} />
           <Route path={`/tenses/:tense/:verb`} component={Conjugation}/>

@@ -24,6 +24,8 @@ export function Conjugation() {
   const dispatch = useDispatch();
   const instances = useSelector(selectConjugation);
   if (instances.length > 0) {
+    console.log(instances[0], '!!i!')
+     dispatch(getResults(instances[0]))
      // dispatch(getResults(instances[0]))
   }
   // Similar to componentDidMount and componentDidUpdate:
@@ -33,7 +35,7 @@ export function Conjugation() {
 
     dispatch(getConjugation([tense, verb]))
 
-    // dispatch(getResults(instances))
+
   }, [conjugation]);
 
   function add_comma(i) {
@@ -44,7 +46,7 @@ export function Conjugation() {
   }
 
   return (
-    <Container style={{height: '40px'}}>
+    <Container >
     <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}/`}>{tense}</Link> / <b>{conjugation}</b>
     <br />
     <br />

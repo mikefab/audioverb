@@ -29,7 +29,7 @@ const { tense } = useParams();
   }, [tense]);
 
   return (
-    <Container style={{height: 300, overflow: 'auto'}}>
+    <Container>
     <Link to='/tenses'>tenses</Link>  - {tense}
       <Grid container spacing={1}>
       {Object.keys(verbs).map((verb, i) => (
