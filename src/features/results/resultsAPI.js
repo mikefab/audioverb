@@ -4,7 +4,6 @@ const base = env.REACT_APP_HOST
 
 export function fetchResults(query) {
   return new Promise((resolve, reject) => {
-    console.log(base + 'search/spa/' + query, '!!!')
     axios.get(base + 'search/spa/' + query)
       .then(res => {
         if (res.data.children.length === 0) {

@@ -24,7 +24,6 @@ export function Conjugation() {
   const dispatch = useDispatch();
   const instances = useSelector(selectConjugation);
   if (instances.length > 0) {
-    console.log(instances[0], '!!i!')
      dispatch(getResults(instances[0]))
      // dispatch(getResults(instances[0]))
   }

@@ -20,7 +20,6 @@ export function Tenses() {
   useEffect(() => {
     // Update the document title using the browser API
     history.push('/tenses')
-    console.log(history)
     dispatch(getTenses('spanish'))
   }, []);
 

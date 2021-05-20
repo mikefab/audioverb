@@ -9,8 +9,6 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 require('dotenv').config();
-console.log('hhhhhh')
-
 
 ReactDOM.render(
   <React.StrictMode>
