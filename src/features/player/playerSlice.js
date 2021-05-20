@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
-  fetchAudio
+  fetchAudio,
+  fetchEditedAudio
 } from './playerAPI';
 
 const initialState = {

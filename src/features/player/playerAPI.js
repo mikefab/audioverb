@@ -8,7 +8,6 @@ export function fetchAudio(r) {
     // const cap = r[1]
     const start = r.start
     const stop = r.stop
-    console.log(name, 'nnn')
     // URL to concat mp3s
     const createAudioURL = base + 'combine/mp3/movies/' +
     name +
@@ -27,7 +26,7 @@ export function fetchAudio(r) {
     stop.toString() +
     '_' + name +
     '.mp3'
-
+    console.log(createAudioURL, audioURL, 'UUUUU')
     axios.get(createAudioURL)
       .then(res => {
         return resolve({
