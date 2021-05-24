@@ -10,6 +10,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Translate from '@material-ui/icons/Translate';
+import PlayArrow from '@material-ui/icons/PlayArrow';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
   root: {
@@ -56,12 +58,19 @@ export function Results() {
                       <div key={i2+1000} >
                         <Paper variant="outlined" elevation={3} className={classes.clickable}
                           key={i2}
-                          onClick={() => dispatch(getAudio(cap))}
                           >
-                          {cap.cap}
-
+                          <Grid container>
+                          <Grid item xs={1}>
+                            <Translate key={i2+100} style={{cursor: 'pointer'}} onClick={() => handleTranslate(cap.cap)}/>
+                          </Grid>
+                            <Grid item xs={1} onClick={() => dispatch(getAudio(cap))}>
+                              <PlayArrow />
+                            </Grid>
+                            <Grid item xs={10}>
+                              {cap.cap}
+                            </Grid>
+                          </Grid>
                         </Paper>
-                      <Translate key={i2+100} style={{cursor: 'pointer'}} onClick={() => handleTranslate(cap.cap)}/>
                           </div>
                       ))}
 
