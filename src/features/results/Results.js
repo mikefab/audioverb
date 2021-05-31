@@ -1,6 +1,6 @@
 import React, { } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectResults } from './resultsSlice';
+import { selectResults, setSelectedResult } from './resultsSlice';
 import { getAudio } from '../player/playerSlice';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,9 +41,13 @@ export function Results() {
   const classes = useStyles();
   function handleTranslate(cap) {
     window.open(
-      `https://translate.google.com/?sl=es&tl=en&text=${cap}&op=translate`,
+      `https://translate.google.com/?sl=es&tl=en&text=${cap.cap}&op=translate`,
       '_blank'
     )
+  }
+  function handlePlay(cap) {
+    dispatch(getAudio(cap))
+    dispatch(setSelectedResult(cap))
   }
   return (
     <Container  style={{height: '600px', overflow: 'auto'}} >
@@ -60,13 +64,7 @@ export function Results() {
                           key={i2}
                           >
                           <Grid container>
-                          <Grid item xs={1}>
-                            <Translate key={i2+100} style={{cursor: 'pointer'}} onClick={() => handleTranslate(cap.cap)}/>
-                          </Grid>
-                            <Grid item xs={1} onClick={() => dispatch(getAudio(cap))}>
-                              <PlayArrow />
-                            </Grid>
-                            <Grid item xs={10}>
+                            <Grid item xs={12} onClick={() => handlePlay(cap)}>
                               {cap.cap}
                             </Grid>
                           </Grid>

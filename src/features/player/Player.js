@@ -2,12 +2,14 @@ import React, {useEffect} from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAudioURL, getAudio } from './playerSlice';
+import { selectCurrentResult } from '../results/resultsSlice'
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Add from '@material-ui/icons/Add';
 import Remove from '@material-ui/icons/Remove';
 import NavigateBefore from '@material-ui/icons/NavigateBefore';
 import NavigateNext from '@material-ui/icons/NavigateNext';
+import Translate from '@material-ui/icons/Translate';
 import Grid from '@material-ui/core/Grid';
 
 export function Player() {
@@ -19,7 +21,8 @@ export function Player() {
 
   }, []);
   let audioURL = useSelector(selectAudioURL);
-
+  const selected_result = useSelector(selectCurrentResult);
+  let showTranslateIcon = selected_result.cap ? 'primary' : 'disabled'
   function alter(kind) {
     let obj = {}
     if (audioURL) {
@@ -53,12 +56,15 @@ export function Player() {
       console.log(obj)
       dispatch(getAudio(obj))
   }
+  function getNeighbor(direction) {
+    console.log(!!selected_result.cap)
+
+  }
 
   return (
     <div>
     <Grid container>
-
-    <Grid container>
+      <Grid container>
           <Grid item xs={12}>
             <ButtonGroup color="primary" size="large" aria-label="outlined primary button group">
               <Button onClick = {() => {alter('prepend')}}><Add/></Button>
@@ -78,13 +84,18 @@ export function Player() {
             </Grid>
           <Grid item xs={12}>
             <ButtonGroup color="primary" size="large" aria-label="outlined primary button group">
-              <Button><NavigateBefore /></Button>
-              <Button><NavigateNext /></Button>
+              <Button onClick = {() => {getNeighbor('previous')}}><NavigateBefore /></Button>
+              <Button onClick = {() => {getNeighbor('next')}}><NavigateNext /></Button>
             </ButtonGroup>
           </Grid>
-        </Grid>
-
+          <Grid item xs={1} style={{minHeight: '60px'}}>
+              <Translate  style={{cursor: 'pointer', fontSize: '18px'}} color={showTranslateIcon} />
           </Grid>
+          <Grid item xs={11} style={{minHeight: '60px'}}>
+              {selected_result.cap}
+          </Grid>
+        </Grid>
+      </Grid>
 </div>
 
   );
