@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectVerns} from './verbsSlice';
 import { getVerbs, selectVerbs} from '../verbs/verbsSlice';
 import {setTense} from '../tenses/tensesSlice';
 import Grid from '@material-ui/core/Grid';
@@ -26,7 +25,7 @@ const { tense } = useParams();
     // Update the document title using the browser API
     dispatch(setTense(tense))
     dispatch(getVerbs(tense))
-  }, [tense]);
+  }, [tense, dispatch, history, location.pathname]);
 
   return (
     <Container>

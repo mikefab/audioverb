@@ -4,8 +4,8 @@ const base = env.REACT_APP_HOST
 
 export function fetchAudio(r) {
   return new Promise((resolve, reject) => {
-    const name = r.nam.replace(/\./g, '_')
-    // const cap = r[1]
+    const name = r.nam.nam.replace(/\s+/g, '_')
+
     const start = r.start
     const stop = r.stop
     // URL to concat mp3s
@@ -16,7 +16,6 @@ export function fetchAudio(r) {
     '/' +
     stop.toString().replace('.', '_') +
     '.mp3'
-
     // URL to complete clip
     let audioURL = base + 'mp3/movies/' +
     name +
@@ -26,7 +25,7 @@ export function fetchAudio(r) {
     stop.toString() +
     '_' + name +
     '.mp3'
-    console.log(createAudioURL, audioURL, 'UUUUU')
+
     axios.get(createAudioURL)
       .then(res => {
         return resolve({

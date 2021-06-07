@@ -1,16 +1,19 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectResults, setSelectedResult } from './resultsSlice';
+import { getResults, selectResults, setSelectedResult } from './resultsSlice';
+
 import { getAudio } from '../player/playerSlice';
 
 import { makeStyles } from '@material-ui/core/styles';
+import {
+  Link,
+  useParams
+} from "react-router-dom";
 import Container from '@material-ui/core/Container'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Translate from '@material-ui/icons/Translate';
-import PlayArrow from '@material-ui/icons/PlayArrow';
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
@@ -35,22 +38,30 @@ const useStyles = makeStyles({
 });
 
 
-export function Results() {
+export function Results(props) {
   const dispatch = useDispatch();
-  const results = useSelector(selectResults);
-  const classes = useStyles();
-  function handleTranslate(cap) {
-    window.open(
-      `https://translate.google.com/?sl=es&tl=en&text=${cap.cap}&op=translate`,
-      '_blank'
-    )
+  const {conjugation} = props
+  let results = useSelector(selectResults);
+  if (!conjugation) {
+    results = []
   }
+
+  const classes = useStyles();
+  const { tense, verb } = useParams();
+  useEffect(() => {
+    dispatch(getResults(conjugation))
+
+
+  }, [conjugation, dispatch]);
+
   function handlePlay(cap) {
     dispatch(getAudio(cap))
     dispatch(setSelectedResult(cap))
   }
+
   return (
     <Container  style={{height: '600px', overflow: 'auto'}} >
+
           {results.map((result, i) => (
             <Card className={classes.root} key={i}>
                   <CardContent>
@@ -64,8 +75,11 @@ export function Results() {
                           key={i2}
                           >
                           <Grid container>
-                            <Grid item xs={12} onClick={() => handlePlay(cap)}>
-                              {cap.cap}
+                            <Grid item xs={1} onClick={() => handlePlay(cap)}>
+                              *
+                            </Grid>
+                            <Grid item xs={11}>
+                              <Link to={`/tenses/${tense}/${verb}/${conjugation}/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`} >{cap.cap}</Link>
                             </Grid>
                           </Grid>
                         </Paper>

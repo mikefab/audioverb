@@ -21,7 +21,7 @@ export function Tenses() {
     // Update the document title using the browser API
     history.push('/tenses')
     dispatch(getTenses('spanish'))
-  }, []);
+  }, [dispatch, history]);
 
   return (
     <Container>
