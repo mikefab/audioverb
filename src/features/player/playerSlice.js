@@ -18,10 +18,8 @@ const initialState = {
 export const getAudio = createAsyncThunk(
   'player/fetchAudio',
   async (r) => {
-    console.log(r, '1111')
     const response = await fetchAudio(r);
     // The value we return becomes the `fulfilled` action payload
-    console.log(response.data)
     return response.data;
   }
 );

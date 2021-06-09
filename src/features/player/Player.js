@@ -20,9 +20,9 @@ export function Player() {
   let audioURL = useSelector(selectAudioURL);
   const selected_result = useSelector(selectCurrentResult);
   function alter(kind) {
+    console.log(selected_result)
     let obj = {}
     if (audioURL) {
-
       const ary = audioURL.split('/')
       const matched = ary[ary.length - 1].match(/(\d+\.?\d)(~)(\d+\.?\d)(_)(.+?)(.mp3)/)
 

@@ -16,7 +16,8 @@ import {
 } from "react-router-dom";
 
 import Container from '@material-ui/core/Container'
-
+import env from "react-dotenv";
+const wait_time = env.REACT_APP_WAIT_TIME
 export function Verb() {
   let history = useHistory();
 
@@ -27,17 +28,14 @@ export function Verb() {
   // dispatch(getResults(conjugation))
 
   const conjugations = useSelector(selectConjugations);
-  // if (conjugation) {
-  //   if (conjugation) {
-  //    dispatch(getResults(conjugation))
-  //   }
-  //
-  //    // dispatch(getResults(instances[0]))
-  // }
+  if (!conjugation) {
+    if (conjugations.length > 0) {
+      setTimeout(() => {
+        history.push(`/tenses/${tense}/${verb}/${conjugations[0]}`)
+      }, wait_time)
+    }
+  }
 
-  // if (!conjugation) {
-  //   history.push(`/tenses/${tense}/${verb}/${conjugations[0]}`)
-  // }
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -59,7 +57,7 @@ export function Verb() {
 
   return (
     <Container >
-      <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <b>{conjugation}</b>
+      <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <b>{verb}</b>/ <b>{conjugation}</b>
       <br />
       <br />
       {conjugations.map((instance, i) => (

@@ -33,7 +33,7 @@ export function Result() {
   }
   return (
     <Container  style={{height: '600px', overflow: 'auto'}} >
-      <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}/${conjugation}`}>{conjugation}</Link>
+      <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <Link to={`/tenses/${tense}/${verb}/${conjugation}`}>{conjugation}</Link>
       <br/><br/>
       <Grid container>
         <Grid item xs={12}>
@@ -42,7 +42,7 @@ export function Result() {
         {result.map((cap, i3) => (
           <Grid container key={i3+1000}>
               <Grid item xs={1}>
-                <Translate onClick = {() => handleTranslate(cap)} />
+                <Translate onClick = {() => handleTranslate(cap)} style={{cursor: 'pointer'}} />
               </Grid>
               <Grid item xs={11}>
                  <span onClick = {() => handlePlay(cap)} style={{cursor: 'pointer'}} >{cap.cap}</span>
