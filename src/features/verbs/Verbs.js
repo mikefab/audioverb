@@ -29,7 +29,9 @@ const { tense } = useParams();
 
   return (
     <Container>
-    <Link to='/tenses'>tenses</Link>  - {tense}
+    <p>
+      <Link to='/tenses'>tenses</Link>  - {tense}
+    </p>
       <Grid container spacing={1}>
       {Object.keys(verbs).map((verb, i) => (
         <Grid item xs={6} key={ i }>

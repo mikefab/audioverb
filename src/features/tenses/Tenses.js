@@ -25,7 +25,9 @@ export function Tenses() {
 
   return (
     <Container>
-    Tenses
+    <p>
+      Tenses
+    </p>
       <Grid container spacing={1}>
       {tenses.map((tense, i) => (
         <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
