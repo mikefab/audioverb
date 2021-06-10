@@ -16,13 +16,18 @@ export function Result() {
   const result = useSelector(selectResult);
   const { tense, verb, conjugation, name, num } = useParams();
 
+  result.map(cap => {
+    if(parseInt(cap.num)===parseInt(num)){
+      handlePlay(cap)
+    }
+  })
+
   useEffect(() => {
     dispatch(getResult(`${name}^${num}`))
 
   }, [dispatch, name, num]);
 
   function handleTranslate(cap) {
-    console.log(cap)
     window.open(
       `https://translate.google.com/?sl=es&tl=en&text=${cap.cap}&op=translate`,
       '_blank'
