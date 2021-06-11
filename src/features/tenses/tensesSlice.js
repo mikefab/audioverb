@@ -6,6 +6,20 @@ import {
 const initialState = {
   tenses: [],
   tense: '',
+  explanations: {
+      "condicional simple": "The conditional tense (condicional simple de indicativo) in Spanish is mainly used to express hypothetical situations and actions as well as for polite requests and wishes.",
+      "futuro perfecto": "The Spanish future perfect is used just like its English counterpart: to indicate an action that will have taken place before another action or point in the future.",
+      "futuro simple": "The futuro simple is used to express: an upcoming (future) action, or an intention, a prediction about the future, a probability or possibility",
+      "gerundio": "verb forms ending in -ando or -iendo , e.g. 'hablando', are called gerundios (gerunds). These special verb forms are known as verbals because these words no longer act like verbs in sentences - they have no subject. Instead they act like adjectives or adverbs.",
+      "imperativo": "El imperativo (the Spanish imperative) is a verbal form that speakers use to give orders, advice or make requests and suggestions to one or more people directly. ... Also, it must be noted that all imperative forms are conjugated without personal pronoun and only used in reference to the present, same as in English.",
+      "imperfecto": "The imperfect (imperfecto) is one of the two simple past tenses in Spanish. It is used for ongoing or recurrent actions in the past. It is also used for descriptions, states of being, and for providing background information about the past.",
+      "infinitivo": "The infinitive (el infinitivo) is the basic form of a verb that you find when you look it up in a dictionary. It is a non-finite (or 'in-finite', hence infinitive) verb form (like participles and gerunds), which means that it has no expressed or implied subject and shows no tense.",
+      "participio": "A past participle, participio, is a special form of a verb mainly used in compound tenses where it follows haber, ser or estar conjugated in a specific tense, e.g. 'he comido'.",
+      "pluscuamperfecto": "Pluscuamperfecto (or pluperfect in English) is used to describe events or actions that have happened further back in the past than a past action we are referring to. If you think about it in English, it would be something like: When I got home yesterday, my mom had already left for work.",
+      "presente": "The present indicative or el presente/el presente de indicativo is similar to the simple present tense in English grammar. We use this to tense to speak about actions in the present and near future. It describes routine or repeated actions as well as permanent situations.",
+      "pretérito": "The pretérito is the Spanish simple past tense, used to talk about things that were completed in the past.",
+      "pretérito perfecto": "Pretérito perfecto (perfect tense) is used for actions completed in the recent past that have a connection to the present. This tense is similar to the English present perfect tense and is conjugated with the auxiliary verb haber + past participle.",
+    },
   language: 'spanish',
   status: 'idle',
 };
@@ -53,5 +67,6 @@ export const tensesSlice = createSlice({
 
 export const selectTenses = (state) => state.tenses.tenses;
 export const selectTense = (state) => state.tenses.tense;
+export const selectExplanations = (state) => state.tenses.explanations;
 export const { setTense } = tensesSlice.actions;
 export default tensesSlice.reducer;

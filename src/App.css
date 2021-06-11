@@ -7,9 +7,6 @@
   pointer-events: none;
 }
 
-input {
-  color: white !important;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

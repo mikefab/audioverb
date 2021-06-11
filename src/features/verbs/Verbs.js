@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVerbs, selectVerbs} from '../verbs/verbsSlice';
+import {selectExplanations} from '../tenses/tensesSlice';
 import {setTense} from '../tenses/tensesSlice';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
@@ -18,7 +19,10 @@ function Verbs() {
   const dispatch = useDispatch();
   const verbs = useSelector(selectVerbs);
 
-const { tense } = useParams();
+  const { tense } = useParams();
+
+  const tense_explanation = useSelector(selectExplanations);
+
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     history.push(location.pathname)
@@ -32,6 +36,12 @@ const { tense } = useParams();
     <p>
       <Link to='/tenses'>tenses</Link>  - {tense}
     </p>
+    <p style={{fontSize: 14}}>
+      <i>
+        {tense_explanation[tense]}
+      </i>
+    </p>
+
       <Grid container spacing={1}>
       {Object.keys(verbs).map((verb, i) => (
         <Grid item xs={6} key={ i }>
