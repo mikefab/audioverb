@@ -47,11 +47,18 @@ export function Results(props) {
   useEffect(() => {
     dispatch(getResults(conjugation || phrase))
 
-  }, [conjugation, dispatch]);
+  }, [conjugation, dispatch, phrase]);
 
   function handlePlay(cap) {
     dispatch(getAudio(cap))
     dispatch(setSelectedResult(cap))
+  }
+
+  function parseLink(cap, tense, verb, conjugation) {
+    if (phrase) {
+      return `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`
+    }
+    return `/tenses/${tense}/${verb}/${conjugation}/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`
   }
 
   return (
@@ -71,7 +78,7 @@ export function Results(props) {
                             *
                           </Grid>
                           <Grid item xs={11}>
-                            <Link style={{textDecoration: 'none'}} to={`/tenses/${tense}/${verb}/${conjugation}/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`} >{cap.cap}</Link>
+                            <Link style={{textDecoration: 'none'}} to={parseLink(cap, tense, verb, conjugation)} >{cap.cap}</Link>
                           </Grid>
                         </Grid>
                         </div>

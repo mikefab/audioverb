@@ -8,16 +8,13 @@ import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link, useHistory } from "react-router-dom";
-import MailIcon from "@material-ui/icons/Mail";
+
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import List from "@material-ui/core/List";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { useDispatch } from 'react-redux';
 import {
   getResults
@@ -108,9 +105,6 @@ export default function SearchAppBar() {
   let history = useHistory();
   const dispatch = useDispatch();
   const [query, setQuery] = useState('');
-  const _onSubmit = (e) => {
-    e.preventDefault();
-  }
   const classes = useStyles();
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
@@ -186,8 +180,8 @@ export default function SearchAppBar() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {["Movies", "Tenses"].map((text, index) => (
-            <ListItem button key={text} component={Link} to="/tenses">
+          {["Tenses", "Search"].map((text, index) => (
+            <ListItem button key={text} component={Link} to={`/${text}`}>
               <ListItemText primary={text}  />
             </ListItem>
           ))}
