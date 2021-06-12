@@ -1,6 +1,8 @@
 import React from 'react';
 import { Search } from './features/search/Search';
+import  Nav  from './features/nav/Nav';
 import { Tenses } from './features/tenses/Tenses';
+import { Results } from './features/results/Results';
 import { Verb } from './features/verb/Verb';
 import Verbs from './features/verbs/Verbs';
 import  {Result} from './features/result/Result';
@@ -16,9 +18,10 @@ import './App.css';
 function App() {
   return (
       <Container maxWidth="sm" justify="center" >
+      <Nav/>
         <Switch>
-          <Route path='/search' component = {Search} />}
-          <Route exact path="/" component = {Tenses} />
+          <Route path='/search' component = {Results} />}
+          <Route exact path="/" component = {Results} />
           <Route path={`/tenses/:tense/:verb/:conjugation/:name/:num`} component={Result}/>
           <Route path={`/tenses/:tense/:verb/:conjugation`} component={Verb}/>
           <Route path={`/tenses/:tense/:verb`} component={Verb}/>
