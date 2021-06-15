@@ -1,4 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
+import mediaReducer from '../features/media/mediaSlice';
+import mediasReducer from '../features/medias/mediasSlice';
 import resultsReducer from '../features/results/resultsSlice';
 import resultReducer from '../features/result/resultSlice';
 import tensesReducer from '../features/tenses/tensesSlice';
@@ -9,6 +11,8 @@ import explorerReducer from '../features/explorer/explorerSlice';
 
 export const store = configureStore({
   reducer: {
+    media: mediaReducer,
+    medias: mediasReducer,
     tenses: tensesReducer,
     verbs: verbsReducer,
     verb: verbReducer,

@@ -123,7 +123,7 @@ export default function SearchAppBar() {
   };
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    console.log('aaaa')
+
   }, []);
 
   return (
@@ -180,7 +180,7 @@ export default function SearchAppBar() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {["Tenses", "Search"].map((text, index) => (
+          {["Medias", "Tenses"].map((text, index) => (
             <ListItem button key={text} component={Link} to={`/${text}`}>
               <ListItemText primary={text}  />
             </ListItem>

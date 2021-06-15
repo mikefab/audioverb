@@ -13,3 +13,16 @@ export function fetchConjugations(tense, verb) {
       }).catch(console)
   })
 }
+
+
+export function fetchConjugationsMedia(media, verb) {
+  return new Promise((resolve, reject) => {
+    const url = base + 'verb_for_name/' + media + '/'+ verb
+    axios.get(url)
+      .then(res => {
+        return resolve({
+          data: res.data
+        })
+      }).catch(console)
+  })
+}

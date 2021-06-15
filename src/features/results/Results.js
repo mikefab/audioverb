@@ -42,7 +42,7 @@ export function Results(props) {
   }
 
   const classes = useStyles();
-  const { tense, verb } = useParams();
+  const { tense, verb, media } = useParams();
 
   useEffect(() => {
     dispatch(getResults(conjugation || phrase))

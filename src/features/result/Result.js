@@ -15,7 +15,7 @@ export function Result() {
   const dispatch = useDispatch();
   const result = useSelector(selectResult);
   const { tense, verb, conjugation, name, num } = useParams();
-  console.log(name, num, 'nnnn')
+
   result.map(cap => {
     if(parseInt(cap.num)===parseInt(num)){
       handlePlay(cap)
@@ -38,14 +38,14 @@ export function Result() {
   }
 
   let link_is_visible = 'hidden';
-  if (tense) {
+  if (tense != "undefined")  {
     link_is_visible = 'visible';
   }
 
   return (
     <Container  style={{height: '600px', overflow: 'auto'}} >
       <span style={{visibility: link_is_visible}}>
-      <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <Link to={`/tenses/${tense}/${verb}/${conjugation}`}>{conjugation}</Link>
+        <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <Link to={`/tenses/${tense}/${verb}/${conjugation}`}>{conjugation}</Link>
       </span>
       <br/><br/>
       <Grid container>

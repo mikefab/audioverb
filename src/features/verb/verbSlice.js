@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
-  fetchConjugations
+  fetchConjugations,
+  fetchConjugationsMedia
 } from './verbAPI';
 
 const initialState = {
   conjugations: [],
+  conjugations_by_tense: {},
   status: 'idle',
 };
-
 
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -21,6 +22,16 @@ export const getConjugations = createAsyncThunk(
   async (tense_verb) => {
     const [tense, verb] = tense_verb
     const response = await fetchConjugations(tense, verb);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data
+  }
+);
+
+export const getConjugationsMedia = createAsyncThunk(
+  'conjugation/fetchConjugationsMedia',
+  async (media_verb) => {
+    const [media, verb] = media_verb
+    const response = await fetchConjugationsMedia(media, verb);
     // The value we return becomes the `fulfilled` action payload
     return response.data
   }
@@ -41,9 +52,17 @@ export const verbSlice = createSlice({
         state.status = 'idle';
         state.conjugations = action.payload;
       })
+      .addCase(getConjugationsMedia.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getConjugationsMedia.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.conjugations_by_tense = action.payload;
+      })
   },
 
 });
 
 export const selectConjugations = (state) => state.verb.conjugations;
+export const selectConjugationsByTense = (state) => state.verb.conjugations_by_tense;
 export default verbSlice.reducer;
