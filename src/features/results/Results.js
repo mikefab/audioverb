@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getResults, selectResults, setSelectedResult } from './resultsSlice';
+import { getResults, getResultsByName, selectResults, setSelectedResult } from './resultsSlice';
 
 import { getAudio } from '../player/playerSlice';
 
@@ -45,7 +45,7 @@ export function Results(props) {
   const { tense, verb, media } = useParams();
 
   useEffect(() => {
-    dispatch(getResults(conjugation || phrase))
+    dispatch(getResults([conjugation || phrase, media]))
 
   }, [conjugation, dispatch, phrase]);
 

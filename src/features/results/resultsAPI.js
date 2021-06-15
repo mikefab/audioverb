@@ -15,3 +15,17 @@ export function fetchResults(query) {
       }).catch(console)
   })
 }
+
+export function fetchResultsByMedia(query, media) {
+  return new Promise((resolve, reject) => {
+    axios.get(base + 'search/spa/' + media + '/' + query)
+      .then(res => {
+        if (res.data.children.length === 0) {
+          resolve([])
+        }
+        return resolve({
+          data: res.data
+        })
+      }).catch(console)
+  })
+}

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
-  fetchResults
+  fetchResults,
+  fetchResultsByMedia
 } from './resultsAPI';
 
 const initialState = {
@@ -18,8 +19,17 @@ const initialState = {
 // typically used to make async requests.
 export const getResults = createAsyncThunk(
   'results/fetchResults',
-  async (query) => {
-    const response = await fetchResults(query);
+  async (query_media) => {
+    const [query, media] = query_media
+
+    let response;
+
+    if(!!media) {
+        response = await fetchResultsByMedia(query, media);
+    } else {
+        response = await fetchResults(query);
+    }
+
     // The value we return becomes the `fulfilled` action payload
     return response.data.children || [];
   }

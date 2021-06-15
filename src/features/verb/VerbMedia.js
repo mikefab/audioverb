@@ -67,7 +67,7 @@ export function VerbMedia() {
           </span>
       ))}
 
-      <Results conjugation={conjugation} />
+      <Results media={media} conjugation={conjugation} />
     </Container>
   );
 }
