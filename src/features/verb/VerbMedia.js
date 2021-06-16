@@ -57,7 +57,7 @@ export function VerbMedia() {
       <Link to={`/media/`}>media</Link> / <Link to={`/media/${media}`}>{media}</Link> / <b>{verb}</b> / <b>{conjugation}</b>
       <br />
       <br />
-      <p style={{maxWidth: '100px', minHeight: '20px'}}>
+      <p style={{maxWidth: '300px', minHeight: '20px'}}>
       {final.map((instance, i) => (
                 <span key = {i} style={{ fontSize: '14px', cursor: 'pointer', paddingLeft: '5px'}} onClick={() => handleClick(instance)}>
                   <i>{instance} </i>
