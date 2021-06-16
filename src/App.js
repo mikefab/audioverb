@@ -29,7 +29,7 @@ function App() {
           <Route exact path="/media/:media" component = {Media} />
           <Route exact path="/medias" component = {Medias} />
           <Route path='/search' component = {Results} />}
-          <Route exact path="/" component = {Tenses} />
+          <Route exact path="/" component = {Medias} />
           <Route path={`/tenses/:tense/:verb/:conjugation/:name/:num`} component={Result}/>
           <Route path={`/tenses/:tense/:verb/:conjugation`} component={Verb}/>
           <Route path={`/tenses/:tense/:verb`} component={Verb}/>

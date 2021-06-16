@@ -18,8 +18,7 @@ export function Media() {
   useEffect(() => {
 
     dispatch(getVerbsByMedia(media))
-  }, [dispatch]);
-
+  }, [dispatch, media]);
 
   return (
     <Container>

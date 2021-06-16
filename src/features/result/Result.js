@@ -16,9 +16,9 @@ export function Result() {
   const result = useSelector(selectResult);
   const { tense, verb, conjugation, name, num } = useParams();
 
-  result.map(cap => {
-    if(parseInt(cap.num)===parseInt(num)){
-      handlePlay(cap)
+  result.forEach(cap => {
+    if (parseInt(cap.num)===parseInt(num)){
+       handlePlay(cap)
     }
   })
 
@@ -38,7 +38,7 @@ export function Result() {
   }
 
   let link_is_visible = 'hidden';
-  if (tense != "undefined")  {
+  if (tense !== "undefined")  {
     link_is_visible = 'visible';
   }
 

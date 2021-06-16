@@ -46,7 +46,9 @@ export function Verb() {
       <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <b>{verb}</b> / <b>{conjugation}</b>
       <br />
       <br />
-      {conjugations.map((instance, i) => (
+        <span style={{maxWidth: 300}}>
+          {conjugations.map((instance, i) => (
+
           <span
             key = {i}
             style={{ fontSize: '14px', cursor: 'pointer', paddingLeft: '5px'}}
@@ -57,6 +59,7 @@ export function Verb() {
             {add_comma(i)}
           </span>
       ))}
+              </span>
       <br />
 
       <Results conjugation={conjugation} />

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getResults, getResultsByName, selectResults, setSelectedResult } from './resultsSlice';
+import { getResults, selectResults, setSelectedResult } from './resultsSlice';
 
 import { getAudio } from '../player/playerSlice';
 
@@ -47,7 +47,7 @@ export function Results(props) {
   useEffect(() => {
     dispatch(getResults([conjugation || phrase, media]))
 
-  }, [conjugation, dispatch, phrase]);
+  }, [conjugation, dispatch, phrase, media]);
 
   function handlePlay(cap) {
     dispatch(getAudio(cap))

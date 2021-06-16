@@ -30,12 +30,6 @@ export function VerbMedia() {
 
   }, [dispatch, media, verb, conjugation]);
 
-  function add_comma(ary, i) {
-    if (ary.length -1 === i) {
-      return ''
-    }
-    return ','
-  }
 
   function handleClick(instance) {
     history.push(`/media/${media}/${verb}/${instance}`)
@@ -48,24 +42,28 @@ export function VerbMedia() {
     })
     return ary
   }, [])
-  const unique = [ ...new Set(ary)]
+  let unique = [ ...new Set(ary)]
+  const final = unique.map((e, i) => {
+    if (i < unique.length - 1) {
+
+      return e + ","
+    }
+          console.log(e, i, unique.length)
+    return e
+  })
 
   return (
     <Container >
       <Link to={`/media/`}>media</Link> / <Link to={`/media/${media}`}>{media}</Link> / <b>{verb}</b> / <b>{conjugation}</b>
       <br />
       <br />
-      <br />
-      {unique.map((instance, i) => (
-        <span key = {i} style={{ fontSize: '14px', cursor: 'pointer', paddingLeft: '5px'}}>
-
-              <span onClick={() => handleClick(instance)}>
-                <i>{instance}</i>
-              </span>
-              {add_comma(unique, i)}
-
-          </span>
-      ))}
+      <p style={{maxWidth: '100px', minHeight: '20px'}}>
+      {final.map((instance, i) => (
+                <span key = {i} style={{ fontSize: '14px', cursor: 'pointer', paddingLeft: '5px'}} onClick={() => handleClick(instance)}>
+                  <i>{instance} </i>
+                </span>
+        ))}
+      </p>
 
       <Results media={media} conjugation={conjugation} />
     </Container>
