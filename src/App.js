@@ -10,14 +10,12 @@ import Verbs from './features/verbs/Verbs';
 import  {Result} from './features/result/Result';
 import Container from '@material-ui/core/Container'
 
-import {
-  Switch,
-  Route,
-
-} from "react-router-dom";
+import {  Route, Switch, Redirect } from "react-router-dom";
+import useGaTracker from './useGaTracker'
 import './App.css';
 
 function App() {
+  useGaTracker();
   return (
       <Container maxWidth="sm" justify="center" >
       <Nav/>
