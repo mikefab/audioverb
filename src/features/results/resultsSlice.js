@@ -23,8 +23,8 @@ export const getResults = createAsyncThunk(
     const [query, media] = query_media
 
     let response;
-
-    if(!!media) {
+    // media.length > 1 is hack to avoid single letters submitted on search enter
+    if(!!media && media.length > 1) {
         response = await fetchResultsByMedia(query, media);
     } else {
         response = await fetchResults(query);

@@ -14,7 +14,7 @@ import Grid from '@material-ui/core/Grid';
 export function Result() {
   const dispatch = useDispatch();
   const result = useSelector(selectResult);
-  const { tense, verb, conjugation, name, num } = useParams();
+  const { tense, verb, conjugation, media, num } = useParams();
 
   result.forEach(cap => {
     if (parseInt(cap.num)===parseInt(num)){
@@ -23,9 +23,9 @@ export function Result() {
   })
 
   useEffect(() => {
-    dispatch(getResult(`${name}^${num}`))
+    dispatch(getResult(`${media}^${num}`))
 
-  }, [dispatch, name, num]);
+  }, [dispatch, media, num]);
 
   function handleTranslate(cap) {
     window.open(
@@ -38,7 +38,8 @@ export function Result() {
   }
 
   let link_is_visible = 'hidden';
-  if (tense !== "undefined")  {
+
+  if (typeof tense !== 'undefined')  {
     link_is_visible = 'visible';
   }
 

@@ -57,8 +57,10 @@ export function Results(props) {
   function parseLink(cap, tense, verb, conjugation) {
     if (phrase) {
       return `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`
+    } else if (tense) {
+      return `/tenses/${tense}/${verb}/${conjugation}/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`
     }
-    return `/tenses/${tense}/${verb}/${conjugation}/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`
+      return `/media/${media}/caption/${cap.num}`
   }
 
   return (

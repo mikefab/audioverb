@@ -21,14 +21,14 @@ function App() {
       <Nav/>
 
         <Switch>
-          <Route path={`/search/:name/:num`} component={Result}/>
+          <Route path={`/search/:media/:num`} component={Result}/>
+          <Route exact path="/media/:media/caption/:num" component = {Result} />
           <Route exact path="/media/:media/:verb/:conjugation" component = {VerbMedia} />
-
           <Route exact path="/media/:media" component = {Media} />
           <Route exact path="/medias" component = {Medias} />
           <Route path='/search' component = {Results} />}
           <Route exact path="/" component = {Medias} />
-          <Route path={`/tenses/:tense/:verb/:conjugation/:name/:num`} component={Result}/>
+          <Route path={`/tenses/:tense/:verb/:conjugation/:media/:num`} component={Result}/>
           <Route path={`/tenses/:tense/:verb/:conjugation`} component={Verb}/>
           <Route path={`/tenses/:tense/:verb`} component={Verb}/>
           <Route path={`/tenses/:tense`} component={Verbs}/>
