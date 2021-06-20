@@ -10,6 +10,8 @@ import {
 import Container from '@material-ui/core/Container'
 import Translate from '@material-ui/icons/Translate';
 import Grid from '@material-ui/core/Grid';
+import Next from '@material-ui/icons/NavigateNext';
+import Previous from '@material-ui/icons/NavigateBefore';
 
 export function Result() {
   const dispatch = useDispatch();
@@ -53,15 +55,21 @@ export function Result() {
         <Grid item xs={12}>
           <Player />
         </Grid>
+        <Grid item xs={6}>
+          <Link to={`/media/${media}/caption/${parseInt(num) - 1}`}><Previous/> </Link>
+        </Grid>
+        <Grid item xs={6}>
+          <Link to={`/media/${media}/caption/${parseInt(num) + 1}`}><Next/> </Link>
+        </Grid>
         {result.map((cap, i3) => (
           <Grid container key={i3+1000}>
-              <Grid item xs={1}>
-                <Translate onClick = {() => handleTranslate(cap)} style={{cursor: 'pointer'}} />
-              </Grid>
-              <Grid item xs={11}>
-                 <span onClick = {() => handlePlay(cap)} style={{cursor: 'pointer'}} >{cap.cap}</span>
-              </Grid>
-              </Grid>
+            <Grid item xs={1}>
+              <Translate onClick = {() => handleTranslate(cap)} style={{cursor: 'pointer'}} />
+            </Grid>
+            <Grid item xs={11}>
+               <span onClick = {() => handlePlay(cap)} style={{cursor: 'pointer'}} >{cap.cap}</span>
+            </Grid>
+          </Grid>
           ))}
 
       </Grid>
