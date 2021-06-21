@@ -3,9 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getConjugationsMedia, selectConjugationsByTense} from '../verb/verbSlice';
 import { Results } from '../results/Results';
-// import {
-//   getResults
-// } from '../results/resultsSlice';
+import Chip from '@material-ui/core/Chip';
 
 import {
   Link,
@@ -43,15 +41,15 @@ export function VerbMedia() {
     return ary
   }, [])
   let unique = [ ...new Set(ary)]
-  const final = unique.map((e, i) => {
-    if (i < unique.length - 1) {
-
-      return e + ","
+  if (unique.length === 1) {
+    unique = []
+  }
+  function handleVariant(instance) {
+    if (conjugation === instance) {
+      return 'default'
     }
-          console.log(e, i, unique.length)
-    return e
-  })
-
+    return 'outlined'
+  }
   return (
     <Container >
       <span className='crumbs'>
@@ -59,13 +57,21 @@ export function VerbMedia() {
       </span>
       <br />
       <br />
-      <p style={{maxWidth: '300px', minHeight: '20px'}}>
-      {final.map((instance, i) => (
-                <span key = {i} style={{ fontSize: '14px', cursor: 'pointer', paddingLeft: '5px'}} onClick={() => handleClick(instance)}>
-                  <i>{instance} </i>
+
+      {unique.map((instance, i) => (
+                <span key = {i} style={{paddingLeft: '5px'}}>
+                <Chip
+                  variant={handleVariant(instance)}
+                  size="small"
+                  onClick={() => handleClick(instance)}
+                  label={instance}
+                  clickable
+                  color="primary"
+                />
                 </span>
         ))}
-      </p>
+  <br />
+  <br />
 
       <Results media={media} verb={verb} conjugation={conjugation} />
     </Container>

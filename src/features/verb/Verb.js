@@ -3,9 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getConjugations, selectConjugations} from '../verb/verbSlice';
 import { Results } from '../results/Results';
-// import {
-//   getResults
-// } from '../results/resultsSlice';
+import Chip from '@material-ui/core/Chip';
 
 import {
   Link,
@@ -22,7 +20,10 @@ export function Verb() {
 
   const dispatch = useDispatch();
 
-  const conjugations = useSelector(selectConjugations);
+  let conjugations = useSelector(selectConjugations);
+  if (conjugations.length === 1) {
+    conjugations = []
+  }
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -30,35 +31,39 @@ export function Verb() {
 
   }, [dispatch, tense, verb]);
 
-  function add_comma(i) {
-    if (conjugations.length -1 === i) {
-      return ''
-    }
-    return ','
-  }
 
   function handleClick(instance) {
     history.push(`/tenses/${tense}/${verb}/${instance}`)
   }
-
+  function handleVariant(instance) {
+    if (conjugation === instance) {
+      return 'default'
+    }
+    return 'outlined'
+  }
   return (
     <Container >
       <span className='crumbs'><Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <b>{verb}</b> / <b>{conjugation}</b></span>
       <br />
       <br />
-        <span style={{maxWidth: 300}}>
+        <span style={{maxWidth: 300, minHeight:1300}}>
           {conjugations.map((instance, i) => (
           <span
             key = {i}
-            style={{ fontSize: '14px', cursor: 'pointer', paddingLeft: '5px'}}
+            style={{paddingLeft: '5px'}}
           >
-            <span onClick={() => handleClick(instance)}>
-              <i>{instance}</i>
-            </span>
-            {add_comma(i)}
+          <Chip
+            variant={handleVariant(instance)}
+            size="small"
+            onClick={() => handleClick(instance)}
+            label={instance}
+            clickable
+            color="primary"
+          />
           </span>
       ))}
               </span>
+      <br />
       <br />
 
       <Results conjugation={conjugation} />
