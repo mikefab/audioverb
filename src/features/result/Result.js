@@ -12,7 +12,7 @@ import Translate from '@material-ui/icons/Translate';
 import Grid from '@material-ui/core/Grid';
 import Next from '@material-ui/icons/NavigateNext';
 import Previous from '@material-ui/icons/NavigateBefore';
-
+import '../..//App.css';
 export function Result() {
   const dispatch = useDispatch();
   const result = useSelector(selectResult);
@@ -39,20 +39,17 @@ export function Result() {
     dispatch(getAudio(cap))
   }
 
-  let link_is_visible = 'hidden';
 
-  if (typeof tense !== 'undefined')  {
-    link_is_visible = 'visible';
+  function CraftLink() {
+    if (typeof tense !== 'undefined')  {
+      return(<span className='crumbs'><Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <Link to={`/tenses/${tense}/${verb}/${conjugation}`}>{conjugation}</Link></span>)
+    }
+      return (<span className='crumbs'><Link to={`/medias/`}>medias</Link> / <Link to={`/media/${media}`}>{media}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{verb}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{conjugation}</Link></span>)
   }
 
   return (
     <Container  style={{height: '600px', overflow: 'auto'}} >
-      <span style={{visibility: link_is_visible}}>
-        <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <Link to={`/tenses/${tense}/${verb}/${conjugation}`}>{conjugation}</Link>
-      </span>
-      <span>
-          <Link to={`/medias/`}>medias</Link> / <Link to={`/media/${media}`}>{media}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{verb}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{conjugation}</Link>
-      </span>
+      <CraftLink />
       <br/><br/>
       <Grid container>
         <Grid item xs={12}>

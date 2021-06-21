@@ -54,7 +54,9 @@ export function VerbMedia() {
 
   return (
     <Container >
-      <Link to={`/medias/`}>media</Link> / <Link to={`/media/${media}`}>{media}</Link> / <b>{verb}</b> / <b>{conjugation}</b>
+      <span className='crumbs'>
+        <Link to={`/medias/`}>media</Link> / <Link to={`/media/${media}`}>{media}</Link> / <b>{verb}</b> / <b>{conjugation}</b>
+      </span>
       <br />
       <br />
       <p style={{maxWidth: '300px', minHeight: '20px'}}>

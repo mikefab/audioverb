@@ -43,12 +43,11 @@ export function Verb() {
 
   return (
     <Container >
-      <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <b>{verb}</b> / <b>{conjugation}</b>
+      <span className='crumbs'><Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <b>{verb}</b> / <b>{conjugation}</b></span>
       <br />
       <br />
         <span style={{maxWidth: 300}}>
           {conjugations.map((instance, i) => (
-
           <span
             key = {i}
             style={{ fontSize: '14px', cursor: 'pointer', paddingLeft: '5px'}}

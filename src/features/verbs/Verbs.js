@@ -33,9 +33,9 @@ function Verbs() {
 
   return (
     <Container>
-    <p>
+    <span className='crumbs'>
       <Link to='/tenses'>tenses</Link>  - {tense}
-    </p>
+    </span>
     <p style={{fontSize: 14}}>
       <i>
         {tense_explanation[tense]}
