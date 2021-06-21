@@ -32,7 +32,7 @@ export function VerbMedia() {
 
 
   function handleClick(instance) {
-    history.push(`/media/${media}/${verb}/${instance}`)
+    history.push(`/media/${media}/${verb}/${instance.replace(',', '')}`)
   }
 
   // This is a hack until I improve conjugation matching algorithms
@@ -54,7 +54,7 @@ export function VerbMedia() {
 
   return (
     <Container >
-      <Link to={`/media/`}>media</Link> / <Link to={`/media/${media}`}>{media}</Link> / <b>{verb}</b> / <b>{conjugation}</b>
+      <Link to={`/medias/`}>media</Link> / <Link to={`/media/${media}`}>{media}</Link> / <b>{verb}</b> / <b>{conjugation}</b>
       <br />
       <br />
       <p style={{maxWidth: '300px', minHeight: '20px'}}>
@@ -65,21 +65,7 @@ export function VerbMedia() {
         ))}
       </p>
 
-      <Results media={media} conjugation={conjugation} />
+      <Results media={media} verb={verb} conjugation={conjugation} />
     </Container>
   );
 }
-
-
-// {Object.keys(conjugations).map((tense, i) => (
-//   <span key = {i} style={{ fontSize: '14px', cursor: 'pointer', paddingLeft: '5px'}}>
-//     {conjugations[tense].map((instance, i2) => (
-//       <span>
-//         <span onClick={() => handleClick(instance)}>
-//           <i>{instance}</i>
-//         </span>
-//         {add_comma(i2)}
-//       </span>
-//   ))}
-//     </span>
-// ))}

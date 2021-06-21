@@ -50,6 +50,9 @@ export function Result() {
       <span style={{visibility: link_is_visible}}>
         <Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <Link to={`/tenses/${tense}/${verb}/${conjugation}`}>{conjugation}</Link>
       </span>
+      <span>
+          <Link to={`/medias/`}>medias</Link> / <Link to={`/media/${media}`}>{media}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{verb}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{conjugation}</Link>
+      </span>
       <br/><br/>
       <Grid container>
         <Grid item xs={12}>

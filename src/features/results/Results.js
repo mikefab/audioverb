@@ -60,7 +60,7 @@ export function Results(props) {
     } else if (tense) {
       return `/tenses/${tense}/${verb}/${conjugation}/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`
     }
-      return `/media/${media}/caption/${cap.num}`
+      return `/media/${media}/${verb}/${conjugation}/${cap.num}`
   }
 
   return (

@@ -10,7 +10,7 @@ import Verbs from './features/verbs/Verbs';
 import  {Result} from './features/result/Result';
 import Container from '@material-ui/core/Container'
 
-import {  Route, Switch, Redirect } from "react-router-dom";
+import {  Route, Switch } from "react-router-dom";
 import useGaTracker from './useGaTracker'
 import './App.css';
 
@@ -22,8 +22,9 @@ function App() {
 
         <Switch>
           <Route path={`/search/:media/:num`} component={Result}/>
-          <Route exact path="/media/:media/caption/:num" component = {Result} />
+          <Route exact path="/media/:media/:verb/:conjugation/:num" component = {Result} />
           <Route exact path="/media/:media/:verb/:conjugation" component = {VerbMedia} />
+          <Route exact path="/media/:media/:verb" component = {VerbMedia} />
           <Route exact path="/media/:media" component = {Media} />
           <Route exact path="/medias" component = {Medias} />
           <Route path='/search' component = {Results} />}
