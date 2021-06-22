@@ -56,10 +56,10 @@ export function Result() {
           <Player />
         </Grid>
         <Grid item xs={6}>
-          <Link to={`/media/${media}/caption/${parseInt(num) - 1}`}><Previous/> </Link>
+          <Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num) - 1}`}><Previous/> </Link>
         </Grid>
         <Grid item xs={6}>
-          <Link to={`/media/${media}/caption/${parseInt(num) + 1}`}><Next/> </Link>
+          <Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num) + 1}`}><Next/> </Link>
         </Grid>
         {result.map((cap, i3) => (
           <Grid container key={i3+1000}>
