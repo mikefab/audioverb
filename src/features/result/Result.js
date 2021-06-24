@@ -6,18 +6,25 @@ import { Player } from '../player/Player';
 import {
   Link,
   useParams,
+  useLocation
 } from "react-router-dom";
 import Container from '@material-ui/core/Container'
 import Translate from '@material-ui/icons/Translate';
 import Grid from '@material-ui/core/Grid';
 import Next from '@material-ui/icons/NavigateNext';
-import Previous from '@material-ui/icons/NavigateBefore';
+import NavigateBefore from '@material-ui/icons/NavigateBefore';
 import '../..//App.css';
 export function Result() {
+  function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
+  let query = useQuery();
+
+  const phrase = query.get('phrase')
+
   const dispatch = useDispatch();
   const result = useSelector(selectResult);
   const { tense, verb, conjugation, media, num } = useParams();
-
   result.forEach(cap => {
     if (parseInt(cap.num)===parseInt(num)){
        handlePlay(cap)
@@ -39,12 +46,36 @@ export function Result() {
     dispatch(getAudio(cap))
   }
 
+  function addPharse() {
+    if (!!phrase) {
+      return `?phrase=${phrase}`
+    }
+    return ''
+  }
 
   function CraftLink() {
     if (typeof tense !== 'undefined')  {
       return(<span className='crumbs'><Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <Link to={`/tenses/${tense}/${verb}/${conjugation}`}>{conjugation}</Link></span>)
+    } else if ((!!phrase)) {
+      return (<span className='crumbs'><Link to={`/search?phrase=${phrase}`}>search:  {phrase}</Link></span>)
     }
       return (<span className='crumbs'><Link to={`/medias/`}>medias</Link> / <Link to={`/media/${media}`}>{media}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{verb}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{conjugation}</Link></span>)
+  }
+
+  function CraftPrevNextLink(props) {
+    const direction = props.direction
+    if (!!phrase)  {
+      const amount = direction === 'prev' ? parseInt(num) - 1 : parseInt(num) + 1
+      if (direction === 'prev') {
+        return (<Link to={`/search/${media}/${amount}${addPharse()}`}><NavigateBefore /></Link>)
+      }
+      return (<Link to={`/search/${media}/${amount}${addPharse()}`}><Next /></Link>)
+    }
+
+    if (direction === 'prev') {
+      return (<Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num) - 1}`}> <NavigateBefore/> </Link>)
+    }
+      return (<Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num) + 1}`}> <Next/> </Link>)
   }
 
   return (
@@ -56,10 +87,10 @@ export function Result() {
           <Player />
         </Grid>
         <Grid item xs={6}>
-          <Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num) - 1}`}><Previous/> </Link>
+          <CraftPrevNextLink direction='prev'/>
         </Grid>
         <Grid item xs={6}>
-          <Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num) + 1}`}><Next/> </Link>
+          <CraftPrevNextLink direction='next'/>
         </Grid>
         {result.map((cap, i3) => (
           <Grid container key={i3+1000}>
