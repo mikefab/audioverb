@@ -21,9 +21,6 @@ export function Verb() {
   const dispatch = useDispatch();
 
   let conjugations = useSelector(selectConjugations);
-  if (conjugations.length === 1) {
-    conjugations = []
-  }
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
