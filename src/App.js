@@ -7,6 +7,7 @@ import { Results } from './features/results/Results';
 import { Verb } from './features/verb/Verb';
 import { VerbMedia } from './features/verb/VerbMedia';
 import Verbs from './features/verbs/Verbs';
+import {Favorites} from './features/favorites/Favorites';
 import  {Result} from './features/result/Result';
 import Container from '@material-ui/core/Container'
 
@@ -21,6 +22,9 @@ function App() {
       <Nav/>
 
         <Switch>
+
+          <Route path={`/favorites`} component={Favorites}/>
+          <Route path={`/favorite/:media/:num`} component={Result}/>
           <Route path={`/search/:media/:num`} component={Result}/>
           <Route exact path="/media/:media/:verb/:conjugation/:num" component = {Result} />
           <Route exact path="/media/:media/:verb/:conjugation" component = {VerbMedia} />
