@@ -71,7 +71,7 @@ export function Result() {
     } else if ((!!phrase)) {
       return (<span className='crumbs'><Link to={`/search?phrase=${phrase}`}>search:  {phrase}</Link></span>)
     } else if (location.pathname.match('favorite')) {
-      return (<span className='crumbs'><Link to={`/favorites/`}>favorites</Link></span>)      
+      return (<span className='crumbs'><Link to={`/favorites/`}>favorites</Link></span>)
     }
       return (<span className='crumbs'><Link to={`/medias/`}>medias</Link> / <Link to={`/media/${media}`}>{media}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{verb}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{conjugation}</Link></span>)
   }
