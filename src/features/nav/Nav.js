@@ -5,8 +5,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Link, useHistory } from "react-router-dom";
-import SearchField from "./searchField"
+import { Link } from "react-router-dom";
+import {Search} from "../search/Search"
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -63,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
-  let history = useHistory();
   const dispatch = useDispatch();
   const [query, setQuery] = useState('');
   const classes = useStyles();
@@ -103,18 +102,7 @@ export default function SearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             Audioverb
           </Typography>
-          <SearchField
-            placeholder="Search..."
-            onChange={(e) => setQuery(e.target.value)}
-            value={query}
-            onKeyPress={(ev) => {
-              if (ev.key === 'Enter') {
-                                    dispatch(getResults(query))
-                history.push(`/search?phrase=${query}`)
-              }
-
-            }}
-          />
+          <Search />
         </Toolbar>
       </AppBar>
       <Drawer

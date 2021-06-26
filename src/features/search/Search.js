@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import styles from '../Features.module.css';
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import SearchIcon from '@material-ui/icons/Search'
-import Grid from '@material-ui/core/Grid';
+import SearchField from "./searchField"
+import { useHistory } from "react-router-dom";
 import {
   getResults
 } from '../results/resultsSlice';
 
 export function Search() {
+  let history = useHistory();
   const dispatch = useDispatch();
   const [query, setQuery] = useState('');
   const _onSubmit = (e) => {
@@ -18,35 +16,18 @@ export function Search() {
 
   return (
       <div >
-        <div className={styles.row}>
-          <form onSubmit={_onSubmit}>
-            <Grid container spacing={2} justify="center">
-              <Grid item>
-                <TextField
-                  onKeyPress={(ev) => {
-                    if (ev.key === 'Enter') {
-                      // Do code here
-                      dispatch(getResults(query))
-                    }
-                  }}
-                  aria-label="Type query"
-                  value={query}
-                  variant='filled'
-                  color="primary"
-                  onChange={(e) => setQuery(e.target.value)}
-                />
-              </Grid>
-              <Grid item>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  startIcon={<SearchIcon />}
-                  onClick={() => dispatch(getResults(query))}
-                />
-              </Grid>
-            </Grid>
-          </form>
-        </div>
+        <SearchField
+          placeholder="Search..."
+          onChange={(e) => setQuery(e.target.value)}
+          value={query}
+          onKeyPress={(ev) => {
+            if (ev.key === 'Enter') {
+              localStorage.setItem('search-' + Date.now(), query)
+              dispatch(getResults(query))
+              history.push(`/search?phrase=${query}`)
+            }
+          }}
+        />
       </div>
   );
 }
