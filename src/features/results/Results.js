@@ -45,7 +45,13 @@ export function Results(props) {
   const { tense, verb, media } = useParams();
 
   useEffect(() => {
-    dispatch(getResults([conjugation || phrase, media]))
+    if (!!phrase) {
+      console.log(phrase.length, phrase)
+      if (phrase.length > 1) {
+        return dispatch(getResults([phrase, media]))
+      }
+    }
+    dispatch(getResults([conjugation, media]))
 
   }, [conjugation, dispatch, phrase, media]);
 
@@ -61,6 +67,31 @@ export function Results(props) {
       return `/tenses/${tense}/${verb}/${conjugation}/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`
     }
       return `/media/${media}/${verb}/${conjugation}/${cap.num}`
+  }
+
+
+  const past_searches = Object.keys(localStorage).reduce((h, k) => {
+    if (k.match('search')) {
+      h[localStorage[k]] = 1
+    }
+    return h
+  }, {})
+
+
+  if (results.length === 0) {
+    return (<span>No results for <b>{phrase}</b></span>)
+  }
+  // Hack to ensure ghost searches don't emerge. 'aaaa' somehow brings up searches for 'a'
+  if (!!phrase) {
+    if (!past_searches[phrase]) {
+      if (results[0].children[0].cap.match(phrase)) {
+          localStorage.setItem('search-' + Date.now(), phrase)
+      } else {
+        return (<span>No results for <b>{phrase}</b></span>)
+      }
+
+    }
+
   }
 
   return (

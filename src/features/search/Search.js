@@ -22,7 +22,6 @@ export function Search() {
           value={query}
           onKeyPress={(ev) => {
             if (ev.key === 'Enter') {
-              localStorage.setItem('search-' + Date.now(), query)
               dispatch(getResults(query))
               history.push(`/search?phrase=${query}`)
             }

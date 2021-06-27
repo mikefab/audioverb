@@ -13,7 +13,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Drawer from "@material-ui/core/Drawer";
-import { useDispatch } from 'react-redux';
 import {
   getResults
 } from '../results/resultsSlice';
@@ -63,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
-  const dispatch = useDispatch();
   const [query, setQuery] = useState('');
   const classes = useStyles();
   const theme = useTheme();
@@ -118,7 +116,7 @@ export default function SearchAppBar() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {['Medias', 'Tenses', 'Favorites'].map((text, index) => (
+          {['Medias', 'Tenses', 'Favorites', 'History'].map((text, index) => (
             <ListItem button key={text} component={Link} to={`/${text}`}>
               <ListItemText primary={text}  />
             </ListItem>

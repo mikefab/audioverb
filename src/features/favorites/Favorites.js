@@ -22,10 +22,9 @@ export function Favorites() {
       Favorites
     </p>
       <Grid container spacing={1}>
-      {Object.keys(localStorage).map((key, i) => (
-
+      {Object.keys(localStorage).filter(item => { return item.match(/^favorite-/)}).map((key, i) => (
         <Grid item xs={12} key={ Math.random().toString(36).substr(2, 9) }>
-          * <Link to={`/favorite/${key.split('^')[0].replace(/_/g, ' ')}/${key.split('^')[1]}`} >{localStorage.getItem(key)}</Link>
+          * <Link to={`/favorite/${key.split('^')[1].replace(/_/g, ' ')}/${key.split('^')[2]}`} >{localStorage.getItem(key)}</Link>
         </Grid>
         ))}
       </Grid>

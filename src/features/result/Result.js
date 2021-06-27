@@ -27,8 +27,13 @@ export function Result() {
   const result = useSelector(selectResult);
   const { tense, verb, conjugation, media, num } = useParams();
 
+  function isAlreadyFavorited(media_num) {
 
-  const [favorited, setFavorited] = useState(!!localStorage.getItem(media + '^' + num) ? 1 : 0);
+  }
+  const alreadyFavorited = isAlreadyFavorited(media, num)
+
+  // Hack to rerender page when user toggles favorite
+  const [favorited, setFavorited] = useState(alreadyFavorited ? 1 : 0);
 
   result.forEach(cap => {
     if (parseInt(cap.num)===parseInt(num)){
@@ -36,17 +41,21 @@ export function Result() {
     }
   })
 
+  function getFavoritedKey(media, num) {
+    return Object.keys(localStorage).find(key => {
+      return key.match(media + '\\^' + num)
+    })
+  }
+
   useEffect(() => {
     dispatch(getResult(`${media}^${num}`))
-    if (!!localStorage.getItem(media + '^' + num)) {
+    const favorited_key = getFavoritedKey(media, num)
+    if (!!favorited_key) {
       setFavorited(1)
     } else {
       setFavorited(0)
     }
   }, [dispatch, media, num]);
-
-
-
 
   function handleTranslate(cap) {
     window.open(
@@ -101,11 +110,14 @@ export function Result() {
 
   function handleLike() {
     const cap = result.find(c => { return parseInt(c.num) === parseInt(num)})
+    // User is unfavoriting
     if (favorited == 1) {
-      localStorage.removeItem(media.replace(/_/g, ' ') + '^' + num)
+      const favorited_key = getFavoritedKey(media, num)
+      localStorage.removeItem(favorited_key)
       return setFavorited(0)
     }
-    localStorage.setItem(media.replace(/_/g, ' ') + '^' + num, cap.cap);
+    // This is fine
+    localStorage.setItem('favorite-' + Date.now() + '^' + media.replace(/_/g, ' ') + '^' + num, cap.cap);
     setFavorited(1)
   }
   function ShowFavorite() {
