@@ -33,7 +33,7 @@ export function Results(props) {
   }
   let query = useQuery();
 
-  const phrase = query.get('phrase')
+  const phrase = query.get('phrase').toLowerCase()
   const dispatch = useDispatch();
   const {conjugation} = props
   let results = useSelector(selectResults);

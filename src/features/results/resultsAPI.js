@@ -8,7 +8,7 @@ export function fetchResults(query) {
     return
   }
   return new Promise((resolve, reject) => {
-    axios.get(base + 'search/spa/' + query.toLowerCase())
+    axios.get(base + 'search/spa/' + query)
       .then(res => {
         if (res.data.children.length === 0) {
           resolve([])
