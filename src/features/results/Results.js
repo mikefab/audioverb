@@ -33,7 +33,10 @@ export function Results(props) {
   }
   let query = useQuery();
 
-  const phrase = query.get('phrase').toLowerCase()
+  let phrase = query.get('phrase')
+  if (phrase) {
+    phrase = phrase.toLowerCase()
+  }
   const dispatch = useDispatch();
   const {conjugation} = props
   let results = useSelector(selectResults);
@@ -46,7 +49,6 @@ export function Results(props) {
 
   useEffect(() => {
     if (!!phrase) {
-      console.log(phrase.length, phrase)
       if (phrase.length > 1) {
         return dispatch(getResults([phrase, media]))
       }
