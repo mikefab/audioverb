@@ -31,6 +31,7 @@ function App() {
           <Route exact path="/media/:media/:verb/:conjugation/:num" component = {Result} />
           <Route exact path="/media/:media/:verb/:conjugation" component = {VerbMedia} />
           <Route exact path="/media/:media/:verb" component = {VerbMedia} />
+          <Route exact path="/medias/:media/:num" component = {Result} />
           <Route exact path="/media/:media" component = {Media} />
           <Route exact path="/medias" component = {Medias} />
           <Route path='/search' component = {Results} />}

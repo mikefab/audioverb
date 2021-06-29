@@ -81,6 +81,9 @@ export function Result() {
       return (<span className='crumbs'><Link to={`/search?phrase=${phrase}`}>search:  {phrase}</Link></span>)
     } else if (location.pathname.match('favorite')) {
       return (<span className='crumbs'><Link to={`/favorites/`}>favorites</Link></span>)
+    } else if (location.pathname.match('medias')) {
+
+      return (<span className='crumbs'><Link to={`/medias/`}>medias</Link> / <Link to={`/media/${media}`}>{media} </Link></span>)
     }
       return (<span className='crumbs'><Link to={`/medias/`}>medias</Link> / <Link to={`/media/${media}`}>{media}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{verb}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{conjugation}</Link></span>)
   }
@@ -93,6 +96,18 @@ export function Result() {
         return (<Link to={`/search/${media}/${amount}${addPharse()}`}><NavigateBefore /></Link>)
       }
       return (<Link to={`/search/${media}/${amount}${addPharse()}`}><Next /></Link>)
+    } else if (location.pathname.match('favorite')) {
+      const amount = direction === 'prev' ? parseInt(num) - 1 : parseInt(num) + 1
+      if (direction === 'prev') {
+        return (<Link to={`/favorite/${media}/${amount}${addPharse()}`}><NavigateBefore /></Link>)
+      }
+      return (<Link to={`/favorite/${media}/${amount}${addPharse()}`}><Next /></Link>)
+    } else if (location.pathname.match('medias')) {
+      const amount = direction === 'prev' ? parseInt(num) - 1 : parseInt(num) + 1
+      if (direction === 'prev') {
+        return (<Link to={`/medias/${media}/${amount}${addPharse()}`}><NavigateBefore /></Link>)
+      }
+      return (<Link to={`/medias/${media}/${amount}${addPharse()}`}><Next /></Link>)
     }
 
     if (direction === 'prev') {

@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  selectCapsByMedia,
   selectVerbsByMedia,
-  getVerbsByMedia
+  getVerbsByMedia,
+  getCapsByMedia
 } from './mediaSlice';
 import {
   Link,
@@ -15,8 +17,9 @@ export function Media() {
   const dispatch = useDispatch();
   const { media } = useParams();
   const verbs = useSelector(selectVerbsByMedia);
+  const caps = useSelector(selectCapsByMedia);
   useEffect(() => {
-
+    dispatch(getCapsByMedia(media))
     dispatch(getVerbsByMedia(media))
   }, [dispatch, media]);
 
@@ -26,9 +29,9 @@ export function Media() {
         <b>{media}</b>
       </p>
       <Grid container spacing={1}>
-      {Object.keys(verbs).sort().map((verb, i) => (
-        <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
-          <Link to={`/media/${media}/${verb}/${verbs[verb][0]}`}>{verb}</Link>
+      {caps.map((cap, i) => (
+        <Grid item xs={12} key={ Math.random().toString(36).substr(2, 9) }>
+          <Link to={`/medias/${media}/${cap.num}`}>{cap.cap}</Link>
         </Grid>
         ))}
       </Grid>

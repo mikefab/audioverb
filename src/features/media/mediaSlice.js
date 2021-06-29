@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
-  fetchVerbsByMedia
+  fetchVerbsByMedia,
+  fetchCapsByMedia
 } from './mediaAPI';
 
 const initialState = {
   verbs: [],
+  caps: [],
   media: '',
   status: 'idle',
 };
@@ -19,8 +21,16 @@ const initialState = {
 export const getVerbsByMedia = createAsyncThunk(
   'media/fetchVerbsByMedia',
   async (media) => {
-    console.log(media, 'Mmmm')
     const response = await fetchVerbsByMedia(media);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data || [];
+  }
+);
+
+export const getCapsByMedia = createAsyncThunk(
+  'media/fetchCapsByMedia',
+  async (media) => {
+    const response = await fetchCapsByMedia(media);
     // The value we return becomes the `fulfilled` action payload
     return response.data || [];
   }
@@ -41,9 +51,17 @@ export const mediaSlice = createSlice({
         state.status = 'idle';
         state.verbs = action.payload;
       })
+      .addCase(getCapsByMedia.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getCapsByMedia.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.caps = action.payload;
+      })
   },
 
 });
 
 export const selectVerbsByMedia = (state) => state.media.verbs;
+export const selectCapsByMedia = (state) => state.media.caps;
 export default mediaSlice.reducer;

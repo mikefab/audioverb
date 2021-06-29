@@ -13,3 +13,14 @@ export function fetchVerbsByMedia(media) {
       }).catch(console)
   })
 }
+
+export function fetchCapsByMedia(media) {
+  return new Promise((resolve, reject) => {
+    axios.get(base + 'nam/' + media)
+      .then(res => {
+        return resolve({
+          data: res.data
+        })
+      }).catch(console)
+  })
+}
