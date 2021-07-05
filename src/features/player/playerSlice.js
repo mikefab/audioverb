@@ -17,8 +17,8 @@ const initialState = {
 // typically used to make async requests.
 export const getAudio = createAsyncThunk(
   'player/fetchAudio',
-  async (r) => {
-    const response = await fetchAudio(r);
+  async (obj) => {
+    const response = await fetchAudio(obj);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }

@@ -3,10 +3,15 @@ import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAudioURL, getAudio } from './playerSlice';
 import { selectCurrentResult } from '../results/resultsSlice'
+import {
+  useParams,
+  useLocation
+} from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Add from '@material-ui/icons/Add';
 import Remove from '@material-ui/icons/Remove';
+import Save from '@material-ui/icons/Save';
 import Grid from '@material-ui/core/Grid';
 
 export function Player() {
@@ -19,38 +24,54 @@ export function Player() {
   }, []);
   let audioURL = useSelector(selectAudioURL);
   const selected_result = useSelector(selectCurrentResult);
+  let start;
+  let stop;
+  let nam;
+  let { num } = useParams();
+  if (audioURL) {
+    const ary = audioURL.split('/')
+    const matched = ary[ary.length - 1].match(/(\d+\.?\d)~(\d+\.?\d)_(.+?).mp3\?num=(\d+)$/)
+    console.log(matched)
+    start = parseFloat(matched[1])
+    stop = parseFloat(matched[2])
+    nam = matched[3]
+    num = matched[4]
+  }
+
+  function saveCut() {
+    localStorage.setItem(`cut-${nam}-${num}`, `${start}-${stop}`)
+  }
+
   function alter(kind) {
-    console.log(selected_result)
-    let obj = {}
     if (audioURL) {
-      const ary = audioURL.split('/')
-      const matched = ary[ary.length - 1].match(/(\d+\.?\d)(~)(\d+\.?\d)(_)(.+?)(.mp3)/)
+      let obj = {}
+      if (audioURL) {
+        obj = {
+          start,
+          stop,
+          nam,
+          num
+        }
+        console.log(obj)
+        console.log('oooo')
+        if (kind.match('prepend')) {
+          obj.start -= 0.5
+        }
 
-      obj = {
-        start: parseFloat(matched[1]),
-        stop: parseFloat(matched[3]),
-        nam: matched[5]
+        if(kind.match('shave front')) {
+          obj.start += 0.5
+        }
+
+        if (kind.match('extend back')) {
+          obj.stop += 0.5
+        }
+
+        if (kind.match('shave back')) {
+          obj.stop -= 0.5
+        }
+        dispatch(getAudio({record: obj, trim_or_extend:true}))
       }
-      console.log(obj.start, obj.stop)
-
-      if (kind.match('prepend')) {
-        obj.start -= 0.5
-      }
-
-      if(kind.match('shave front'))
-        obj.start += 0.5
-      }
-
-      if (kind.match('extend back')) {
-        obj.stop += 0.5
-      }
-
-      if (kind.match('shave back')) {
-        obj.stop -= 0.5
-      }
-
-      console.log(obj)
-      dispatch(getAudio(obj))
+    }
   }
 
   return (
@@ -63,6 +84,7 @@ export function Player() {
               <Button onClick = {() => {alter('shave front')}}><Remove /></Button>
               <Button onClick = {() => {alter('shave back')}}><Remove /></Button>
               <Button onClick = {() => {alter('extend back')}}><Add /></Button>
+              <Button onClick = {() => {saveCut()}}><Save /></Button>
             </ButtonGroup>
           </Grid>
           <Grid item xs={12}>

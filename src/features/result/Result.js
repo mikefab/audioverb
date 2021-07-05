@@ -11,10 +11,11 @@ import {
 import Container from '@material-ui/core/Container'
 import Translate from '@material-ui/icons/Translate';
 import Grid from '@material-ui/core/Grid';
-import Next from '@material-ui/icons/NavigateNext';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import Favorite from '@material-ui/icons/Favorite';
-import NavigateBefore from '@material-ui/icons/NavigateBefore';
+import {PrevNextLink} from './helpers/PrevNextLink'
+import {CrumbLink} from './helpers/SuperLink'
+import {ShowFavorite} from './helpers/ShowFavorite'
+
+
 import '../..//App.css';
 export function Result() {
   function useQuery() {
@@ -27,34 +28,14 @@ export function Result() {
   const result = useSelector(selectResult);
   const { tense, verb, conjugation, media, num } = useParams();
 
-  function isAlreadyFavorited(media_num) {
-
-  }
-  const alreadyFavorited = isAlreadyFavorited(media, num)
-
-  // Hack to rerender page when user toggles favorite
-  const [favorited, setFavorited] = useState(alreadyFavorited ? 1 : 0);
-
   result.forEach(cap => {
     if (parseInt(cap.num)===parseInt(num)){
        handlePlay(cap)
     }
   })
 
-  function getFavoritedKey(media, num) {
-    return Object.keys(localStorage).find(key => {
-      return key.match(media + '\\^' + num)
-    })
-  }
-
   useEffect(() => {
     dispatch(getResult(`${media}^${num}`))
-    const favorited_key = getFavoritedKey(media, num)
-    if (!!favorited_key) {
-      setFavorited(1)
-    } else {
-      setFavorited(0)
-    }
   }, [dispatch, media, num]);
 
   function handleTranslate(cap) {
@@ -64,56 +45,7 @@ export function Result() {
     )
   }
   function handlePlay(cap) {
-    dispatch(getAudio(cap))
-  }
-
-  function addPharse() {
-    if (!!phrase) {
-      return `?phrase=${phrase}`
-    }
-    return ''
-  }
-
-  function CraftLink() {
-    if (typeof tense !== 'undefined')  {
-      return(<span className='crumbs'><Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <Link to={`/tenses/${tense}/${verb}/${conjugation}`}>{conjugation}</Link></span>)
-    } else if ((!!phrase)) {
-      return (<span className='crumbs'><Link to={`/search?phrase=${phrase}`}>search:  {phrase}</Link></span>)
-    } else if (location.pathname.match('favorite')) {
-      return (<span className='crumbs'><Link to={`/favorites/`}>favorites</Link></span>)
-    } else if (location.pathname.match('medias')) {
-
-      return (<span className='crumbs'><Link to={`/medias/`}>medias</Link> / <Link to={`/media/${media}`}>{media} </Link></span>)
-    }
-      return (<span className='crumbs'><Link to={`/medias/`}>medias</Link> / <Link to={`/media/${media}`}>{media}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{verb}</Link> / <Link to={`/media/${media}/${verb}/${conjugation}`}>{conjugation}</Link></span>)
-  }
-
-  function CraftPrevNextLink(props) {
-    const direction = props.direction
-    if (!!phrase)  {
-      const amount = direction === 'prev' ? parseInt(num) - 1 : parseInt(num) + 1
-      if (direction === 'prev') {
-        return (<Link to={`/search/${media}/${amount}${addPharse()}`}><NavigateBefore /></Link>)
-      }
-      return (<Link to={`/search/${media}/${amount}${addPharse()}`}><Next /></Link>)
-    } else if (location.pathname.match('favorite')) {
-      const amount = direction === 'prev' ? parseInt(num) - 1 : parseInt(num) + 1
-      if (direction === 'prev') {
-        return (<Link to={`/favorite/${media}/${amount}${addPharse()}`}><NavigateBefore /></Link>)
-      }
-      return (<Link to={`/favorite/${media}/${amount}${addPharse()}`}><Next /></Link>)
-    } else if (location.pathname.match('medias')) {
-      const amount = direction === 'prev' ? parseInt(num) - 1 : parseInt(num) + 1
-      if (direction === 'prev') {
-        return (<Link to={`/medias/${media}/${amount}${addPharse()}`}><NavigateBefore /></Link>)
-      }
-      return (<Link to={`/medias/${media}/${amount}${addPharse()}`}><Next /></Link>)
-    }
-
-    if (direction === 'prev') {
-      return (<Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num) - 1}`}> <NavigateBefore/> </Link>)
-    }
-      return (<Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num) + 1}`}> <Next/> </Link>)
+    dispatch(getAudio({record: cap, trim_or_extend: false}))
   }
 
   function CurrentCap(props) {
@@ -123,43 +55,24 @@ export function Result() {
     return(<span>{props.cap.cap}</span>)
   }
 
-  function handleLike() {
-    const cap = result.find(c => { return parseInt(c.num) === parseInt(num)})
-    // User is unfavoriting
-    if (favorited == 1) {
-      const favorited_key = getFavoritedKey(media, num)
-      localStorage.removeItem(favorited_key)
-      return setFavorited(0)
-    }
-    // This is fine
-    localStorage.setItem('favorite-' + Date.now() + '^' + media.replace(/_/g, ' ') + '^' + num, cap.cap);
-    setFavorited(1)
-  }
-  function ShowFavorite() {
 
-    if (!favorited) {
 
-      return(<span><FavoriteBorder onClick = {() => handleLike()}/></span>)
-    }
-
-    return (<span><Favorite onClick = {() => handleLike()} /></span>)
-  }
   return (
     <Container  style={{height: '600px', overflow: 'auto'}} >
-      <CraftLink />
+      <CrumbLink  conjugation={conjugation} phase={phrase} media={media} num={num} tense={tense} verb={verb} />
       <br/><br/>
       <Grid container>
         <Grid item xs={12}>
           <Player />
         </Grid>
         <Grid item xs={4}>
-          <CraftPrevNextLink direction='prev'/>
+          <PrevNextLink direction='prev' conjugation={conjugation} phase={phrase} media={media} num={num} verb={verb}/>
         </Grid>
         <Grid item xs={4}>
-          <ShowFavorite />
+          <ShowFavorite media={media} num={num} result={result} />
         </Grid>
         <Grid item xs={4}>
-          <CraftPrevNextLink direction='next'/>
+          <PrevNextLink direction='next' conjugation={conjugation} phase={phrase} media={media} num={num} verb={verb}/>
         </Grid>
         <br/>
         <br/>
@@ -169,7 +82,7 @@ export function Result() {
               <Translate onClick = {() => handleTranslate(cap)} style={{cursor: 'pointer'}} />
             </Grid>
             <Grid item xs={11}>
-               <span onClick = {() => handlePlay(cap)} style={{cursor: 'pointer'}} ><CurrentCap cap={cap} /></span>
+              <span onClick = {() => handlePlay(cap)} style={{cursor: 'pointer'}} >{cap.cap}</span>
             </Grid>
           </Grid>
           ))}

@@ -10,6 +10,7 @@ import Verbs from './features/verbs/Verbs';
 import {Favorites} from './features/favorites/Favorites';
 import {SeachHistory} from './features/search-history/SearchHistory';
 import  {Result} from './features/result/Result';
+import  {Settings} from './features/settings/Settings';
 import Container from '@material-ui/core/Container'
 
 import {  Route, Switch } from "react-router-dom";
@@ -23,7 +24,7 @@ function App() {
       <Nav/>
 
         <Switch>
-
+          <Route path={`/Language`} component={Settings} />
           <Route path={`/history`} component={SeachHistory}/>
           <Route path={`/favorites`} component={Favorites}/>
           <Route path={`/favorite/:media/:num`} component={Result}/>
