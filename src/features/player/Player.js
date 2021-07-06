@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectAudioURL, getAudio } from './playerSlice';
 import { selectCurrentResult } from '../results/resultsSlice'
 import {
-  useParams,
-  useLocation
+  useParams
 } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -31,7 +30,6 @@ export function Player() {
   if (audioURL) {
     const ary = audioURL.split('/')
     const matched = ary[ary.length - 1].match(/(\d+\.?\d)~(\d+\.?\d)_(.+?).mp3\?num=(\d+)$/)
-    console.log(matched)
     start = parseFloat(matched[1])
     stop = parseFloat(matched[2])
     nam = matched[3]
@@ -52,8 +50,7 @@ export function Player() {
           nam,
           num
         }
-        console.log(obj)
-        console.log('oooo')
+
         if (kind.match('prepend')) {
           obj.start -= 0.5
         }

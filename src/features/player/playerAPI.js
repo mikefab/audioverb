@@ -40,7 +40,6 @@ export function fetchAudio(obj) {
   return new Promise((resolve, reject) => {
     axios.get(createAudioURL)
       .then(res => {
-        console.log(audioURL, 'aaaa')
         return resolve({
           data: audioURL
         })

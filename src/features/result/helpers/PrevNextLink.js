@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   Link,
   useLocation
@@ -9,12 +9,14 @@ import NavigateBefore from '@material-ui/icons/NavigateBefore';
 export function PrevNextLink(props) {
     const {conjugation, direction, media, num, phrase, verb} = props
     const location = useLocation();
+
     function addPharse() {
       if (!!phrase) {
         return `?phrase=${phrase}`
       }
       return ''
     }
+
 
     if (!!phrase)  {
       const amount = direction === 'prev' ? parseInt(num) - 1 : parseInt(num) + 1

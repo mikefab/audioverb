@@ -1,8 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Link,
-  useLocation
-} from "react-router-dom";
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
 
@@ -16,7 +12,7 @@ export function ShowFavorite(props) {
     } else {
       setFavorited(0)
     }
-  }, [num]);
+  }, [media, num]);
 
   function isAlreadyFavorited(media_num) {
 

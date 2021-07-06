@@ -26,7 +26,6 @@ const useStyles = makeStyles({
 
 });
 
-
 export function Results(props) {
   function useQuery() {
     return new URLSearchParams(useLocation().search);

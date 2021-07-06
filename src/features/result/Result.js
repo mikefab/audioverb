@@ -4,7 +4,6 @@ import { getResult, selectResult } from '../result/resultSlice';
 import { getAudio } from '../player/playerSlice';
 import { Player } from '../player/Player';
 import {
-  Link,
   useParams,
   useLocation
 } from "react-router-dom";
@@ -18,25 +17,35 @@ import {ShowFavorite} from './helpers/ShowFavorite'
 
 import '../..//App.css';
 export function Result() {
+
+
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
   let query = useQuery();
-  const location = useLocation();
   const phrase = query.get('phrase')
   const dispatch = useDispatch();
   const result = useSelector(selectResult);
-  const { tense, verb, conjugation, media, num } = useParams();
+
+  const [num, setNum] = useState(useParams().num)
+  const [sparkDirection, setDirection] = useState(0)
+
+
+  let { tense, verb, conjugation, media} = useParams();
+
 
   result.forEach(cap => {
     if (parseInt(cap.num)===parseInt(num)){
-       handlePlay(cap)
+       setTimeout(() => {
+          dispatch(getAudio({record: cap, trim_or_extend: false}))
+       }, 1000)
     }
   })
 
   useEffect(() => {
     dispatch(getResult(`${media}^${num}`))
-  }, [dispatch, media, num]);
+  }, [dispatch, media, sparkDirection]);
+
 
   function handleTranslate(cap) {
     window.open(
@@ -45,15 +54,24 @@ export function Result() {
     )
   }
   function handlePlay(cap) {
+    setNum(cap.num)
     dispatch(getAudio({record: cap, trim_or_extend: false}))
   }
 
-  function CurrentCap(props) {
-    if (parseInt(num) === parseInt(props.cap.num)) {
-      return(<i><u>{props.cap.cap}</u></i>)
-    }
-    return(<span>{props.cap.cap}</span>)
+  function handlePrevNext(num) {
+    setDirection(sparkDirection + 1)
+    setNum(num)
   }
+
+  function currentCap(cap_num) {
+    if (parseInt(num) === parseInt(cap_num)) {
+      return('underline')
+      // return(<i><u>{props.cap.cap}</u></i>)
+    }
+    return 'none'
+    // return(<span>{props.cap.cap}</span>)
+  }
+
 
 
 
@@ -66,13 +84,17 @@ export function Result() {
           <Player />
         </Grid>
         <Grid item xs={4}>
+          <span onClick = {() => { handlePrevNext(parseInt(num) -1)}}>
           <PrevNextLink direction='prev' conjugation={conjugation} phase={phrase} media={media} num={num} verb={verb}/>
+          </span>
         </Grid>
         <Grid item xs={4}>
           <ShowFavorite media={media} num={num} result={result} />
         </Grid>
         <Grid item xs={4}>
-          <PrevNextLink direction='next' conjugation={conjugation} phase={phrase} media={media} num={num} verb={verb}/>
+          <span onClick = {() => { handlePrevNext(parseInt(num) +1)}}>
+          <PrevNextLink  direction='next' conjugation={conjugation} phase={phrase} media={media} num={num} verb={verb}/>
+          </span>
         </Grid>
         <br/>
         <br/>
@@ -82,7 +104,7 @@ export function Result() {
               <Translate onClick = {() => handleTranslate(cap)} style={{cursor: 'pointer'}} />
             </Grid>
             <Grid item xs={11}>
-              <span onClick = {() => handlePlay(cap)} style={{cursor: 'pointer'}} >{cap.cap}</span>
+              <span onClick = {() => handlePlay(cap)} style={{cursor: 'pointer', textDecoration: currentCap(cap.num)}} >{cap.cap}</span>
             </Grid>
           </Grid>
           ))}

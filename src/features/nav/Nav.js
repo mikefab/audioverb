@@ -13,9 +13,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Drawer from "@material-ui/core/Drawer";
-import {
-  getResults
-} from '../results/resultsSlice';
 
 const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
@@ -62,12 +59,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
-  const [query, setQuery] = useState('');
   const classes = useStyles();
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const toggleDrawer = event => {
     if (

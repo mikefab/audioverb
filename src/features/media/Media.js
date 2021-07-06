@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectCapsByMedia,
-  selectVerbsByMedia,
   getVerbsByMedia,
   getCapsByMedia
 } from './mediaSlice';
@@ -16,7 +15,6 @@ import Container from '@material-ui/core/Container'
 export function Media() {
   const dispatch = useDispatch();
   const { media } = useParams();
-  const verbs = useSelector(selectVerbsByMedia);
   const caps = useSelector(selectCapsByMedia);
   useEffect(() => {
     dispatch(getCapsByMedia(media))
