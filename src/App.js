@@ -24,7 +24,7 @@ function App() {
       <Nav/>
 
         <Switch>
-          <Route path={`/Language`} component={Settings} />
+          <Route path={`/settings`} component={Settings} />
           <Route path={`/history`} component={SeachHistory}/>
           <Route path={`/favorites`} component={Favorites}/>
           <Route path={`/favorite/:media/:num`} component={Result}/>

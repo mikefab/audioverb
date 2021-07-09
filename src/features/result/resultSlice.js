@@ -20,6 +20,8 @@ export const getResult = createAsyncThunk(
   async (query) => {
     const [name, num] = query.split('^')
     const response = await fetchResult(name, num);
+    console.log(response)
+    console.log('rr')
     // The value we return becomes the `fulfilled` action payload
     return response.data || {};
   }

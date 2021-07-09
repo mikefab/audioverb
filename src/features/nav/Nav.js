@@ -112,7 +112,7 @@ export default function SearchAppBar() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {['Medias', 'Tenses', 'Favorites', 'History', 'Language'].map((text, index) => (
+          {['Medias', 'Tenses', 'Favorites', 'History', 'Settings'].map((text, index) => (
             <ListItem button key={text} component={Link} to={`/${text.toLowerCase()}`}>
               <ListItemText primary={text}  />
             </ListItem>

@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
-  fetchAudio
+  fetchAudio,
+  sendSaveCut,
 } from './playerAPI';
 
 const initialState = {
   audioURL: '',
   status: 'idle',
+  cutSaved: '',
 };
 
 
@@ -24,6 +26,18 @@ export const getAudio = createAsyncThunk(
   }
 );
 
+
+export const saveCut = createAsyncThunk(
+  'player/saveCut',
+  async (obj) => {
+    const response = await sendSaveCut(obj);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+
+
 export const playerSlice = createSlice({
   name: 'player',
   initialState,
@@ -38,6 +52,13 @@ export const playerSlice = createSlice({
       .addCase(getAudio.fulfilled, (state, action) => {
         state.status = 'idle';
         state.audioURL = action.payload;
+      })
+      .addCase(saveCut.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(saveCut.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.cutSaved = action.payload;
       })
   },
 

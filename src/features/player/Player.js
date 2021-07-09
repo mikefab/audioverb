@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAudioURL, getAudio } from './playerSlice';
+import { selectAudioURL, getAudio, saveCut} from './playerSlice';
 import { selectCurrentResult } from '../results/resultsSlice'
 import {
   useParams
@@ -36,8 +36,14 @@ export function Player() {
     num = matched[4]
   }
 
-  function saveCut() {
+  function handleSaveCut() {
     localStorage.setItem(`cut-${nam}-${num}`, `${start}-${stop}`)
+    return dispatch(saveCut({
+      name: nam,
+      num: num,
+      start: start,
+      stop: stop
+    }))
   }
 
   function alter(kind) {
@@ -81,7 +87,7 @@ export function Player() {
               <Button onClick = {() => {alter('shave front')}}><Remove /></Button>
               <Button onClick = {() => {alter('shave back')}}><Remove /></Button>
               <Button onClick = {() => {alter('extend back')}}><Add /></Button>
-              <Button onClick = {() => {saveCut()}}><Save /></Button>
+              <Button onClick = {() => {handleSaveCut()}}><Save /></Button>
             </ButtonGroup>
           </Grid>
           <Grid item xs={12}>
