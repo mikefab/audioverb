@@ -98,7 +98,14 @@ export function Settings() {
   };
 
   function isVsisible() {
-    return localStorage.getItem('user_code')==='undefined' ? 'hidden' : 'visible'
+    const user_code = localStorage.getItem('user_code')
+    if (!user_code || localStorage.getItem('user_code')==='undefined') {
+      return 'hidden'
+    }
+    if (user_code && user_code.match(/\s+/)) {
+      return 'hidden'
+    }
+    return 'visible'
   }
   return (
     <span>

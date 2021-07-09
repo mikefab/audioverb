@@ -41,7 +41,7 @@ export function fetchAudio(obj) {
   const num = r.num
   const cut_key = 'cut-' + name + '-' + r.num
   if (!trim_or_extend) {
-    if (r.cuts.length > 1) {
+    if (r.cuts.length > 0) {
       console.log('Using cut')
       start = r.cuts[0].start
       stop = r.cuts[0].stop
