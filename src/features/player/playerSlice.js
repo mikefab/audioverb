@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   audioURL: '',
+  record_params: {},
   status: 'idle',
   cutSaved: '',
 };
@@ -22,6 +23,7 @@ export const getAudio = createAsyncThunk(
   async (obj) => {
     const response = await fetchAudio(obj);
     // The value we return becomes the `fulfilled` action payload
+
     return response.data;
   }
 );
@@ -51,7 +53,16 @@ export const playerSlice = createSlice({
       })
       .addCase(getAudio.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.audioURL = action.payload;
+
+        const audioURL = action.payload
+        const ary = audioURL.split('/')
+
+        const matched = ary[ary.length - 1].match(/(\d+\.?\d)~(\d+\.?\d)_(.+?).mp3\?num=(\d+)$/)
+        state.record_params.start = parseFloat(matched[1])
+        state.record_params.stop = parseFloat(matched[2])
+        state.record_params.nam = matched[3]
+        state.record_params.num = matched[4]
+        state.audioURL = audioURL;
       })
       .addCase(saveCut.pending, (state) => {
         state.status = 'loading';
@@ -65,5 +76,6 @@ export const playerSlice = createSlice({
 });
 
 export const selectAudioURL = (state) => state.player.audioURL;
+export const selectRecordParams = (state) => state.player.record_params;
 
 export default playerSlice.reducer;

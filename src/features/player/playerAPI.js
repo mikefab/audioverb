@@ -5,7 +5,6 @@ const base = env.REACT_APP_HOST
 
 export function sendSaveCut(obj) {
   let {name, num, start, stop} = obj
-
   start = start.toString().replace(/\./g, '-')
   stop = stop.toString().replace(/\./g, '-')
   const user_code = localStorage.getItem('user_code')

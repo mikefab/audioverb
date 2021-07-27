@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAudioURL, getAudio, saveCut} from './playerSlice';
+import { selectAudioURL, selectRecordParams, getAudio, saveCut} from './playerSlice';
 import { selectCurrentResult } from '../results/resultsSlice'
 import {
   useParams
@@ -26,14 +26,13 @@ export function Player() {
   let start;
   let stop;
   let nam;
+  const record_params =  useSelector(selectRecordParams)
   let { num } = useParams();
   if (audioURL) {
-    const ary = audioURL.split('/')
-    const matched = ary[ary.length - 1].match(/(\d+\.?\d)~(\d+\.?\d)_(.+?).mp3\?num=(\d+)$/)
-    start = parseFloat(matched[1])
-    stop = parseFloat(matched[2])
-    nam = matched[3]
-    num = matched[4]
+    start = record_params.start
+    stop = record_params.stop
+    nam = record_params.nam
+    num = record_params.num
   }
 
   function handleSaveCut() {
