@@ -6,7 +6,6 @@ import {
 const initialState = {
   medias: [],
   media: '',
-  language: 'spanish',
   status: 'idle',
 };
 
@@ -19,8 +18,9 @@ const initialState = {
 // typically used to make async requests.
 export const getMedias = createAsyncThunk(
   'medias/fetchMedias',
-  async () => {
-    const response = await fetchMedias('spanish');
+  async (language) => {
+    console.log('gggg', language)
+    const response = await fetchMedias(language);
     // The value we return becomes the `fulfilled` action payload
     return response.data || [];
   }

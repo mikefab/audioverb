@@ -8,7 +8,7 @@ export function fetchResults(query) {
     return
   }
   return new Promise((resolve, reject) => {
-    axios.get(base + 'search/spa/' + query)
+    axios.get(base + 'search/chi_hans/' + query)
       .then(res => {
         if (res.data.children.length === 0) {
           resolve([])

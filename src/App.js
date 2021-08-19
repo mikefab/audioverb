@@ -1,11 +1,14 @@
 import React from 'react';
+import  Grams  from './features/grams/Grams';
 import  Nav  from './features/nav/Nav';
 import { Medias } from './features/medias/Medias';
 import { Media } from './features/media/Media';
+import { Explorer } from './features/explorer/Explorer';
 import { Tenses } from './features/tenses/Tenses';
 import { Results } from './features/results/Results';
 import { Verb } from './features/verb/Verb';
 import { VerbMedia } from './features/verb/VerbMedia';
+
 import Verbs from './features/verbs/Verbs';
 import {Favorites} from './features/favorites/Favorites';
 import {SeachHistory} from './features/search-history/SearchHistory';
@@ -25,6 +28,7 @@ function App() {
 
         <Switch>
           <Route path={`/settings`} component={Settings} />
+          <Route path={`/grams`} component={Grams}/>
           <Route path={`/history`} component={SeachHistory}/>
           <Route path={`/favorites`} component={Favorites}/>
           <Route path={`/favorite/:media/:num`} component={Result}/>
@@ -36,7 +40,7 @@ function App() {
           <Route exact path="/media/:media" component = {Media} />
           <Route exact path="/medias" component = {Medias} />
           <Route path='/search' component = {Results} />}
-          <Route exact path="/" component = {Medias} />
+          <Route exact path="/" component = {Explorer} />
           <Route path={`/tenses/:tense/:verb/:conjugation/:media/:num`} component={Result}/>
           <Route path={`/tenses/:tense/:verb/:conjugation`} component={Verb}/>
           <Route path={`/tenses/:tense/:verb`} component={Verb}/>

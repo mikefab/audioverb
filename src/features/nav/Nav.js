@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,6 +14,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Drawer from "@material-ui/core/Drawer";
+import {selectLanguage} from '../language/languageSlice';
+
 
 const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
@@ -62,7 +65,21 @@ export default function SearchAppBar() {
   const classes = useStyles();
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+  const language = useSelector(selectLanguage);
+  console.log(language, '!!!!')
+  let nav_options = language ? ['Favorites', 'History', 'Settings'] : []
+  if (nav_options.length > 0) {
+    nav_options.unshift('Medias')
+    if (!language.match('Chinese')) {
+      nav_options.unshift('Tenses')
+    } else {
+      nav_options.unshift('Grams')
+    }
+  }
+  useEffect(() => {
+    console.log('do it2!', language)
 
+  }, [language]);
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = event => {
@@ -112,7 +129,7 @@ export default function SearchAppBar() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {['Medias', 'Tenses', 'Favorites', 'History', 'Settings'].map((text, index) => (
+          {nav_options.map((text, index) => (
             <ListItem button key={text} component={Link} to={`/${text.toLowerCase()}`}>
               <ListItemText primary={text}  />
             </ListItem>

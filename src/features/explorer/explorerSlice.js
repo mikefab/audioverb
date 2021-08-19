@@ -13,7 +13,7 @@ export const explorerSlice = createSlice({
     setExplorerState: (state, action) => {
       state.state = action.payload;
     },
-  },
+  }
 });
 
 export const selectState = (state) => state.explorer.state;

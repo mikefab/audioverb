@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {selectLanguage} from '../language/languageSlice';
 import {
   selectMedias,
   getMedias
@@ -12,15 +13,18 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 
 export function Medias() {
+
   const history = useHistory()
   const dispatch = useDispatch();
   const medias = useSelector(selectMedias);
+  const language = useSelector(selectLanguage);
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
+    console.log('medias', language)
     // Update the document title using the browser API
     // history.push('/medias')
-    dispatch(getMedias('spanish'))
-  }, [dispatch, history]);
+    dispatch(getMedias(language))
+  }, [language]);
 
   return (
     <Container>

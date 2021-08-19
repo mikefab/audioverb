@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
-
+const language = localStorage.getItem('language')
 export function ShowFavorite(props) {
   const {media, num, result} = props
 
@@ -36,7 +36,7 @@ export function ShowFavorite(props) {
       return setFavorited(0)
     }
     // This is fine
-    localStorage.setItem('favorite-' + Date.now() + '^' + media.replace(/_/g, ' ') + '^' + num, cap.cap);
+    localStorage.setItem('favorite-' + language + '-' + Date.now() + '^' + media.replace(/_/g, ' ') + '^' + num, cap.cap);
     setFavorited(1)
   }
 

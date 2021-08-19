@@ -1,50 +1,28 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+// import { makeStyles } from '@material-ui/core/styles';
+// import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
+// import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Save from '@material-ui/icons/Save';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
+// import FormControl from '@material-ui/core/FormControl';
+// import Select from '@material-ui/core/Select';
+import { Language } from '../language/Language';
+import {selectLanguage} from '../language/languageSlice';
+// const useStyles = makeStyles((theme) => ({
+//   formControl: {
+//     margin: theme.spacing(1),
+//     minWidth: 120,
+//   },
+//   selectEmpty: {
+//     marginTop: theme.spacing(2),
+//   },
+// }));
 
 export function Settings() {
-
-
-
-  function LanguageSelection() {
-    return (
-      <FormControl className={classes.formControl}>
-      <Grid container >
-        <Grid item xs={12}>
-
-              <InputLabel id="demo-simple-select-label">Language</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={language}
-                onChange={handleChange}
-              >
-                <MenuItem value={10}>Spanish</MenuItem>
-                <MenuItem value={20}>French</MenuItem>
-                <MenuItem value={30}>Chinese</MenuItem>
-              </Select>
-              </Grid>
-            </Grid>
-            </FormControl>
-    )
-  }
-
+  const language = useSelector(selectLanguage);
   function AdminField() {
   const [temp_user_code, setTempUserCode] = useState(localStorage.getItem('user_code') || '');
   const [user_code, setUserCode] = useState(localStorage.getItem('user_code') || '');
@@ -55,6 +33,7 @@ export function Settings() {
   }
     return (
       <span>
+      <Language/>
       <form onSubmit={_onSubmit}>
         <Grid container >
           <Grid item xs={6}>
@@ -90,13 +69,10 @@ export function Settings() {
     )
   }
 
-  const classes = useStyles();
-  const [language, setLanguage] = React.useState('');
+  useEffect(() => {
+    console.log('do it!', language)
 
-  const handleChange = (event) => {
-    setLanguage(event.target.value);
-  };
-
+  }, [language]);
   function isVsisible() {
     const user_code = localStorage.getItem('user_code')
     if (!user_code || localStorage.getItem('user_code')==='undefined') {
