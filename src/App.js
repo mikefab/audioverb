@@ -4,6 +4,7 @@ import  Nav  from './features/nav/Nav';
 import { Medias } from './features/medias/Medias';
 import { Media } from './features/media/Media';
 import { Explorer } from './features/explorer/Explorer';
+import  {Language} from './features/language/Language';
 import { Tenses } from './features/tenses/Tenses';
 import { Results } from './features/results/Results';
 import { Verb } from './features/verb/Verb';
@@ -28,6 +29,7 @@ function App() {
 
         <Switch>
           <Route path={`/settings`} component={Settings} />
+          <Route path={`/language`} component={Language} />
           <Route path={`/grams`} component={Grams}/>
           <Route path={`/history`} component={SeachHistory}/>
           <Route path={`/favorites`} component={Favorites}/>

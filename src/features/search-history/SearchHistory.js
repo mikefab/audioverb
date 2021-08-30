@@ -11,6 +11,8 @@ import Container from '@material-ui/core/Container'
 export function SeachHistory() {
   const [storageObserver, setObserver] = useState(0);
   const history = useHistory()
+  const language = localStorage.getItem('language')
+  const re = new RegExp('search-' + language + '-\\d{13}')
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // Update the document title using the browser API
@@ -31,7 +33,8 @@ export function SeachHistory() {
     </p>
       <Grid container spacing={1}>
       {Object.keys(localStorage).filter(e => {
-        return e.match(/search-\d{13}/)
+        console.log(e, re)
+        return e.match(re)
       }).sort().reverse().map((key, i) => (
 
         <Grid container  key={ Math.random().toString(36).substr(2, 9) }>

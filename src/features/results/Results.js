@@ -48,8 +48,8 @@ export function Results(props) {
 
   useEffect(() => {
     if (!!phrase) {
-      if (phrase.length > 1) {
-        return dispatch(getResults([phrase, media]))
+      if (phrase.length > 0) {
+        return dispatch(getResults({query: phrase, media: media}))
       }
     }
     dispatch(getResults([conjugation, media]))
@@ -86,7 +86,7 @@ export function Results(props) {
   if (!!phrase) {
     if (!past_searches[phrase]) {
       if (results[0].children[0].cap.match(phrase)) {
-          localStorage.setItem('search-' + Date.now(), phrase)
+          localStorage.setItem('search-' + localStorage.getItem('language') + '-' + Date.now(), phrase)
       } else {
         return (<span>No results for <b>{phrase}</b></span>)
       }

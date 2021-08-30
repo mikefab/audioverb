@@ -59,7 +59,6 @@ export default function Grams() {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(parseInt(localStorage.getItem('hsk_tab_index')) || 0);
-  console.log(grams.length)
   if (grams.length < 1) {
     console.log('yo!')
     dispatch(getGrams(value + 1))

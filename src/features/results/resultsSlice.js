@@ -20,8 +20,7 @@ const initialState = {
 export const getResults = createAsyncThunk(
   'results/fetchResults',
   async (query_media) => {
-    const [query, media] = query_media
-
+    const {query, media} = query_media
     let response;
     // media.length > 1 is hack to avoid single letters submitted on search enter
     if (!!media && media.length > 1) {

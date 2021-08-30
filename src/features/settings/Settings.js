@@ -1,91 +1,87 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-// import { makeStyles } from '@material-ui/core/styles';
-// import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-// import MenuItem from '@material-ui/core/MenuItem';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Save from '@material-ui/icons/Save';
-// import FormControl from '@material-ui/core/FormControl';
-// import Select from '@material-ui/core/Select';
 import { Language } from '../language/Language';
-import {selectLanguage} from '../language/languageSlice';
-// const useStyles = makeStyles((theme) => ({
-//   formControl: {
-//     margin: theme.spacing(1),
-//     minWidth: 120,
-//   },
-//   selectEmpty: {
-//     marginTop: theme.spacing(2),
-//   },
-// }));
+import { Advanced } from '../settings/Advanced';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-auto-tab-${index}`,
+    'aria-controls': `scrollable-auto-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
 
 export function Settings() {
-  const language = useSelector(selectLanguage);
-  function AdminField() {
-  const [temp_user_code, setTempUserCode] = useState(localStorage.getItem('user_code') || '');
-  const [user_code, setUserCode] = useState(localStorage.getItem('user_code') || '');
-  const _onSubmit = (e) => {
-    e.preventDefault();
-    localStorage.setItem('user_code', user_code)
-    setTempUserCode(user_code)
-  }
-    return (
-      <span>
-      <Language/>
-      <form onSubmit={_onSubmit}>
-        <Grid container >
-          <Grid item xs={6}>
-            <TextField
-              onKeyPress={(ev) => {
-                if (ev.key === 'Enter') {
-                  // Do code here
-                  // dispatch(getResults(query))
-                }
-              }}
-              aria-label="Type query"
-              label="User code"
-              // variant='filled'
-              color="primary"
-              onChange={(e) => setUserCode(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<Save />}
-              type="submit"
-            />
-          </Grid>
-        </Grid>
-      </form>
-      <br/>
-      <span style={{visibility: isVsisible()}}>
-        Current Admin ID is: "{temp_user_code}"
-      </span>
-      </span>
-    )
-  }
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
-  useEffect(() => {
-    console.log('do it!', language)
-
-  }, [language]);
-  function isVsisible() {
-    const user_code = localStorage.getItem('user_code')
-    if (!user_code || localStorage.getItem('user_code')==='undefined') {
-      return 'hidden'
-    }
-    if (user_code && user_code.match(/\s+/)) {
-      return 'hidden'
-    }
-    return 'visible'
-  }
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
-    <span>
-      <AdminField />
-    </span>
-  );
+    <div className={classes.root}>
+       <AppBar position="static" color="default">
+         <Tabs
+           value={value}
+           onChange={handleChange}
+           indicatorColor="primary"
+           textColor="primary"
+           variant="scrollable"
+           scrollButtons="auto"
+           aria-label="scrollable auto tabs example"
+         >
+           <Tab label="General" {...a11yProps(0)} />
+           <Tab label="Advanced" {...a11yProps(1)} />
+         </Tabs>
+       </AppBar>
+       <TabPanel value={value} index={0}>
+         <Language/>
+       </TabPanel>
+       <TabPanel value={value} index={1}>
+         <Advanced/>
+       </TabPanel>
+
+     </div>
+  )
+
 }
