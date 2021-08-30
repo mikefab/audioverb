@@ -2,13 +2,20 @@ import axios from 'axios';
 import env from "react-dotenv";
 const base = env.REACT_APP_HOST
 
+const langs = {
+  'Chinese': 'chi_hans',
+  'French': 'fre',
+  'Spanish': 'spa',
+}
+
 export function fetchResults(query) {
+  const lang = localStorage.getItem('language')
   if (query == undefined) {
     console.log('ending path')
     return
   }
   return new Promise((resolve, reject) => {
-    axios.get(base + 'search/chi_hans/' + query)
+    axios.get(base + 'search/' + langs[lang] + '/' + query)
       .then(res => {
         if (res.data.children.length === 0) {
           resolve([])
