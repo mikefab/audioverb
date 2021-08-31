@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import {LanguageOptions} from '../language-options/LanguageOptions'
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 import Chip from '@material-ui/core/Chip';
@@ -24,19 +25,9 @@ export function Language() {
   const [my_language, setMyLanguage] = useState(localStorage.getItem('my_language') || 'en')
   const dispatch = useDispatch();
   const language = useSelector(selectLanguage);
-  console.log(language, 'llll')
   const history = useHistory()
   const selectedSyle = {'text-decoration': 'underline'}
   const location = useLocation()
-  // Similar to componentDidMount and componentDidUpdate:
-  // useEffect(() => {
-  //   if (!location.pathname.match(/settings/)) {
-  //       history.push('/')
-  //   } else {
-  //
-  //   }
-  //
-  // }, [language]);
 
   function handleVariant(lang) {
     if (lang === language) {
@@ -86,6 +77,10 @@ export function Language() {
           </span>
         ))}
         </Grid>
+        <Grid item xs={12} className='casual'>
+          <LanguageOptions language={language}/>
+        </Grid>
+
     </Grid>
 
   );

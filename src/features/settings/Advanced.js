@@ -18,6 +18,10 @@ export function Advanced() {
     }
     return (
       <span>
+      <p className='casual'>
+        * Most users can ignore this.
+      </p>
+
       <form onSubmit={_onSubmit}>
         <Grid container >
           <Grid item xs={6}>
@@ -46,6 +50,7 @@ export function Advanced() {
         </Grid>
       </form>
       <br/>
+
       <span style={{visibility: isVsisible()}}>
         Current Admin ID is: "{temp_user_code}"
       </span>

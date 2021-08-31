@@ -66,7 +66,6 @@ export default function SearchAppBar() {
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
   const language = useSelector(selectLanguage);
-  console.log(language, '!!!!')
   let nav_options = language ? ['Favorites', 'History', 'Settings'] : []
   if (nav_options.length > 0) {
     nav_options.unshift('Medias')
@@ -77,7 +76,6 @@ export default function SearchAppBar() {
     }
   }
   useEffect(() => {
-    console.log('do it2!', language)
 
   }, [language]);
   const [open, setOpen] = useState(false);

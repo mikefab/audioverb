@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import {selectLanguage} from '../language/languageSlice';
 import { Language } from '../language/Language';
 import { Advanced } from '../settings/Advanced';
 import PropTypes from 'prop-types';
@@ -52,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 export function Settings() {
+  const language = useSelector(selectLanguage);
+  useEffect(() => {
+
+  }, [language]);
+
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 

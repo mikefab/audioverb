@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Container from '@material-ui/core/Container'
 import Translate from '@material-ui/icons/Translate';
+import Star from '@material-ui/icons/Star';
 import Grid from '@material-ui/core/Grid';
 import {PrevNextLink} from './helpers/PrevNextLink'
 import {CrumbLink} from './helpers/SuperLink'
@@ -65,25 +66,34 @@ export function Result() {
     setDirection(sparkDirection + 1)
     setNum(num)
   }
-
-  function currentCap(cap_num) {
+  function isMainCap(cap_num) {
     if (parseInt(num) === parseInt(cap_num)) {
+      return true
+    }
+    return false
+  }
+  function currentCap(cap_num) {
+    if (isMainCap(cap_num)) {
       return('underline')
-      // return(<i><u>{props.cap.cap}</u></i>)
     }
     return 'none'
-    // return(<span>{props.cap.cap}</span>)
   }
 
+
   function process_cap(cap) {
+    const cap_num = cap.num
     if (language != 'Chinese') {
-      return cap
+      return cap.cap
+    }
+
+    if (!isMainCap(cap_num)) {
+      return cap.cap
     }
     return (
       <span>
-      {cap.split('').map((cap, i4) => (
+      {cap.cap.split('').map((cap, i4) => (
         <span key={i4+10000}>
-           <a href={`http://www.strokeorder.info/mandarin.php?q=${cap}`} target="_blank" >{cap}</a>
+           <a href={`http://www.strokeorder.info/mandarin.php?q=${cap}`} target="_blank">{cap}</a>
            </span>
         ))}
       </span>
@@ -119,7 +129,7 @@ export function Result() {
               <Translate onClick = {() => handleTranslate(cap)} style={{cursor: 'pointer'}} />
             </Grid>
             <Grid item xs={11}>
-              <span onClick = {() => handlePlay(cap)} style={{cursor: 'pointer', textDecoration: currentCap(cap.num)}}>{process_cap(cap.cap)}</span>
+              <span onClick = {() => handlePlay(cap)} style={{cursor: 'pointer', textDecoration: currentCap(cap.num)}}>{process_cap(cap)}</span>
             </Grid>
           </Grid>
           ))}
