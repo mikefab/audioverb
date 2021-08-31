@@ -22,6 +22,7 @@ export function Verb() {
 
   let conjugations = useSelector(selectConjugations);
 
+
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     dispatch(getConjugations([tense, verb]))

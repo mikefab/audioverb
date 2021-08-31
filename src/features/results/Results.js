@@ -38,7 +38,9 @@ export function Results(props) {
   }
   const dispatch = useDispatch();
   const {conjugation} = props
+
   let results = useSelector(selectResults);
+
   if (!conjugation && !phrase) {
     results = []
   }
@@ -52,7 +54,7 @@ export function Results(props) {
         return dispatch(getResults({query: phrase, media: media}))
       }
     }
-    dispatch(getResults([conjugation, media]))
+    dispatch(getResults({query: conjugation, media: media}))
 
   }, [conjugation, dispatch, phrase, media]);
 
