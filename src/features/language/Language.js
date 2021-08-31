@@ -47,7 +47,7 @@ export function Language() {
   return (
     <Grid container spacing={5}>
       <Grid item xs={12}>
-        <InputLabel id="demo-simple-select-label">Your language</InputLabel>
+        <InputLabel id="demo-simple-select-label">Your native language</InputLabel>
 
         <Select
         labelId="demo-simple-select-helper-label"
