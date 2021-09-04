@@ -33,6 +33,7 @@ export function Results(props) {
   let query = useQuery();
 
   let phrase = query.get('phrase')
+  const is_idiom = query.get('is_idiom')
   if (phrase) {
     phrase = phrase.toLowerCase()
   }
@@ -65,6 +66,9 @@ export function Results(props) {
 
   function parseLink(cap, tense, verb, conjugation) {
     if (phrase) {
+      if (is_idiom) {
+        return `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?phrase=${phrase}&is_idiom=true`
+      }
       return `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?phrase=${phrase}`
     } else if (tense) {
       return `/tenses/${tense}/${verb}/${conjugation}/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`

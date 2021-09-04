@@ -73,6 +73,7 @@ export default function SearchAppBar() {
       nav_options.unshift('Tenses')
     } else {
       nav_options.unshift('Grams')
+      nav_options.unshift('Idioms')
     }
   }
   useEffect(() => {

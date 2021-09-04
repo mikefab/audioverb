@@ -1,5 +1,6 @@
 import React from 'react';
 import  Grams  from './features/grams/Grams';
+import  Idioms  from './features/idioms/Idioms';
 import  Nav  from './features/nav/Nav';
 import { Medias } from './features/medias/Medias';
 import { Media } from './features/media/Media';
@@ -31,6 +32,7 @@ function App() {
           <Route path={`/settings`} component={Settings} />
           <Route path={`/language`} component={Language} />
           <Route path={`/grams`} component={Grams}/>
+          <Route path={`/idioms`} component={Idioms}/>
           <Route path={`/history`} component={SeachHistory}/>
           <Route path={`/favorites`} component={Favorites}/>
           <Route path={`/favorite/:media/:num`} component={Result}/>

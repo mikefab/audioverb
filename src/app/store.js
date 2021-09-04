@@ -10,10 +10,11 @@ import verbReducer from '../features/verb/verbSlice';
 import playerReducer from '../features/player/playerSlice';
 import explorerReducer from '../features/explorer/explorerSlice';
 import languageReducer from '../features/language/languageSlice';
-
+import idiomsReducer from '../features/idioms/idiomsSlice';
 export const store = configureStore({
   reducer: {
     grams: gramsReducer,
+    idioms: idiomsReducer,
     language: languageReducer,
     media: mediaReducer,
     medias: mediasReducer,
