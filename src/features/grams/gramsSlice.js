@@ -17,8 +17,8 @@ const initialState = {
 // typically used to make async requests.
 export const getGrams = createAsyncThunk(
   'grams/fetchGrams',
-  async (level) => {
-    const response = await fetchGrams(level);
+  async (obj) => {
+    const response = await fetchGrams(obj);
     // The value we return becomes the `fulfilled` action payload
     return response.data || {};
   }

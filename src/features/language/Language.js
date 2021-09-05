@@ -30,7 +30,8 @@ export function Language() {
   const location = useLocation()
 
   function handleVariant(lang) {
-    if (lang === language) {
+    const re = new RegExp(language, 'i');
+    if (lang.match(re)) {
       return 'default'
     }
     return 'outlined'

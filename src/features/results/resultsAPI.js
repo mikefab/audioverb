@@ -3,9 +3,9 @@ import env from "react-dotenv";
 const base = env.REACT_APP_HOST
 
 const langs = {
-  'Chinese': 'chi_hans',
-  'French': 'fre',
-  'Spanish': 'spa',
+  'chinese': 'chi_hans',
+  'french': 'fre',
+  'spanish': 'spa',
 }
 
 export function fetchResults(query) {

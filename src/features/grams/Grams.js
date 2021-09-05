@@ -52,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Grams() {
+export default function Grams(props) {
+  const {media} = props
   const grams = useSelector(selectGrams);
   const dispatch = useDispatch();
 
@@ -60,13 +61,12 @@ export default function Grams() {
   const classes = useStyles();
   const [value, setValue] = React.useState(parseInt(localStorage.getItem('hsk_tab_index')) || 0);
   if (grams.length < 1) {
-    console.log('yo!')
-    dispatch(getGrams(value + 1))
+    dispatch(getGrams({level: value + 1, media: media}))
   }
 
   const handleChange = (event, newValue) => {
     localStorage.setItem('hsk_tab_index', newValue)
-    dispatch(getGrams(newValue + 1))
+    dispatch(getGrams({level: newValue + 1, media: null}))
     setValue(newValue);
   };
 
@@ -91,22 +91,22 @@ export default function Grams() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Level grams={grams} />
+        <Level grams={grams} media={media} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Level grams={grams} />
+        <Level grams={grams} media={media}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Level grams={grams} />
+        <Level grams={grams} media={media}/>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Level grams={grams} />
+        <Level grams={grams} media={media}/>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <Level grams={grams} />
+        <Level grams={grams} media={media}/>
       </TabPanel>
       <TabPanel value={value} index={5}>
-        <Level grams={grams} />
+        <Level grams={grams} media={media}/>
       </TabPanel>
     </div>
   );

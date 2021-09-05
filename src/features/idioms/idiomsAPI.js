@@ -17,7 +17,7 @@ export function fetchIdioms(lng) {
 
 export function fetchIdiomsByMedia(media) {
   return new Promise((resolve, reject) => {
-    axios.get(base + 'nam/' + media)
+    axios.get(base + 'idioms/media/' + media)
       .then(res => {
         return resolve({
           data: res.data

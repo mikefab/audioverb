@@ -83,7 +83,7 @@ export function Result() {
 
   function process_cap(cap) {
     const cap_num = cap.num
-    if (language != 'Chinese') {
+    if (!language.match(/Chinese/i)) {
       return cap.cap
     }
 
@@ -94,7 +94,7 @@ export function Result() {
       <span>
       {cap.cap.split('').map((cap, i4) => (
         <span key={i4+10000}>
-           <a href={`http://www.strokeorder.info/mandarin.php?q=${cap}`} target="_blank">{cap}</a>
+           <a href={`http://www.strokeorder.info/mandarin.php?q=${cap}`} target="_blank">{cap}</a> 
            </span>
         ))}
       </span>

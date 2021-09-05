@@ -10,7 +10,7 @@ export function LanguageOptions(props) {
         </>
       )
     }
-    if (language.match('Chinese')) {
+    if (language.match(/Chinese/i)) {
       return (
         <span>
           Explore <Link to='/grams' >compound expressions</Link> or <Link to='/medias' >captions</Link> from <b>{language}</b> movies.

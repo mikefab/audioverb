@@ -21,7 +21,6 @@ export function Favorites() {
   return (
     <Container>
     <p>
-    {localStorage.getItem('language')}
       Favorites
     </p>
       <Grid container spacing={1}>

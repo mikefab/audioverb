@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
+import {  useLocation} from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
+  const location = useLocation()
   const classes = useStyles();
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
@@ -69,7 +71,7 @@ export default function SearchAppBar() {
   let nav_options = language ? ['Favorites', 'History', 'Settings'] : []
   if (nav_options.length > 0) {
     nav_options.unshift('Medias')
-    if (!language.match('Chinese')) {
+    if (!language.match(/Chinese/i)) {
       nav_options.unshift('Tenses')
     } else {
       nav_options.unshift('Grams')
@@ -95,6 +97,11 @@ export default function SearchAppBar() {
   useEffect(() => {
 
   }, []);
+
+function is_selected(text) {
+  const re = new RegExp(text, 'i')
+  return !!location.pathname.match(re)
+}
 
   return (
     <div className={classes.root}>
@@ -129,7 +136,7 @@ export default function SearchAppBar() {
         <Divider />
         <List>
           {nav_options.map((text, index) => (
-            <ListItem button key={text} component={Link} to={`/${text.toLowerCase()}`}>
+            <ListItem button selected={is_selected(text)} key={text} component={Link} to={`/${text.toLowerCase()}`}>
               <ListItemText primary={text}  />
             </ListItem>
           ))}
