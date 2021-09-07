@@ -55,7 +55,7 @@ export function Player() {
           nam,
           num
         }
-
+        console.log(audioURL)
         if (kind.match('prepend')) {
           obj.start -= 0.5
         }
@@ -72,6 +72,15 @@ export function Player() {
           obj.stop -= 0.5
         }
         dispatch(getAudio({record: obj, trim_or_extend:true}))
+
+        localStorage.setItem(`cut-${nam}-${num}`, `${start}-${stop}`)
+        return dispatch(saveCut({
+          name: nam,
+          num: num,
+          start: obj.start,
+          stop: obj.stop
+        }))
+
       }
     }
   }

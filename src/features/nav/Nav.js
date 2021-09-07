@@ -16,7 +16,7 @@ import List from "@material-ui/core/List";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Drawer from "@material-ui/core/Drawer";
 import {selectLanguage} from '../language/languageSlice';
-
+import  Spinner  from '../spinner/Spinner';
 
 const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
@@ -137,13 +137,12 @@ function is_selected(text) {
         <List>
           {nav_options.map((text, index) => (
             <ListItem button selected={is_selected(text)} key={text} component={Link} to={`/${text.toLowerCase()}`}>
-              <ListItemText primary={text}  />
+              <ListItemText primary={text} onClick={toggleDrawer}  />
             </ListItem>
           ))}
         </List>
       </Drawer>
       <main className={classes.content}>
-
         <Toolbar />
       </main>
     </div>

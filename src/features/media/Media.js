@@ -17,7 +17,15 @@ import Box from '@material-ui/core/Box';
 import  Captions  from './captions/Captions';
 import  Idioms  from '../../features/idioms/Idioms';
 import  Grams  from '../../features/grams/Grams';
-
+import {
+  selectCapsByMedia,
+  selectCapsByMediaStatus,
+  selectCutsByMedia,
+  getCapsByMedia,
+  getCutsByMedia,
+  setMedia,
+  selectPrevMedia
+} from './mediaSlice';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,7 +69,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function Media() {
+  const dispatch = useDispatch();
   const { media } = useParams();
+  const caps = useSelector(selectCapsByMedia);
+  const cuts = useSelector(selectCutsByMedia);
+  const status = useSelector(selectCapsByMediaStatus);
+  const prev_media = useSelector(selectPrevMedia);
+  useEffect(() => {
+    console.log('uuuu')
+    console.log(cuts)
+    if (prev_media != media) {
+      console.log('NOT SAME', prev_media)
+      dispatch(getCapsByMedia(media))
+      dispatch(setMedia(media))
+    } else {
+      console.log('Same')
+    }
+    dispatch(getCutsByMedia(media))
+
+  }, []);
+
   const classes = useStyles();
   const [value, setValue] = React.useState(parseInt(localStorage.getItem('media_tab_index')) || 0);
 
@@ -90,7 +117,7 @@ export function Media() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Captions media={media} />
+        <Captions media={media} caps={caps} status={status} cuts={cuts}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Idioms media={media} />

@@ -24,3 +24,21 @@ export function fetchCapsByMedia(media) {
       }).catch(console)
   })
 }
+
+export function fetchCutsByMedia(media) {
+  return new Promise((resolve, reject) => {
+    axios.get(base + 'cuts/' + media)
+      .then(res => {
+        const obj = res.data.cuts.reduce((h, e) => {
+          h[e.num] = {
+            start: e.start,
+            stop: e.stop
+          };
+          return h;
+        }, {})
+        return resolve({
+          data: obj
+        })
+      }).catch(console)
+  })
+}

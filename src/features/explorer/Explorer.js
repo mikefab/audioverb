@@ -16,17 +16,17 @@ export function Explorer() {
   const state = useSelector(selectState);
   const language = localStorage.getItem("language")
   if (!language) {
-    return history.push('/language')
+    history.push('/language')
   }
   if (language.match(/Chinese/i)) {
-    console.log('bbb')
-    return history.push('/grams')
+    history.push('/grams')
   }
-  return history.push('/medias')
 
-  return (
-    <>
-      {language === null ? <Language/> : ( language.match(/Chinese/i) ? <Grams /> : <Medias/>)}
-    </>
-  );
+  history.push('/medias')
+  return (<></>)
+  // return (
+  //   <>
+  //     {language === null ? <Language/> : ( language.match(/Chinese/i) ? <Grams /> : <Medias/>)}
+  //   </>
+  // );
 }
