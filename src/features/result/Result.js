@@ -19,8 +19,8 @@ import '../..//App.css';
 export function Result() {
   const language = localStorage.getItem('language')
   const google_languages = {
-    'Chinese': 'zh-CN',
-    'Spanish': 'es'
+    'chinese': 'zh-CN',
+    'spanish': 'es'
   }
 
   function useQuery() {
@@ -94,7 +94,7 @@ export function Result() {
       <span>
       {cap.cap.split('').map((cap, i4) => (
         <span key={i4+10000}>
-           <a href={`http://www.strokeorder.info/mandarin.php?q=${cap}`} target="_blank">{cap}</a> 
+           <a href={`http://www.strokeorder.info/mandarin.php?q=${cap}`} target="_blank">{cap}</a>
            </span>
         ))}
       </span>
