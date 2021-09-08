@@ -12,6 +12,9 @@
 .casual {
   font-size: 14px;
 }
+.player_button {
+    width: 12px;
+}
 
 .selectedLanguage {
   text-decoration: underline;
