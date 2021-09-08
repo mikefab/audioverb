@@ -35,16 +35,6 @@ export function Player() {
     num = record_params.num
   }
 
-  function handleSaveCut() {
-    localStorage.setItem(`cut-${nam}-${num}`, `${start}-${stop}`)
-    return dispatch(saveCut({
-      name: nam,
-      num: num,
-      start: start,
-      stop: stop
-    }))
-  }
-
   function alter(kind) {
     if (audioURL) {
       let obj = {}
@@ -95,7 +85,7 @@ export function Player() {
               <Button onClick = {() => {alter('shave front')}}><Remove /></Button>
               <Button onClick = {() => {alter('shave back')}}><Remove /></Button>
               <Button onClick = {() => {alter('extend back')}}><Add /></Button>
-              <Button onClick = {() => {handleSaveCut()}}><Save /></Button>
+
             </ButtonGroup>
           </Grid>
           <Grid item xs={12}>
