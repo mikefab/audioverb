@@ -30,7 +30,7 @@ export default function Idioms(props) {
 
   return (
     <Container>
-      <Grid container spacing={1}>
+      <Grid container spacing={1} style={{fontSize: '14px'}}>
       {idioms.map((idiom, i) => (
         <Grid item xs={3} key={ Math.random().toString(36).substr(2, 9) }>
           <Link to={`/search?is_idiom=true&phrase=${idiom}`}>{idiom}</Link>
