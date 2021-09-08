@@ -35,6 +35,16 @@ export function Player() {
     num = record_params.num
   }
 
+  function handleSaveCut() {
+    localStorage.setItem(`cut-${nam}-${num}`, `${start}-${stop}`)
+    return dispatch(saveCut({
+      name: nam,
+      num: num,
+      start: start,
+      stop: stop
+    }))
+  }
+
   function alter(kind) {
     if (audioURL) {
       let obj = {}
@@ -63,13 +73,7 @@ export function Player() {
         }
         dispatch(getAudio({record: obj, trim_or_extend:true}))
 
-        localStorage.setItem(`cut-${nam}-${num}`, `${start}-${stop}`)
-        return dispatch(saveCut({
-          name: nam,
-          num: num,
-          start: obj.start,
-          stop: obj.stop
-        }))
+        return handleSaveCut()
 
       }
     }
@@ -81,11 +85,11 @@ export function Player() {
       <Grid container>
           <Grid item xs={12}>
             <ButtonGroup color="primary" size="large" aria-label="outlined primary button group">
-              <Button onClick = {() => {alter('prepend')}}><Add/></Button>
-              <Button onClick = {() => {alter('shave front')}}><Remove /></Button>
-              <Button onClick = {() => {alter('shave back')}}><Remove /></Button>
-              <Button onClick = {() => {alter('extend back')}}><Add /></Button>
-
+              <Button className='player_button' onClick = {() => {alter('prepend')}}><Add/></Button>
+              <Button className='player_button' onClick = {() => {alter('shave front')}}><Remove /></Button>
+              <Button className='player_button' onClick = {() => {alter('shave back')}}><Remove /></Button>
+              <Button className='player_button' onClick = {() => {alter('extend back')}}><Add /></Button>
+              <Button className='player_button' onClick = {() => {handleSaveCut()}}><Save /></Button>
             </ButtonGroup>
           </Grid>
           <Grid item xs={12}>
