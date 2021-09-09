@@ -15,11 +15,10 @@ export function Explorer() {
   const history = useHistory()
   const state = useSelector(selectState);
   const language = localStorage.getItem("language")
-  if (!language) {
-    history.push('/language')
-  }
+
   if (language.match(/Chinese/i)) {
     history.push('/grams')
+    return (<></>)
   }
 
   history.push('/medias')

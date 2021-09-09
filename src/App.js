@@ -17,13 +17,24 @@ import {SeachHistory} from './features/search-history/SearchHistory';
 import  {Result} from './features/result/Result';
 import  {Settings} from './features/settings/Settings';
 import Container from '@material-ui/core/Container'
-
+import {
+  useHistory,
+  useLocation
+} from "react-router-dom";
 import {  Route, Switch } from "react-router-dom";
 import useGaTracker from './useGaTracker'
 import './App.css';
 
 function App() {
   useGaTracker();
+  const location = useLocation()
+  const history = useHistory()
+  const language = localStorage.getItem("language")
+  if (!language && !location.pathname.match(/language/)) {
+    history.push('/language');
+    return (<></>)
+  }
+
   return (
       <Container maxWidth="sm" justify="center" >
       <Nav/>

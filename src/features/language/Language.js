@@ -12,7 +12,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import native_languages from './native_languages'
 
 import {
-  useLocation,
   useHistory
 } from "react-router-dom";
 
@@ -27,7 +26,6 @@ export function Language() {
   const language = useSelector(selectLanguage);
   const history = useHistory()
   const selectedSyle = {'text-decoration': 'underline'}
-  const location = useLocation()
 
   function handleVariant(lang) {
     const re = new RegExp(language, 'i');
