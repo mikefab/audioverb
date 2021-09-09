@@ -27,7 +27,6 @@ function App() {
   return (
       <Container maxWidth="sm" justify="center" >
       <Nav/>
-
         <Switch>
           <Route path={`/settings`} component={Settings} />
           <Route path={`/language`} component={Language} />

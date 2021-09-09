@@ -18,10 +18,8 @@ export default function Captions(props) {
   }, [status]);
 
   function color_balls(num) {
-    console.log(cuts[parseInt(num)])
     return cuts[parseInt(num)] ? 'primary' : 'error'
   }
-  console.log(cuts)
   function Lines() {
     return (
       <Grid container spacing={1}>

@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.showTab {
+  display: 'inline';
+}
+
+.hideTab {
+  display: none;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -76,14 +76,9 @@ export function Media() {
   const status = useSelector(selectCapsByMediaStatus);
   const prev_media = useSelector(selectPrevMedia);
   useEffect(() => {
-    console.log('uuuu')
-    console.log(cuts)
     if (prev_media != media) {
-      console.log('NOT SAME', prev_media)
       dispatch(getCapsByMedia(media))
       dispatch(setMedia(media))
-    } else {
-      console.log('Same')
     }
     dispatch(getCutsByMedia(media))
 
@@ -97,6 +92,12 @@ export function Media() {
     setValue(newValue);
   };
 
+  function showTab() {
+    const lang = localStorage.getItem('language')
+    if (lang) {
+      return lang.match(/chinese/) ? 'inline' : 'none'
+    }
+  }
 
   return (
     <>
@@ -111,18 +112,18 @@ export function Media() {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          <Tab label="Captions" {...a11yProps(0)} />
-          <Tab label="Idioms" {...a11yProps(1)} />
-          <Tab label="HSK" {...a11yProps(2)} />
+        <Tab label="Captions" {...a11yProps(0)} />
+        <Tab style={{display: showTab()}} label="Idioms" {...a11yProps(1)} />
+        <Tab style={{display: showTab()}} label="HSK" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <Captions media={media} caps={caps} status={status} cuts={cuts}/>
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel style={{display: showTab()}}  value={value} index={1}>
         <Idioms media={media} />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel style={{display: showTab()}}  value={value} index={2}>
         <Grams media={media} />
       </TabPanel>
     </div>
