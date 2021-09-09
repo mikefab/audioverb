@@ -35,7 +35,11 @@ export function Player() {
     num = record_params.num
   }
 
-  function handleSaveCut() {
+  function handleSaveCut(obj) {
+    if (obj) {
+      start = obj.start
+      stop = obj.stop
+    }
     localStorage.setItem(`cut-${nam}-${num}`, `${start}-${stop}`)
     return dispatch(saveCut({
       name: nam,
@@ -55,7 +59,7 @@ export function Player() {
           nam,
           num
         }
-        console.log(audioURL)
+
         if (kind.match('prepend')) {
           obj.start -= 0.5
         }
@@ -71,9 +75,10 @@ export function Player() {
         if (kind.match('shave back')) {
           obj.stop -= 0.5
         }
+        handleSaveCut(obj)
         dispatch(getAudio({record: obj, trim_or_extend:true}))
 
-        return handleSaveCut()
+
 
       }
     }
