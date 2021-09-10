@@ -29,8 +29,9 @@ export const getConjugations = createAsyncThunk(
 
 export const getConjugationsMedia = createAsyncThunk(
   'conjugation/fetchConjugationsMedia',
-  async (media_verb) => {
-    const [media, verb] = media_verb
+  async (obj) => {
+    const {media, verb} = obj
+    console.log(media, verb, 'mmmm')
     const response = await fetchConjugationsMedia(media, verb);
     // The value we return becomes the `fulfilled` action payload
     return response.data

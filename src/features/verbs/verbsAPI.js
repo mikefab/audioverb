@@ -12,3 +12,14 @@ export function fetchVerbs(tense) {
       }).catch(console)
   })
 }
+
+export function fetchVerbsByMedia(media) {
+  return new Promise((resolve, reject) => {
+    axios.get(base + 'verbs_for_name/' + media)
+      .then(res => {
+        return resolve({
+          data: res.data
+        })
+      }).catch(console)
+  })
+}

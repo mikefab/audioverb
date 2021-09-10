@@ -16,6 +16,7 @@ export function fetchConjugations(tense, verb) {
 
 
 export function fetchConjugationsMedia(media, verb) {
+  console.log(media, verb, 'aaaappi')
   return new Promise((resolve, reject) => {
     const url = base + 'verb_for_name/' + media + '/'+ verb
     axios.get(url)

@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import  Captions  from './captions/Captions';
 import  Idioms  from '../../features/idioms/Idioms';
+import  Verbs  from '../../features/verbs/Verbs';
 import  Grams  from '../../features/grams/Grams';
 import {
   selectCapsByMedia,
@@ -26,6 +27,13 @@ import {
   setMedia,
   selectPrevMedia
 } from './mediaSlice';
+
+import {
+  selectVerbs,
+  getVerbsByMedia
+} from '../verbs/verbsSlice';
+
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -73,12 +81,15 @@ export function Media() {
   const { media } = useParams();
   const caps = useSelector(selectCapsByMedia);
   const cuts = useSelector(selectCutsByMedia);
+  const verbs = useSelector(selectVerbs);
+  console.log(verbs)
   const status = useSelector(selectCapsByMediaStatus);
   const prev_media = useSelector(selectPrevMedia);
   useEffect(() => {
     if (prev_media != media) {
       dispatch(getCapsByMedia(media))
       dispatch(setMedia(media))
+      dispatch(getVerbsByMedia(media))
     }
     dispatch(getCutsByMedia(media))
 
@@ -92,16 +103,28 @@ export function Media() {
     setValue(newValue);
   };
 
-  function showTab() {
+  function tabChinese() {
     const lang = localStorage.getItem('language')
     if (lang) {
       return lang.match(/chinese/) ? 'inline' : 'none'
+    }
+  }
+  function tabNotChinese(flag) {
+    if (flag === 0) {
+      return 'none';
+    }
+    const lang = localStorage.getItem('language')
+    if (lang) {
+      return lang.match(/chinese/) ? 'none' : 'inline'
     }
   }
 
   return (
     <>
     <div className={classes.root}>
+      <p>
+        {media}
+      </p>
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -113,19 +136,28 @@ export function Media() {
           aria-label="scrollable auto tabs example"
         >
         <Tab label="Captions" {...a11yProps(0)} />
-        <Tab style={{display: showTab()}} label="Idioms" {...a11yProps(1)} />
-        <Tab style={{display: showTab()}} label="HSK" {...a11yProps(2)} />
+        <Tab style={{display: tabChinese()}} label="Idioms" {...a11yProps(1)} />
+        <Tab style={{display: tabChinese()}} label="HSK" {...a11yProps(2)} />
+        <Tab style={{display: tabNotChinese(0)}} label="Tenses" {...a11yProps(3)} />
+        <Tab style={{display: tabNotChinese()}} label="Verbs" {...a11yProps(4)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <Captions media={media} caps={caps} status={status} cuts={cuts}/>
       </TabPanel>
-      <TabPanel style={{display: showTab()}}  value={value} index={1}>
+      <TabPanel style={{display: tabChinese()}}  value={value} index={1}>
         <Idioms media={media} />
       </TabPanel>
-      <TabPanel style={{display: showTab()}}  value={value} index={2}>
+      <TabPanel style={{display: tabChinese()}}  value={value} index={2}>
         <Grams media={media} />
       </TabPanel>
+      <TabPanel style={{display: tabNotChinese(0)}}  value={value} index={3}>
+        Tenses
+      </TabPanel>
+      <TabPanel style={{display: tabNotChinese()}}  value={value} index={4}>
+        <Verbs media={media}/>
+      </TabPanel>
+
     </div>
     </>
   );

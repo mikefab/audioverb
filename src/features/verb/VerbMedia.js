@@ -21,10 +21,13 @@ export function VerbMedia() {
   const dispatch = useDispatch();
 
   const conjugations = useSelector(selectConjugationsByTense);
-
+console.log(verb, conjugations, 'ccc')
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    dispatch(getConjugationsMedia([media, verb]))
+    dispatch(getConjugationsMedia({
+      media,
+      verb
+    }))
 
   }, [dispatch, media, verb, conjugation]);
 

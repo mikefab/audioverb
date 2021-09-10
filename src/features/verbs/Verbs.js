@@ -12,7 +12,8 @@ import {
   useParams,
 } from "react-router-dom";
 
-function Verbs() {
+function Verbs(props) {
+  const {media} = props
   const history = useHistory()
   const location = useLocation()
 
@@ -27,25 +28,59 @@ function Verbs() {
   useEffect(() => {
     history.push(location.pathname)
     // Update the document title using the browser API
-    dispatch(setTense(tense))
-    dispatch(getVerbs(tense))
+    if (tense) {
+      dispatch(setTense(tense))
+      dispatch(getVerbs(tense))      
+    }
+
   }, [tense, dispatch, history, location.pathname]);
+
+  function Crumbs() {
+    if (tense) {
+      return (
+        <>
+        <span className='crumbs'>
+          <Link to='/tenses'>tenses</Link>  - {tense}
+        </span>
+        <p style={{fontSize: 14}}>
+          <i>
+            {tense_explanation[tense]}
+          </i>
+        </p>
+        </>
+      )
+    }
+    return (
+      <>
+      </>
+    )
+  }
+
+  function SmartLink(props) {
+    const {verb} =  props
+
+    if (tense) {
+      return (
+        <>
+          <Link to={`/tenses/${tense}/${verb}/${verbs[verb][0]}`}>{verb}</Link>
+        </>
+      )
+    }
+
+    return (
+      <>
+        <Link to={`/media/${media}/${verb}/${verbs[verb][0]}`}>{verb}</Link>
+      </>
+    )
+  }
 
   return (
     <Container>
-    <span className='crumbs'>
-      <Link to='/tenses'>tenses</Link>  - {tense}
-    </span>
-    <p style={{fontSize: 14}}>
-      <i>
-        {tense_explanation[tense]}
-      </i>
-    </p>
-
+      <Crumbs />
       <Grid container spacing={1}>
-      {Object.keys(verbs).map((verb, i) => (
-        <Grid item xs={6} key={ i }>
-          <Link to={`/tenses/${tense}/${verb}/${verbs[verb][0]}`}>{verb}</Link>
+      {Object.keys(verbs).sort().map((verb, i) => (
+        <Grid item xs={4} key={ i }>
+          <SmartLink verb={verb}/>
         </Grid>
         ))}
 
