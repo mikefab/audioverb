@@ -11,7 +11,7 @@ export function Level(props) {
     <Container>
       <Grid container spacing={12}>
       {(grams).map((gram, i) => (
-        <Grid item xs={2} key={ i }>
+        <Grid item xs={3} key={ i }>
           <Link style={{textDecoration: 'none'}} to={`/search?phrase=${gram}`} >{gram}</Link>
         </Grid>
         ))}
