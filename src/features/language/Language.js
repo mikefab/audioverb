@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { getLanguages, selectLanguages, setLanguage, selectLanguage} from './languageSlice';
 import {LanguageOptions} from '../language-options/LanguageOptions'
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
@@ -16,11 +17,16 @@ import {
 } from "react-router-dom";
 
 
-
-import {setLanguage, selectLanguage} from '../language/languageSlice';
 const my_languages = native_languages()
 
 export function Language() {
+  const languages = useSelector(selectLanguages);
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+      dispatch(getLanguages())
+  }, []);
+
+
   const [my_language, setMyLanguage] = useState(localStorage.getItem('my_language') || 'en')
   const dispatch = useDispatch();
   const language = useSelector(selectLanguage);
@@ -61,7 +67,7 @@ export function Language() {
       </Grid>
       <Grid item xs={12}>
       Language you wish to practice:&nbsp;
-      {['Chinese', 'Spanish'].map((lang, i) => (
+      {languages.map((lang, i) => (
           <span key={'lang' + i}>
             <span>
               <Chip

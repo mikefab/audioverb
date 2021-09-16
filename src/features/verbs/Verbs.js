@@ -6,6 +6,8 @@ import {setTense} from '../tenses/tensesSlice';
 import {selectLanguage} from '../language/languageSlice';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
+
+
 import {
   Link,
   useHistory,
@@ -34,7 +36,7 @@ function Verbs(props) {
       dispatch(setTense(tense))
       dispatch(getVerbsByTense(tense))
     } else {
-      console.log('ll', language)
+
       dispatch(getVerbs(language))
     }
 
@@ -80,9 +82,9 @@ function Verbs(props) {
         </>
       )
     }
-return(
-  <Link to={`/verb/${verb}/${verbs[verb][0]}`}>{verb}</Link>
-)
+    return(
+      <Link to={`/verb/${verb}/${verbs[verb][0]}`}>{verb}</Link>
+    )
   }
 
   return (

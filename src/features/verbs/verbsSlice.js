@@ -76,7 +76,6 @@ export const verbsSlice = createSlice({
       })
 
   },
-
 });
 
 export const selectVerbs = (state) => state.verbs.verbs;

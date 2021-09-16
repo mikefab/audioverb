@@ -19,7 +19,7 @@ export function LanguageOptions(props) {
     }
     return (
       <span>
-          Explore <Link to='/tenses' >tenses</Link> or <Link to='/medias' >captions </Link> from {language} movies.
+          Explore <Link to='/tenses' >tenses</Link> or <Link to='/medias' >captions </Link> from <b>{language}</b> movies.
       </span>
     )
   }
