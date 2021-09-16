@@ -2,9 +2,15 @@ import axios from 'axios';
 import env from "react-dotenv";
 const base = env.REACT_APP_HOST
 
-export function fetchConjugations(tense, verb) {
+export function fetchConjugations(verb, tense, language) {
   return new Promise((resolve, reject) => {
-    const url = base + 'tense/' + tense + '/verb/' + verb
+    let url = base
+    if (tense) {
+      base += 'tense/' + tense + '/verb/' + verb
+    } else {
+      url += 'conjugations/' + verb + '/' + language
+    }
+
     axios.get(url)
       .then(res => {
         return resolve({
@@ -14,9 +20,7 @@ export function fetchConjugations(tense, verb) {
   })
 }
 
-
 export function fetchConjugationsMedia(media, verb) {
-  console.log(media, verb, 'aaaappi')
   return new Promise((resolve, reject) => {
     const url = base + 'verb_for_name/' + media + '/'+ verb
     axios.get(url)

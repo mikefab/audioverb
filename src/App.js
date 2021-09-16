@@ -58,6 +58,8 @@ function App() {
           <Route path={`/tenses/:tense/:verb/:conjugation/:media/:num`} component={Result}/>
           <Route path={`/tenses/:tense/:verb/:conjugation`} component={Verb}/>
           <Route path={`/tenses/:tense/:verb`} component={Verb}/>
+          <Route path={`/verbs`} component={Verbs}/>
+          <Route path={`/verb/:verb/:conjugation`} component={Verb}/>
           <Route path={`/tenses/:tense`} component={Verbs}/>
           <Route path="/tenses" component={Tenses} />
         </Switch>

@@ -73,6 +73,7 @@ export default function SearchAppBar() {
     nav_options.unshift('Medias')
     if (!language.match(/Chinese/i)) {
       nav_options.unshift('Tenses')
+      nav_options.unshift('Verbs')
     } else {
       nav_options.unshift('Grams')
       nav_options.unshift('Idioms')

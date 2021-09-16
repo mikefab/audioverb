@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVerbs, selectVerbs} from '../verbs/verbsSlice';
+import { getVerbs, getVerbsByTense, selectVerbs} from '../verbs/verbsSlice';
 import {selectExplanations} from '../tenses/tensesSlice';
 import {setTense} from '../tenses/tensesSlice';
+import {selectLanguage} from '../language/languageSlice';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 import {
@@ -16,7 +17,7 @@ function Verbs(props) {
   const {media} = props
   const history = useHistory()
   const location = useLocation()
-
+  const language = useSelector(selectLanguage);
   const dispatch = useDispatch();
   const verbs = useSelector(selectVerbs);
 
@@ -28,9 +29,13 @@ function Verbs(props) {
   useEffect(() => {
     history.push(location.pathname)
     // Update the document title using the browser API
+
     if (tense) {
       dispatch(setTense(tense))
-      dispatch(getVerbs(tense))      
+      dispatch(getVerbsByTense(tense))
+    } else {
+      console.log('ll', language)
+      dispatch(getVerbs(language))
     }
 
   }, [tense, dispatch, history, location.pathname]);
@@ -67,11 +72,17 @@ function Verbs(props) {
       )
     }
 
-    return (
-      <>
-        <Link to={`/media/${media}/${verb}/${verbs[verb][0]}`}>{verb}</Link>
-      </>
-    )
+    if (media) {
+
+      return (
+        <>
+          <Link to={`/media/${media}/${verb}/${verbs[verb][0]}`}>{verb}</Link>
+        </>
+      )
+    }
+return(
+  <Link to={`/verb/${verb}/${verbs[verb][0]}`}>{verb}</Link>
+)
   }
 
   return (

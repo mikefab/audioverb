@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   fetchVerbs,
+  fetchVerbsByTense,
   fetchVerbsByMedia
 } from './verbsAPI';
 
@@ -19,8 +20,17 @@ const initialState = {
 
 export const getVerbs = createAsyncThunk(
   'verbs/fetchVerbs',
+  async (lng) => {
+    const response = await fetchVerbs(lng);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data
+  }
+);
+
+export const getVerbsByTense = createAsyncThunk(
+  'verbs/fetchVerbsByTense',
   async (tense) => {
-    const response = await fetchVerbs(tense);
+    const response = await fetchVerbsByTense(tense);
     // The value we return becomes the `fulfilled` action payload
     return response.data
   }
@@ -47,6 +57,13 @@ export const verbsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(getVerbs.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.verbs = action.payload;
+      })
+      .addCase(getVerbsByTense.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getVerbsByTense.fulfilled, (state, action) => {
         state.status = 'idle';
         state.verbs = action.payload;
       })

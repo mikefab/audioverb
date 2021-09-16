@@ -19,9 +19,9 @@ const initialState = {
 
 export const getConjugations = createAsyncThunk(
   'conjugation/fetchConjugations',
-  async (tense_verb) => {
-    const [tense, verb] = tense_verb
-    const response = await fetchConjugations(tense, verb);
+  async (obj) => {
+    const {verb, tense, language} = obj
+    const response = await fetchConjugations(verb, tense, language);
     // The value we return becomes the `fulfilled` action payload
     return response.data
   }
@@ -31,7 +31,6 @@ export const getConjugationsMedia = createAsyncThunk(
   'conjugation/fetchConjugationsMedia',
   async (obj) => {
     const {media, verb} = obj
-    console.log(media, verb, 'mmmm')
     const response = await fetchConjugationsMedia(media, verb);
     // The value we return becomes the `fulfilled` action payload
     return response.data

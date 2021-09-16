@@ -82,7 +82,6 @@ export function Media() {
   const caps = useSelector(selectCapsByMedia);
   const cuts = useSelector(selectCutsByMedia);
   const verbs = useSelector(selectVerbs);
-  console.log(verbs)
   const status = useSelector(selectCapsByMediaStatus);
   const prev_media = useSelector(selectPrevMedia);
   useEffect(() => {
