@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVerbs, getVerbsByTense, selectVerbs} from '../verbs/verbsSlice';
+import { getVerbs, getVerbsByTense, getVerbsByMedia, selectVerbs} from '../verbs/verbsSlice';
 import {selectExplanations} from '../tenses/tensesSlice';
 import {setTense} from '../tenses/tensesSlice';
 import {selectLanguage} from '../language/languageSlice';
@@ -31,12 +31,14 @@ function Verbs(props) {
   useEffect(() => {
     history.push(location.pathname)
     // Update the document title using the browser API
-
+    console.log(media)
     if (tense) {
       dispatch(setTense(tense))
       dispatch(getVerbsByTense(tense))
+    } else if (media) {
+      console.log('!!!!')
+      dispatch(getVerbsByMedia(media))
     } else {
-
       dispatch(getVerbs(language))
     }
 

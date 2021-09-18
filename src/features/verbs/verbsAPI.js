@@ -25,6 +25,7 @@ export function fetchVerbsByTense(tense) {
 }
 
 export function fetchVerbsByMedia(media) {
+  console.log('blow', media)
   return new Promise((resolve, reject) => {
     axios.get(base + 'verbs_for_name/' + media)
       .then(res => {
