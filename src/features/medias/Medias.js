@@ -20,7 +20,6 @@ export function Medias() {
   const language = useSelector(selectLanguage);
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    console.log('medias', language)
     // Update the document title using the browser API
     // history.push('/medias')
     dispatch(getMedias(language))

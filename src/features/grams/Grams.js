@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,16 +36,23 @@ export default function Grams(props) {
   const grams = useSelector(selectGrams);
   const dispatch = useDispatch();
 
-
   const classes = useStyles();
   const [value, setValue] = React.useState(parseInt(localStorage.getItem('hsk_tab_index')) || 0);
-  if (grams.length < 1) {
-    dispatch(getGrams({level: value + 1, media: media}))
-  }
+
+
+
+
+  useEffect(() => {
+    console.log('h!!!', media, grams.length)
+  //  if (grams.length < 1) {
+      dispatch(getGrams({level: value + 1, media}))
+//    }
+
+  }, [media]);
 
   const handleChange = (event, newValue) => {
     localStorage.setItem('hsk_tab_index', newValue)
-    dispatch(getGrams({level: newValue + 1, media: null}))
+    dispatch(getGrams({level: newValue + 1, media}))
     setValue(newValue);
   };
 

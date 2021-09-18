@@ -28,15 +28,23 @@ export default function Idioms(props) {
     dispatch(getIdioms(language))
   }, [dispatch, language, media]);
 
-  return (
-    <Container>
-      <Grid container spacing={1} style={{fontSize: '14px'}}>
-      {idioms.map((idiom, i) => (
-        <Grid item xs={3} key={ Math.random().toString(36).substr(2, 9) }>
-          <Link to={`/search?is_idiom=true&phrase=${idiom}`}>{idiom}</Link>
+  function IdiomContent() {
+    if (idioms.length > 0) {
+      return (
+        <Grid container spacing={1} style={{fontSize: '14px'}}>
+        {idioms.map((idiom, i) => (
+          <Grid item xs={3} key={ Math.random().toString(36).substr(2, 9) }>
+            <Link to={`/search?is_idiom=true&phrase=${idiom}`}>{idiom}</Link>
+          </Grid>
+          ))}
         </Grid>
-        ))}
-      </Grid>
-    </Container>
+      )
+    }
+      return (<>No idioms for {media}</>)
+  }
+  return (
+    <>
+      <IdiomContent />
+    </>
   );
 }

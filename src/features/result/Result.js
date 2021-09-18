@@ -20,7 +20,12 @@ export function Result() {
   const language = localStorage.getItem('language')
   const google_languages = {
     'chinese': 'zh-CN',
-    'spanish': 'es'
+    'spanish': 'es',
+    'french': 'fr',
+    'english': 'en',
+    'italian': 'it',
+    'thai': 'th',
+    'turkish': 'tr'
   }
 
   function useQuery() {

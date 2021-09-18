@@ -18,9 +18,11 @@ const initialState = {
 export const getGrams = createAsyncThunk(
   'grams/fetchGrams',
   async (obj) => {
+    console.log("FETCHING", obj)
     const response = await fetchGrams(obj);
+    console.log(response.data, 'lllll')
     // The value we return becomes the `fulfilled` action payload
-    return response.data || {};
+    return response.data || [];
   }
 );
 

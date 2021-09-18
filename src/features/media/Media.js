@@ -86,6 +86,8 @@ export function Media() {
   const prev_media = useSelector(selectPrevMedia);
   useEffect(() => {
     if (prev_media != media) {
+      localStorage.setItem('media_tab_index', 0)
+      setValue(0);
       dispatch(getCapsByMedia(media))
       dispatch(setMedia(media))
       dispatch(getVerbsByMedia(media))
