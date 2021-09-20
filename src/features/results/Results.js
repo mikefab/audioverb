@@ -64,7 +64,7 @@ export function Results(props) {
     dispatch(setSelectedResult(cap))
   }
 
-  function parseLink(cap, tense, verb, conjugation) {
+  function parseLink(cap, tense, verb, conjugation, media) {
     if (phrase) {
       if (is_idiom) {
         return `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?phrase=${phrase}&is_idiom=true`
@@ -118,7 +118,7 @@ export function Results(props) {
                             *
                           </Grid>
                           <Grid item xs={11}>
-                            <Link style={{textDecoration: 'none'}} to={parseLink(cap, tense, verb, conjugation)} >{cap.cap}</Link>
+                            <Link style={{textDecoration: 'none'}} to={parseLink(cap, tense, verb, conjugation, result.name)} >{cap.cap}</Link>
                           </Grid>
                         </Grid>
                         </div>
