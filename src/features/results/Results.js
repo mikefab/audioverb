@@ -101,6 +101,20 @@ export function Results(props) {
 
   }
 
+  function ViewMore(props) {
+    const {total, media} = props
+    if (total > 2) {
+      return (
+        <>
+          <Link style={{textDecoration: 'none'}} to={`search/${media}?${query}`} >View more</Link>
+        </>
+      )
+    }
+    return (
+      <></>
+    )
+  }
+
   return (
     <Container  style={{height: '600px', overflow: 'auto'}} >
 
@@ -123,8 +137,7 @@ export function Results(props) {
                         </Grid>
                         </div>
                     ))}
-
-
+                    <ViewMore total={result.total_caps} media={result.name} />
               </div>
           ))}
     </Container>

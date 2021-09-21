@@ -33,8 +33,8 @@ const initialState = {
 // typically used to make async requests.
 export const getTenses = createAsyncThunk(
   'tenses/fetchTenses',
-  async () => {
-    const response = await fetchTenses('spanish');
+  async (language) => {
+    const response = await fetchTenses(language);
     // The value we return becomes the `fulfilled` action payload
     return response.data || [];
   }

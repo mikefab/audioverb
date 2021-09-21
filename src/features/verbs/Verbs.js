@@ -36,7 +36,6 @@ function Verbs(props) {
       dispatch(setTense(tense))
       dispatch(getVerbsByTense(tense))
     } else if (media) {
-      console.log('!!!!')
       dispatch(getVerbsByMedia(media))
     } else {
       dispatch(getVerbs(language))

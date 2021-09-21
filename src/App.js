@@ -47,6 +47,7 @@ function App() {
           <Route path={`/favorites`} component={Favorites}/>
           <Route path={`/favorite/:media/:num`} component={Result}/>
           <Route path={`/search/:media/:num`} component={Result}/>
+          <Route path={`/search/:media`} component={Results}/>
           <Route exact path="/media/:media/:verb/:conjugation/:num" component = {Result} />
           <Route exact path="/media/:media/:verb/:conjugation" component = {VerbMedia} />
           <Route exact path="/media/:media/:verb" component = {VerbMedia} />

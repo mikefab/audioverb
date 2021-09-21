@@ -4,7 +4,7 @@ const base = env.REACT_APP_HOST
 
 const langs = {
   'chinese': 'chi_hans',
-  'french': 'fre',
+  'french': 'fra',
   'spanish': 'spa',
 }
 

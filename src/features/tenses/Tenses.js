@@ -8,10 +8,12 @@ import {
   Link,
   useHistory
 } from "react-router-dom";
+import {selectLanguage} from '../language/languageSlice';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 
 export function Tenses() {
+  const language = useSelector(selectLanguage);
   const history = useHistory()
   const dispatch = useDispatch();
   const tenses = useSelector(selectTenses);
@@ -20,7 +22,7 @@ export function Tenses() {
   useEffect(() => {
     // Update the document title using the browser API
     history.push('/tenses')
-    dispatch(getTenses('spanish'))
+    dispatch(getTenses(language))
   }, [dispatch, history]);
 
   return (
