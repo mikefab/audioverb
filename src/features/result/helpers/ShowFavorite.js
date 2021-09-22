@@ -30,7 +30,7 @@ export function ShowFavorite(props) {
   function handleLike() {
     const cap = result.find(c => { return parseInt(c.num) === parseInt(num)})
     // User is unfavoriting
-    if (favorited == 1) {
+    if (favorited === 1) {
       const favorited_key = getFavoritedKey(media, num)
       localStorage.removeItem(favorited_key)
       return setFavorited(0)

@@ -116,7 +116,7 @@ export function Result() {
         </Grid>
         <Grid item xs={4}>
           <span onClick = {() => { handlePrevNext(parseInt(num) -1)}}>
-          <PrevNextLink direction='prev' conjugation={conjugation} phrase={phrase} media={media} num={num} verb={verb}/>
+          <PrevNextLink direction='prev' conjugation={conjugation} phrase={phrase} media={media} num={num} verb={verb} language={language}/>
           </span>
         </Grid>
         <Grid item xs={4}>
@@ -124,7 +124,7 @@ export function Result() {
         </Grid>
         <Grid item xs={4}>
           <span onClick = {() => { handlePrevNext(parseInt(num) +1)}}>
-          <PrevNextLink  direction='next' conjugation={conjugation} phrase={phrase} media={media} num={num} verb={verb}/>
+          <PrevNextLink  direction='next' conjugation={conjugation} phrase={phrase} media={media} num={num} verb={verb} language={language}/>
           </span>
         </Grid>
         <br/>

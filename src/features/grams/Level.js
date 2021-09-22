@@ -6,13 +6,14 @@ import {
 } from "react-router-dom";
 export function Level(props) {
   const {grams} = props
+  const language = localStorage.getItem('language')
   return (
     <>
     <Container>
       <Grid container spacing={12}>
       {(grams).map((gram, i) => (
         <Grid item xs={3} key={ i }>
-          <Link style={{textDecoration: 'none'}} to={`/search?phrase=${gram}`} >{gram}</Link>
+          <Link style={{textDecoration: 'none'}} to={`/search?phrase=${gram}?language=${language}`} >{gram}</Link>
         </Grid>
         ))}
       </Grid>

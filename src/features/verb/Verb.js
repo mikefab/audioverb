@@ -38,10 +38,11 @@ export function Verb() {
 
 
   function handleClick(instance) {
+    console.log(instance, language)
     if (tense) {
-      history.push(`/tenses/${tense}/${verb}/${instance}`)
+      history.push(`/tenses/${tense}/${verb}/${instance}?language=${language}`)
     } else {
-      history.push(`/verb/${verb}/${instance}`)
+      history.push(`/verb/${verb}/${instance}?language=${language}`)
     }
 
   }
@@ -52,7 +53,7 @@ export function Verb() {
     return 'outlined'
   }
   function SmartLink() {
-      if (tense && tense != 'undefined') {
+      if (tense && tense !== 'undefined') {
         return (
           <span className='crumbs'><Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <b>{verb}</b> / <b>{conjugation}</b></span>
         )

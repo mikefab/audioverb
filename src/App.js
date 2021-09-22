@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import  Grams  from './features/grams/Grams';
 import  Idioms  from './features/idioms/Idioms';
 import  Nav  from './features/nav/Nav';
@@ -10,7 +11,8 @@ import { Tenses } from './features/tenses/Tenses';
 import { Results } from './features/results/Results';
 import { Verb } from './features/verb/Verb';
 import { VerbMedia } from './features/verb/VerbMedia';
-
+import { setLanguage} from './features/language/languageSlice';
+import queryString from 'query-string';
 import Verbs from './features/verbs/Verbs';
 import {Favorites} from './features/favorites/Favorites';
 import {SeachHistory} from './features/search-history/SearchHistory';
@@ -24,16 +26,33 @@ import {
 import {  Route, Switch } from "react-router-dom";
 import useGaTracker from './useGaTracker'
 import './App.css';
+import available_languages from './features/language/available_languages'
 
-function App() {
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+function App(props) {
   useGaTracker();
+  const dispatch = useDispatch();
+  let query = useQuery();
   const location = useLocation()
   const history = useHistory()
-  const language = localStorage.getItem("language")
-  if (!language && !location.pathname.match(/language/)) {
+  const languages = available_languages()
+
+  const language = languages[query.get("language")] ? query.get("language") : localStorage.getItem("language")
+  console.log(location.pathname, 'ppp')
+  if (!language && !location.pathname.match(/\/language/)) {
+    console.log('111')
     history.push('/language');
     return (<></>)
   }
+  if (language){
+      console.log('222', language)
+      dispatch(setLanguage(language))
+  }
+
+
 
   return (
       <Container maxWidth="sm" justify="center" >

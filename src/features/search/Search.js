@@ -10,9 +10,6 @@ export function Search() {
   let history = useHistory();
   const dispatch = useDispatch();
   const [query, setQuery] = useState('');
-  const _onSubmit = (e) => {
-    e.preventDefault();
-  }
 
   return (
       <div >

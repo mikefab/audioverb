@@ -1,3 +1,4 @@
+// For google translate
 export default function native_languages() {
   return {
     "Amharic": "am",

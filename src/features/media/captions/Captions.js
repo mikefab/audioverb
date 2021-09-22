@@ -11,7 +11,8 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { green } from '@material-ui/core/colors';
 
 export default function Captions(props) {
-  const {media, caps, cuts, status} = props
+  const {media, caps, cuts, status, language} = props
+  console.log(language, 'cccc')
 
   useEffect(() => {
 
@@ -30,7 +31,7 @@ export default function Captions(props) {
               <FiberManualRecordIcon color={color_balls(cap.num)} />
             </Grid>
             <Grid item xs={11}>
-              <Link to={`/medias/${media}/${cap.num}`}>{cap.cap}</Link>
+              <Link to={`/medias/${media}/${cap.num}?language=${language}`}>{cap.cap}</Link>
             </Grid>
           </Grid>
         </Grid>

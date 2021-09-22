@@ -33,7 +33,7 @@ export function Tenses() {
       <Grid container spacing={1}>
       {tenses.map((tense, i) => (
         <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
-          <Link to={`/tenses/${tense}`} >{tense}</Link>
+          <Link to={`/tenses/${tense}?language=${language}`} >{tense}</Link>
         </Grid>
         ))}
       </Grid>

@@ -10,7 +10,7 @@ const langs = {
 
 export function fetchResults(query) {
   const lang = localStorage.getItem('language')
-  if (query == undefined) {
+  if (query === undefined) {
     console.log('ending path')
     return
   }

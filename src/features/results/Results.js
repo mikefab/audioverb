@@ -30,6 +30,7 @@ export function Results(props) {
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
+  const language = localStorage.getItem('language')
   let query = useQuery();
 
   let phrase = query.get('phrase')
@@ -65,15 +66,18 @@ export function Results(props) {
   }
 
   function parseLink(cap, tense, verb, conjugation, media) {
+    let link = ''
     if (phrase) {
       if (is_idiom) {
-        return `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?phrase=${phrase}&is_idiom=true`
+        link = `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?phrase=${phrase}&is_idiom=true&`
       }
-      return `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?phrase=${phrase}`
+      link = `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?phrase=${phrase}&`
     } else if (tense) {
-      return `/tenses/${tense}/${verb}/${conjugation}/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}`
+      link = `/tenses/${tense}/${verb}/${conjugation}/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?`
+    } else {
+        link = `/media/${media}/${verb}/${conjugation}/${cap.num}?`
     }
-      return `/media/${media}/${verb}/${conjugation}/${cap.num}`
+    return link += `language=${language}`
   }
 
 
@@ -84,17 +88,20 @@ export function Results(props) {
     return h
   }, {})
 
+  function NoResults() {
+      return (<>No results for <b>{phrase}</b> in {language}</>)
+  }
 
   if (results.length === 0) {
-    return (<span>No results for <b>{phrase}</b></span>)
+    return (<span><NoResults/></span>)
   }
   // Hack to ensure ghost searches don't emerge. 'aaaa' somehow brings up searches for 'a'
   if (!!phrase) {
     if (!past_searches[phrase]) {
       if (results[0].children[0].cap.match(phrase)) {
-          localStorage.setItem('search-' + localStorage.getItem('language') + '-' + Date.now(), phrase)
+          localStorage.setItem('search-' + language + '-' + Date.now(), phrase)
       } else {
-        return (<span>No results for <b>{phrase}</b></span>)
+        return (<span><NoResults/></span>)
       }
 
     }

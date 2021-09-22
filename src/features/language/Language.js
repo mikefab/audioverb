@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getLanguages, selectLanguages, setLanguage, selectLanguage} from './languageSlice';
 import {LanguageOptions} from '../language-options/LanguageOptions'
 import Grid from '@material-ui/core/Grid';
@@ -20,6 +19,7 @@ import {
 const my_languages = native_languages()
 
 export function Language() {
+  const dispatch = useDispatch();
   const languages = useSelector(selectLanguages);
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -28,7 +28,7 @@ export function Language() {
 
 
   const [my_language, setMyLanguage] = useState(localStorage.getItem('my_language') || 'en')
-  const dispatch = useDispatch();
+
   const language = useSelector(selectLanguage);
   const history = useHistory()
   const selectedSyle = {'text-decoration': 'underline'}

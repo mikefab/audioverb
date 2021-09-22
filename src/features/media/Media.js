@@ -79,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
 export function Media() {
   const dispatch = useDispatch();
   const { media } = useParams();
+  const language = localStorage.getItem('language')
   const caps = useSelector(selectCapsByMedia);
   const cuts = useSelector(selectCutsByMedia);
   const verbs = useSelector(selectVerbs);
@@ -105,18 +106,17 @@ export function Media() {
   };
 
   function tabChinese() {
-    const lang = localStorage.getItem('language')
-    if (lang) {
-      return lang.match(/chinese/) ? 'inline' : 'none'
+    if (language) {
+      return language.match(/chinese/) ? 'inline' : 'none'
     }
   }
   function tabNotChinese(flag) {
     if (flag === 0) {
       return 'none';
     }
-    const lang = localStorage.getItem('language')
-    if (lang) {
-      return lang.match(/chinese/) ? 'none' : 'inline'
+
+    if (language) {
+      return language.match(/chinese/) ? 'none' : 'inline'
     }
   }
 
@@ -144,19 +144,19 @@ export function Media() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Captions media={media} caps={caps} status={status} cuts={cuts}/>
+        <Captions media={media} caps={caps} status={status} cuts={cuts} language={language}/>
       </TabPanel>
       <TabPanel style={{display: tabChinese()}}  value={value} index={1}>
-        <Idioms media={media} />
+        <Idioms media={media} language={language} />
       </TabPanel>
       <TabPanel style={{display: tabChinese()}}  value={value} index={2}>
-        <Grams media={media} />
+        <Grams media={media} language={language}/>
       </TabPanel>
       <TabPanel style={{display: tabNotChinese(0)}}  value={value} index={3}>
         Tenses
       </TabPanel>
       <TabPanel style={{display: tabNotChinese()}}  value={value} index={4}>
-        <Verbs media={media}/>
+        <Verbs media={media} language={language}/>
       </TabPanel>
 
     </div>

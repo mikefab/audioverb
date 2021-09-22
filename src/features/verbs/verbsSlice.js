@@ -79,4 +79,5 @@ export const verbsSlice = createSlice({
 });
 
 export const selectVerbs = (state) => state.verbs.verbs;
+export const selectVerbsStatus = (state) => state.verbs.status;
 export default verbsSlice.reducer;
