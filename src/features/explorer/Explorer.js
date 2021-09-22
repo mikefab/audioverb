@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 // import { Tenses } from '../tenses/Tenses';
 import { Language } from '../language/Language';
-import { Medias } from '../medias/Medias';
-import  Grams  from '../grams/Grams';
 import {selectState} from './explorerSlice';
 import {
   useHistory
@@ -17,15 +15,10 @@ export function Explorer() {
   const language = localStorage.getItem("language")
 
   if (language.match(/Chinese/i)) {
-    history.push('/grams')
+    history.push('/HSK')
     return (<></>)
   }
 
   history.push('/medias')
   return (<></>)
-  // return (
-  //   <>
-  //     {language === null ? <Language/> : ( language.match(/Chinese/i) ? <Grams /> : <Medias/>)}
-  //   </>
-  // );
 }

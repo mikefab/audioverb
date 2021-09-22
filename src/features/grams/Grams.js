@@ -43,7 +43,6 @@ export default function Grams(props) {
 
 
   useEffect(() => {
-    console.log('h!!!', media, grams.length)
   //  if (grams.length < 1) {
       dispatch(getGrams({level: value + 1, media}))
 //    }
