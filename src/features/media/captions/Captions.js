@@ -12,7 +12,6 @@ import { green } from '@material-ui/core/colors';
 
 export default function Captions(props) {
   const {media, caps, cuts, status, language} = props
-  console.log(language, 'cccc')
 
   useEffect(() => {
 

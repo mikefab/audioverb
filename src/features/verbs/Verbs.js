@@ -23,6 +23,7 @@ import {
 
 function Verbs(props) {
   const {media} = props
+  const status = useSelector(selectVerbsStatus);
   const history = useHistory()
   const location = useLocation()
   const language = useSelector(selectLanguage);
@@ -47,6 +48,10 @@ function Verbs(props) {
     }
 
   }, [tense, dispatch, history, location.pathname]);
+
+  useEffect(() => {
+
+  }, [status]);
 
   function Crumbs() {
     if (tense) {
@@ -93,17 +98,30 @@ function Verbs(props) {
     )
   }
 
+  function Lines() {
+    return (
+      <>
+      <Container>
+        <Crumbs />
+        <Grid container spacing={1}>
+        {Object.keys(verbs).sort().map((verb, i) => (
+          <Grid item xs={4} key={ i }>
+            <SmartLink verb={verb}/>
+          </Grid>
+          ))}
+
+        </Grid>
+      </Container>
+      </>
+    )
+  }
+
   return (
     <Container>
-      <Crumbs />
-      <Grid container spacing={1}>
-      {Object.keys(verbs).sort().map((verb, i) => (
-        <Grid item xs={4} key={ i }>
-          <SmartLink verb={verb}/>
-        </Grid>
-        ))}
-
-      </Grid>
+      <p>
+        Verbs
+      </p>
+      {status.match('idle') ? <Lines/> : <Spinner />}
     </Container>
   );
 }

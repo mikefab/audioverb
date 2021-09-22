@@ -69,4 +69,5 @@ export const selectTenses = (state) => state.tenses.tenses;
 export const selectTense = (state) => state.tenses.tense;
 export const selectExplanations = (state) => state.tenses.explanations;
 export const { setTense } = tensesSlice.actions;
+export const selectTensesStatus = (state) => state.tenses.status;
 export default tensesSlice.reducer;
