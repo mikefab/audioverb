@@ -43,12 +43,10 @@ function App(props) {
   const language = languages[query.get("language")] ? query.get("language") : localStorage.getItem("language")
   console.log(location.pathname, 'ppp')
   if (!language && !location.pathname.match(/\/language/)) {
-    console.log('111')
     history.push('/language');
     return (<></>)
   }
   if (language){
-      console.log('222', language)
       dispatch(setLanguage(language))
   }
 
@@ -60,7 +58,7 @@ function App(props) {
         <Switch>
           <Route path={`/settings`} component={Settings} />
           <Route path={`/language`} component={Language} />
-          <Route path={`/grams`} component={Grams}/>
+          <Route path={`/HSK`} component={Grams}/>
           <Route path={`/idioms`} component={Idioms}/>
           <Route path={`/history`} component={SeachHistory}/>
           <Route path={`/favorites`} component={Favorites}/>

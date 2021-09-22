@@ -75,7 +75,7 @@ export default function SearchAppBar() {
       nav_options.unshift('Tenses')
       nav_options.unshift('Verbs')
     } else {
-      nav_options.unshift('Grams')
+      nav_options.unshift('HSK')
       nav_options.unshift('Idioms')
     }
   }
