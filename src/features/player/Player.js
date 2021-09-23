@@ -84,6 +84,21 @@ export function Player() {
     }
   }
 
+  function SaveButton() {
+    if (localStorage.getItem('user_code')) {
+      return (
+        <>
+        <ButtonGroup color="primary" size="large" aria-label="outlined primary button group">
+          <Button className='player_button' onClick = {() => {handleSaveCut()}} ><Save /></Button>
+        </ButtonGroup>
+        </>
+      )
+    }
+    return (
+      <></>
+    )
+  }
+
   return (
     <div>
     <Grid container>
@@ -94,8 +109,8 @@ export function Player() {
               <Button className='player_button' onClick = {() => {alter('shave front')}}><Remove /></Button>
               <Button className='player_button' onClick = {() => {alter('shave back')}}><Remove /></Button>
               <Button className='player_button' onClick = {() => {alter('extend back')}}><Add /></Button>
-              <Button className='player_button' onClick = {() => {handleSaveCut()}}><Save /></Button>
             </ButtonGroup>
+            <SaveButton />
           </Grid>
           <Grid item xs={12}>
 
