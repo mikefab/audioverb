@@ -32,13 +32,11 @@ export function Results(props) {
   }
   const language = localStorage.getItem('language')
   let query = useQuery();
-
-  const phrase = query.get('phrase').split('?')[0]
+  const phrase = query.get('phrase') ? query.get('phrase').split('?')[0] : null
   const is_idiom = query.get('is_idiom')
   // if (phrase) {
   //   phrase = phrase.toLowerCase()
   // }
-  console.log(phrase, 'sspppp')
   const dispatch = useDispatch();
   const {conjugation} = props
 
