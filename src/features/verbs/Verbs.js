@@ -49,9 +49,6 @@ function Verbs(props) {
 
   }, [tense, dispatch, history, location.pathname]);
 
-  useEffect(() => {
-
-  }, [status]);
 
   function Crumbs() {
     if (tense) {
