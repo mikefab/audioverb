@@ -12,7 +12,7 @@ export function PrevNextLink(props) {
 
     function addPharse() {
       if (!!phrase) {
-        return `?phrase=${phrase}?language=${language}`
+        return `?phrase=${phrase}&language=${language}`
       }
       return ''
     }

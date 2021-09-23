@@ -41,7 +41,6 @@ function App(props) {
   const languages = available_languages()
 
   const language = languages[query.get("language")] ? query.get("language") : localStorage.getItem("language")
-  console.log(location.pathname, 'ppp')
   if (!language && !location.pathname.match(/\/language/)) {
     history.push('/language');
     return (<></>)
