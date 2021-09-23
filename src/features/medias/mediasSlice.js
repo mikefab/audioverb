@@ -19,7 +19,6 @@ const initialState = {
 export const getMedias = createAsyncThunk(
   'medias/fetchMedias',
   async (language) => {
-    console.log('gggg', language)
     const response = await fetchMedias(language);
     // The value we return becomes the `fulfilled` action payload
     return response.data || [];
