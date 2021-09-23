@@ -17,6 +17,7 @@ import {ShowFavorite} from './helpers/ShowFavorite'
 
 import '../..//App.css';
 export function Result() {
+  const location = useLocation()
   const language = localStorage.getItem('language')
   const google_languages = {
     'chinese': 'zh-CN',
@@ -32,8 +33,8 @@ export function Result() {
     return new URLSearchParams(useLocation().search);
   }
   let query = useQuery();
-  const phrase = query.get('phrase')
-  const is_idiom = query.get('is_idiom')
+  const phrase = query.get('phrase') ? query.get('phrase').split('?')[0] : null
+  const is_idiom = !!location.pathname.match(/\/is_idiom/)
   const dispatch = useDispatch();
   const result = useSelector(selectResult);
 
