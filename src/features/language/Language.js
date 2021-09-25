@@ -67,6 +67,7 @@ export function Language() {
       </Grid>
       <Grid item xs={12}>
       Language you wish to practice:&nbsp;
+      <p>
       {languages.map((lang, i) => (
           <span key={'lang' + i}>
             <span>
@@ -81,6 +82,7 @@ export function Language() {
             </span> &nbsp;
           </span>
         ))}
+        </p>
         </Grid>
         <Grid item xs={12} className='casual'>
           <LanguageOptions language={language}/>
