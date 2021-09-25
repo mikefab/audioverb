@@ -35,7 +35,6 @@ export const languageSlice = createSlice({
     setLanguage: (state, action) => {
       console.log(!!action.payload, action.payload)
       const language = action.payload.toLowerCase()
-      console.log(language, 'llll')
       localStorage.setItem('language', language)
       state.language = language;
     },

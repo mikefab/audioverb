@@ -1,14 +1,12 @@
 import axios from 'axios';
 import env from "react-dotenv";
+import available_languages from '../language/available_languages'
 const base = env.REACT_APP_HOST
 
-const langs = {
-  'chinese': 'chi_hans',
-  'french': 'fra',
-  'spanish': 'spa',
-}
+const langs = available_languages()
 
 export function fetchResults(query) {
+
   const lang = localStorage.getItem('language')
   if (query === undefined) {
     console.log('ending path')

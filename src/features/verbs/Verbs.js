@@ -5,6 +5,10 @@ import {
     getVerbsByTense,
     getVerbsByMedia,
     selectVerbs,
+    selectVerbMedia,
+    setVerbMedia,
+    selectVerbLanguage,
+    setVerbLanguage,
     selectVerbsStatus
   } from '../verbs/verbsSlice';
 import {selectExplanations} from '../tenses/tensesSlice';
@@ -29,25 +33,41 @@ function Verbs(props) {
   const language = useSelector(selectLanguage);
   const dispatch = useDispatch();
   const verbs = useSelector(selectVerbs);
+  //const verbsLanguage = useSelector(selectKind);
 
   const { tense } = useParams();
 
   const tense_explanation = useSelector(selectExplanations);
-
+  const verb_language = useSelector(selectVerbLanguage)
+  const verb_media = useSelector(selectVerbMedia)
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    history.push(location.pathname)
+      dispatch(setVerbLanguage(language))
     // Update the document title using the browser API
     if (tense) {
+
+      // dispatch(setKind('tense'))
       dispatch(setTense(tense))
       dispatch(getVerbsByTense(tense))
     } else if (media) {
-      dispatch(getVerbsByMedia(media))
+        if (media !== verb_media) {
+          dispatch(getVerbsByMedia(media))
+          dispatch(setVerbMedia(media))
+        }
     } else {
-      dispatch(getVerbs(language))
+      if (language !== verb_language) {
+        dispatch(getVerbs(language))
+        dispatch(setVerbLanguage(language))
+      }
+
     }
 
-  }, [tense, dispatch, history, location.pathname]);
+  }, [language]);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+
+  }, [verbs]);
 
 
   function Crumbs() {

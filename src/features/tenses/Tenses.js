@@ -1,8 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectTenses,
   selectTensesStatus,
+  selectTenseLanguage,
+  setTenseLanguage,
   getTenses
 } from './tensesSlice';
 import {
@@ -15,17 +17,21 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 
 export function Tenses() {
-  const language = useSelector(selectLanguage);
+  const language = useSelector(selectLanguage)
+//  const language = useSelector(selectLanguage);
   const history = useHistory()
   const dispatch = useDispatch();
   const tenses = useSelector(selectTenses);
   const status = useSelector(selectTensesStatus);
+  const tense_language = useSelector(selectTenseLanguage)
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // Update the document title using the browser API
-    history.push('/tenses')
-    dispatch(getTenses(language))
-  }, [dispatch, history]);
+    if (language !== tense_language) {
+      dispatch(getTenses(language))
+      dispatch(setTenseLanguage(language))
+    }
+  });
 
   function Lines() {
     return (

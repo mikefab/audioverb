@@ -38,7 +38,6 @@ export function Verb() {
 
 
   function handleClick(instance) {
-    console.log(instance, language)
     if (tense) {
       history.push(`/tenses/${tense}/${verb}/${instance}?language=${language}`)
     } else {
