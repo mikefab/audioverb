@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Grams(props) {
-  const {media, language} = props
+  const {media} = props
   const grams = useSelector(selectGrams);
   const dispatch = useDispatch();
 

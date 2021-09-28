@@ -8,17 +8,14 @@ import {
 import {selectLanguage} from '../language/languageSlice';
 
 import {
-  Link,
-  useParams
+  Link
 } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container'
 
 export default function Duanyu(props) {
   const {media} = props
   const language = useSelector(selectLanguage);
   const dispatch = useDispatch();
-  // const { media } = useParams();
   const duanyu = useSelector(selectDuanyu);
 
   useEffect(() => {

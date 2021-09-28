@@ -12,7 +12,6 @@ import {
   useParams
 } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container'
 
 export default function Idioms(props) {
   const {media} = props
@@ -20,9 +19,7 @@ export default function Idioms(props) {
   const dispatch = useDispatch();
   // const { media } = useParams();
   const idioms = useSelector(selectIdioms);
-console.log('222')
   useEffect(() => {
-    console.log('111')
     if (media) {
       return dispatch(getIdiomsByMedia(media))
     }

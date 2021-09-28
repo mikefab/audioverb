@@ -13,7 +13,6 @@ import { Results } from './features/results/Results';
 import { Verb } from './features/verb/Verb';
 import { VerbMedia } from './features/verb/VerbMedia';
 import { setLanguage} from './features/language/languageSlice';
-import queryString from 'query-string';
 import Verbs from './features/verbs/Verbs';
 import {Favorites} from './features/favorites/Favorites';
 import {SeachHistory} from './features/search-history/SearchHistory';
