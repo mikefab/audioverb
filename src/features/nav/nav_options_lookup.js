@@ -9,6 +9,6 @@ export default function nav_options_lookup() {
     'Medias': 'Medias',
     'Settings': 'Settings',
     'Tenses': 'Tenses',
-    'Versb': 'Verbs',
+    'Verbs': 'Verbs',
   }
 }
