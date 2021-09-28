@@ -134,8 +134,8 @@ export function Media() {
           aria-label="scrollable auto tabs example"
         >
         <Tab label="Captions" {...a11yProps(0)} />
-        <Tab style={{display: tabChinese()}} label="Duanyu" {...a11yProps(1)} />
-        <Tab style={{display: tabChinese()}} label="Idioms" {...a11yProps(2)} />
+        <Tab style={{display: tabChinese()}} label="词汇" {...a11yProps(1)} />
+        <Tab style={{display: tabChinese()}} label="成语" {...a11yProps(2)} />
         <Tab style={{display: tabChinese()}} label="HSK" {...a11yProps(3)} />
         <Tab style={{display: tabNotChinese(0)}} label="Tenses" {...a11yProps(4)} />
         <Tab style={{display: tabNotChinese()}} label="Verbs" {...a11yProps(5)} />

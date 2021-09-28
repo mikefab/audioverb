@@ -32,6 +32,12 @@ export default function Duanyu(props) {
   function DuanyuContent() {
     if (duanyu.length > 0) {
       return (
+        <>
+        <p>
+          <strong>
+            词汇
+          </strong>
+        </p>
         <Grid container spacing={1} style={{fontSize: '14px'}}>
         {duanyu.map((duanyu, i) => (
           <Grid item xs={3} key={ Math.random().toString(36).substr(2, 9) }>
@@ -39,9 +45,10 @@ export default function Duanyu(props) {
           </Grid>
           ))}
         </Grid>
+        </>
       )
     }
-      return (<>No 短语 for {media}</>)
+      return (<>No 词汇 for {media}</>)
   }
   return (
     <>

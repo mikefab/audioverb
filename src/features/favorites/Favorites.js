@@ -19,10 +19,13 @@ export function Favorites() {
   var re = new RegExp('favorite-' + language, 'g');
 
   return (
-    <Container>
+    <>
     <p>
-      Favorites
+      <strong>
+        Favorites
+      </strong>
     </p>
+    <Container>
       <Grid container spacing={1}>
       {Object.keys(localStorage).filter(item => { return item.match(re)}).reverse().map((key, i) => (
         <Grid item xs={12} key={ Math.random().toString(36).substr(2, 9) }>
@@ -31,5 +34,6 @@ export function Favorites() {
         ))}
       </Grid>
     </Container>
+    </>
   );
 }

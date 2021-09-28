@@ -1,12 +1,12 @@
 // For google translate
 export default function nav_options_lookup() {
   return {
-    'Idioms': 'Idioms',
-    'Duanyu': 'Vocabulary',
+    'Idioms': '成语',
+    'Duanyu': '词汇',
     'Favorites': 'Favorites',
     'History': 'History',
     'HSK': 'HSK',
-    'Medias': 'Medias',
+    'Medias': 'Movies',
     'Settings': 'Settings',
     'Tenses': 'Tenses',
     'Verbs': 'Verbs',

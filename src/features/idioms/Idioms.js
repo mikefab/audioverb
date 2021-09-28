@@ -33,6 +33,12 @@ console.log('222')
   function IdiomContent() {
     if (idioms.length > 0) {
       return (
+        <>
+          <p>
+            <strong>
+              成语
+            </strong>
+          </p>
         <Grid container spacing={1} style={{fontSize: '14px'}}>
         {idioms.map((idiom, i) => (
           <Grid item xs={3} key={ Math.random().toString(36).substr(2, 9) }>
@@ -40,9 +46,10 @@ console.log('222')
           </Grid>
           ))}
         </Grid>
+      </>
       )
     }
-      return (<>No idioms for {media}</>)
+      return (<>No 成语 for {media}</>)
   }
   return (
     <>

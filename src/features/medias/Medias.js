@@ -26,10 +26,13 @@ export function Medias() {
   }, [language]);
 
   return (
-    <Container>
+    <>
     <p>
-      Medias
+      <strong>
+        Movies
+      </strong>
     </p>
+    <Container>
       <Grid container spacing={1}>
       {medias.map((media, i) => (
         <Grid item xs={12} key={ Math.random().toString(36).substr(2, 9) }>
@@ -38,5 +41,6 @@ export function Medias() {
         ))}
       </Grid>
     </Container>
+    </>
   );
 }

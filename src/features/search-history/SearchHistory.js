@@ -27,10 +27,13 @@ export function SeachHistory() {
   }, [storageObserver])
 
   return (
-    <Container>
+    <>
     <p>
-      Search history
+      <strong>
+        Search History
+      </strong>
     </p>
+    <Container>
       <Grid container spacing={1}>
       {Object.keys(localStorage).filter(e => {
         console.log(e, re)
@@ -48,5 +51,6 @@ export function SeachHistory() {
         ))}
       </Grid>
     </Container>
+    </>
   );
 }
