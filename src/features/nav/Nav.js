@@ -140,7 +140,7 @@ function is_selected(text) {
         <Divider />
         <List>
           {nav_options.map((text, index) => (
-            <ListItem button selected={is_selected(text)} key={text} component={Link} to={`/${text.toLowerCase()}`}>
+            <ListItem button selected={is_selected(text)} key={text} component={Link} to={`/${text.toLowerCase()}?language=${language}`}>
               <ListItemText primary={lookup[text]} onClick={toggleDrawer}  />
             </ListItem>
           ))}
