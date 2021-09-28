@@ -27,9 +27,14 @@ export function Tenses() {
   useEffect(() => {
     console.log(tenses.length )
     // Update the document title using the browser API
-    if (tenses.length !== 0 && language !== tense_language) {
+    if (tenses.length == 0) {
       dispatch(getTenses(language))
       dispatch(setTenseLanguage(language))
+    } else {
+      if ( language !== tense_language) {
+        dispatch(getTenses(language))
+        dispatch(setTenseLanguage(language))
+      }      
     }
   });
 

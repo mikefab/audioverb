@@ -43,7 +43,6 @@ function Verbs(props) {
       dispatch(setVerbLanguage(language))
     // Update the document title using the browser API
     if (tense) {
-
       // dispatch(setKind('tense'))
       dispatch(setTense(tense))
       dispatch(getVerbsByTense(tense))
