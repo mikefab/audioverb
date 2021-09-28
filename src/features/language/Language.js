@@ -3,17 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getLanguages, selectLanguages, setLanguage, selectLanguage} from './languageSlice';
 import {LanguageOptions} from '../language-options/LanguageOptions'
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container'
 import Chip from '@material-ui/core/Chip';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 
 import native_languages from './native_languages'
-
-import {
-  useHistory
-} from "react-router-dom";
 
 
 const my_languages = native_languages()
@@ -30,8 +25,6 @@ export function Language() {
   const [my_language, setMyLanguage] = useState(localStorage.getItem('my_language') || 'en')
 
   const language = useSelector(selectLanguage);
-  const history = useHistory()
-  const selectedSyle = {'text-decoration': 'underline'}
 
   function handleVariant(lang) {
     const re = new RegExp(language, 'i');

@@ -33,7 +33,7 @@ export function Results(props) {
   const language = localStorage.getItem('language')
   let query = useQuery();
   const phrase = query.get('phrase') ? query.get('phrase').split('?')[0] : null
-  const is_idiom = query.get('is_idiom')
+  const is_chengyu = query.get('is_chengyu')
   // if (phrase) {
   //   phrase = phrase.toLowerCase()
   // }
@@ -67,8 +67,8 @@ export function Results(props) {
   function parseLink(cap, tense, verb, conjugation, media) {
     let link = ''
     if (phrase) {
-      if (is_idiom) {
-        link = `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?phrase=${phrase}&is_idiom=true&`
+      if (is_chengyu) {
+        link = `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?phrase=${phrase}&is_chengyu=true&`
       }
       link = `/search/${cap.name.name.replace(/\s+/g, '_')}/${cap.num}?phrase=${phrase}&`
     } else if (tense) {

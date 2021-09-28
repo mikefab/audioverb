@@ -6,13 +6,12 @@ import {
 
 
 export function CrumbLink(props) {
-    const {conjugation, media, phrase, tense, verb, is_idiom} = props
-    console.log('iii', is_idiom, !!is_idiom)
+    const {conjugation, media, phrase, tense, verb, is_chengyu} = props
     const location = useLocation();
     if (typeof tense !== 'undefined')  {
       return(<span className='crumbs'><Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <Link to={`/tenses/${tense}/${verb}`}>{verb}</Link> / <Link to={`/tenses/${tense}/${verb}/${conjugation}`}>{conjugation}</Link></span>)
     } else if ((!!phrase)) {
-      if (is_idiom) {
+      if (is_chengyu) {
         return (<span className='crumbs'><Link to={`/idioms`}>idioms:  {phrase}</Link></span>)
       }
       return (<span className='crumbs'><Link to={`/search?phrase=${phrase}`}>search:  {phrase}</Link></span>)

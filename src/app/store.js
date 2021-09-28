@@ -11,10 +11,12 @@ import playerReducer from '../features/player/playerSlice';
 import explorerReducer from '../features/explorer/explorerSlice';
 import languageReducer from '../features/language/languageSlice';
 import idiomsReducer from '../features/idioms/idiomsSlice';
+import duanyuReducer from '../features/duanyu/duanyuSlice';
 export const store = configureStore({
   reducer: {
     grams: gramsReducer,
     idioms: idiomsReducer,
+    duanyu: duanyuReducer,
     language: languageReducer,
     media: mediaReducer,
     medias: mediasReducer,

@@ -8,8 +8,7 @@ import {
   getTenses
 } from './tensesSlice';
 import {
-  Link,
-  useHistory
+  Link
 } from "react-router-dom";
 import  Spinner  from '../spinner/Spinner';
 import {selectLanguage} from '../language/languageSlice';
@@ -19,7 +18,6 @@ import Container from '@material-ui/core/Container'
 export function Tenses() {
   const language = useSelector(selectLanguage)
 //  const language = useSelector(selectLanguage);
-  const history = useHistory()
   const dispatch = useDispatch();
   const tenses = useSelector(selectTenses);
   const status = useSelector(selectTensesStatus);

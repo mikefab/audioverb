@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-// import { Tenses } from '../tenses/Tenses';
-import { Language } from '../language/Language';
-import {selectState} from './explorerSlice';
 import {
   useHistory
 } from "react-router-dom";
@@ -11,7 +8,6 @@ import {
 export function Explorer() {
 
   const history = useHistory()
-  const state = useSelector(selectState);
   const language = localStorage.getItem("language")
 
   if (language.match(/Chinese/i)) {

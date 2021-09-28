@@ -34,7 +34,7 @@ export function Result() {
   }
   let query = useQuery();
   const phrase = query.get('phrase') ? query.get('phrase').split('?')[0] : null
-  const is_idiom = !!location.pathname.match(/\/is_idiom/)
+  const is_chengyu = !!location.pathname.match(/\/is_chengyu/)
   const dispatch = useDispatch();
   const result = useSelector(selectResult);
 
@@ -109,7 +109,7 @@ export function Result() {
 
   return (
     <Container  style={{height: '600px', overflow: 'auto'}} >
-      <CrumbLink  conjugation={conjugation} phrase={phrase} media={media} num={num} tense={tense} verb={verb} is_idiom={is_idiom} />
+      <CrumbLink  conjugation={conjugation} phrase={phrase} media={media} num={num} tense={tense} verb={verb} is_chengyu={is_chengyu} />
       <br/><br/>
       <Grid container>
         <Grid item xs={12}>

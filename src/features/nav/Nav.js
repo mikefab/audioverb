@@ -17,7 +17,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Drawer from "@material-ui/core/Drawer";
 import {selectLanguage} from '../language/languageSlice';
 import  Spinner  from '../spinner/Spinner';
-
+import nav_options_lookup from './nav_options_lookup'
 const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
+  const lookup = nav_options_lookup()
+
   const location = useLocation()
   const classes = useStyles();
   const theme = useTheme();
@@ -77,6 +79,7 @@ export default function SearchAppBar() {
     } else {
       nav_options.unshift('HSK')
       nav_options.unshift('Idioms')
+      nav_options.unshift('Duanyu')
     }
   }
   useEffect(() => {
@@ -138,7 +141,7 @@ function is_selected(text) {
         <List>
           {nav_options.map((text, index) => (
             <ListItem button selected={is_selected(text)} key={text} component={Link} to={`/${text.toLowerCase()}`}>
-              <ListItemText primary={text} onClick={toggleDrawer}  />
+              <ListItemText primary={lookup[text]} onClick={toggleDrawer}  />
             </ListItem>
           ))}
         </List>

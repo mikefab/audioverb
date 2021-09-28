@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import  Grams  from './features/grams/Grams';
 import  Idioms  from './features/idioms/Idioms';
+import  Duanyu  from './features/duanyu/Duanyu';
 import  Nav  from './features/nav/Nav';
 import { Medias } from './features/medias/Medias';
 import { Media } from './features/media/Media';
@@ -59,6 +60,7 @@ function App(props) {
           <Route path={`/language`} component={Language} />
           <Route path={`/HSK`} component={Grams}/>
           <Route path={`/idioms`} component={Idioms}/>
+          <Route path={`/duanyu`} component={Duanyu}/>
           <Route path={`/history`} component={SeachHistory}/>
           <Route path={`/favorites`} component={Favorites}/>
           <Route path={`/favorite/:media/:num`} component={Result}/>

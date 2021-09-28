@@ -32,7 +32,7 @@ export function Medias() {
     </p>
       <Grid container spacing={1}>
       {medias.map((media, i) => (
-        <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
+        <Grid item xs={12} key={ Math.random().toString(36).substr(2, 9) }>
           * <Link to={`/media/${media.name}?language=${language}`} >{media.name}</Link>
         </Grid>
         ))}

@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectIdioms,
-  getIdioms,
-  getIdiomsByMedia
-} from './idiomsSlice';
+  selectDuanyu,
+  getDuanyu,
+  getDuanyuByMedia
+} from './duanyuSlice';
 import {selectLanguage} from '../language/languageSlice';
 
 import {
@@ -14,39 +14,38 @@ import {
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 
-export default function Idioms(props) {
+export default function Duanyu(props) {
   const {media} = props
   const language = useSelector(selectLanguage);
   const dispatch = useDispatch();
   // const { media } = useParams();
-  const idioms = useSelector(selectIdioms);
-console.log('222')
+  const duanyu = useSelector(selectDuanyu);
+
   useEffect(() => {
-    console.log('111')
     if (media) {
-      return dispatch(getIdiomsByMedia(media))
+      return dispatch(getDuanyuByMedia(media))
     }
 
-    dispatch(getIdioms())
+    dispatch(getDuanyu())
   }, [dispatch, language, media]);
 
-  function IdiomContent() {
-    if (idioms.length > 0) {
+  function DuanyuContent() {
+    if (duanyu.length > 0) {
       return (
         <Grid container spacing={1} style={{fontSize: '14px'}}>
-        {idioms.map((idiom, i) => (
+        {duanyu.map((duanyu, i) => (
           <Grid item xs={3} key={ Math.random().toString(36).substr(2, 9) }>
-            <Link to={`/search?is_chengyu=true&phrase=${idiom}`}>{idiom}</Link>
+            <Link to={`/search?is_duanyu=true&phrase=${duanyu}`}>{duanyu}</Link>
           </Grid>
           ))}
         </Grid>
       )
     }
-      return (<>No idioms for {media}</>)
+      return (<>No 短语 for {media}</>)
   }
   return (
     <>
-      <IdiomContent />
+      <DuanyuContent />
     </>
   );
 }
