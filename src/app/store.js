@@ -12,6 +12,7 @@ import explorerReducer from '../features/explorer/explorerSlice';
 import languageReducer from '../features/language/languageSlice';
 import idiomsReducer from '../features/idioms/idiomsSlice';
 import duanyuReducer from '../features/duanyu/duanyuSlice';
+import prepositionsReducer from '../features/prepositions/prepositionsSlice';
 export const store = configureStore({
   reducer: {
     grams: gramsReducer,
@@ -26,6 +27,7 @@ export const store = configureStore({
     results: resultsReducer,
     result: resultReducer,
     player: playerReducer,
-    explorer: explorerReducer
+    explorer: explorerReducer,
+    prepositions: prepositionsReducer
   },
 });

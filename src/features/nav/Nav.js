@@ -81,6 +81,10 @@ export default function SearchAppBar() {
       nav_options.unshift('Idioms')
       nav_options.unshift('Duanyu')
     }
+    if (language.match('spanish')) {
+        nav_options.unshift('Prepositions')
+    }
+
   }
   useEffect(() => {
 

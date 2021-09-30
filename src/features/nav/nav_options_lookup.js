@@ -7,6 +7,7 @@ export default function nav_options_lookup() {
     'History': 'History',
     'HSK': 'HSK',
     'Medias': 'Movies',
+    'Prepositions': 'Prepositions',
     'Settings': 'Settings',
     'Tenses': 'Tenses',
     'Verbs': 'Verbs',

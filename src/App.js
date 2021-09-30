@@ -8,6 +8,7 @@ import { Medias } from './features/medias/Medias';
 import { Media } from './features/media/Media';
 import { Explorer } from './features/explorer/Explorer';
 import  {Language} from './features/language/Language';
+import  Prepositions from './features/prepositions/Prepositions';
 import { Tenses } from './features/tenses/Tenses';
 import { Results } from './features/results/Results';
 import { Verb } from './features/verb/Verb';
@@ -58,6 +59,7 @@ function App(props) {
           <Route path={`/settings`} component={Settings} />
           <Route path={`/language`} component={Language} />
           <Route path={`/HSK`} component={Grams}/>
+          <Route path={`/prepositions`} component={Prepositions}/>
           <Route path={`/idioms`} component={Idioms}/>
           <Route path={`/duanyu`} component={Duanyu}/>
           <Route path={`/history`} component={SeachHistory}/>

@@ -14,6 +14,7 @@ import Box from '@material-ui/core/Box';
 import  Captions  from './captions/Captions';
 import  Idioms  from '../../features/idioms/Idioms';
 import  Duanyu  from '../../features/duanyu/Duanyu';
+import  Prepositions  from '../../features/prepositions/Prepositions';
 import  Verbs  from '../../features/verbs/Verbs';
 import  Grams  from '../../features/grams/Grams';
 import {
@@ -139,6 +140,7 @@ export function Media() {
         <Tab style={{display: tabChinese()}} label="HSK" {...a11yProps(3)} />
         <Tab style={{display: tabNotChinese(0)}} label="Tenses" {...a11yProps(4)} />
         <Tab style={{display: tabNotChinese()}} label="Verbs" {...a11yProps(5)} />
+        <Tab style={{display: tabNotChinese()}} label="Prepositions" {...a11yProps(6)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -159,7 +161,9 @@ export function Media() {
       <TabPanel style={{display: tabNotChinese()}}  value={value} index={5}>
         <Verbs media={media} language={language}/>
       </TabPanel>
-
+      <TabPanel style={{display: tabNotChinese()}}  value={value} index={6}>
+        <Prepositions media={media} language={language}/>
+      </TabPanel>
     </div>
     </>
   );
