@@ -97,11 +97,13 @@ export function Results(props) {
   // Hack to ensure ghost searches don't emerge. 'aaaa' somehow brings up searches for 'a'
   if (!!phrase) {
     if (!past_searches[phrase]) {
-      if (results[0].children[0].cap.match(phrase)) {
-          localStorage.setItem('search-' + language + '-' + Date.now(), phrase)
-      } else {
-        return (<span><NoResults/></span>)
-      }
+      // if (results[0].children[0].cap.match(phrase)) {
+      //   console.log('0000')
+      //     localStorage.setItem('search-' + language + '-' + Date.now(), phrase)
+      // } else {
+      //   console.log('1111')
+      //   return (<span><NoResults/></span>)
+      // }
 
     }
 
