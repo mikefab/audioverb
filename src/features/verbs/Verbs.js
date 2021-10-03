@@ -43,9 +43,8 @@ function Verbs(props) {
       dispatch(setVerbLanguage(language))
     // Update the document title using the browser API
     if (tense) {
-      // dispatch(setKind('tense'))
-      dispatch(setTense(tense))
-      dispatch(getVerbsByTense(tense))
+        dispatch(setTense(tense))
+        dispatch(getVerbsByTense(tense))
     } else if (media) {
         if (media !== verb_media) {
           dispatch(getVerbsByMedia(media))
@@ -60,11 +59,6 @@ function Verbs(props) {
     }
 
   }, [language]);
-
-  // Similar to componentDidMount and componentDidUpdate:
-  useEffect(() => {
-
-  }, [verbs]);
 
 
   function Crumbs() {
