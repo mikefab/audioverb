@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {  useLocation} from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,6 +17,9 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Drawer from "@material-ui/core/Drawer";
 import {selectLanguage} from '../language/languageSlice';
 import  Spinner  from '../spinner/Spinner';
+import {
+    getVerbs
+  } from '../verbs/verbsSlice';
 import nav_options_lookup from './nav_options_lookup'
 const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
@@ -64,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
   const lookup = nav_options_lookup()
-
+  const dispatch = useDispatch();
   const location = useLocation()
   const classes = useStyles();
   const theme = useTheme();
@@ -78,11 +81,14 @@ export default function SearchAppBar() {
       nav_options.unshift('Verbs')
     } else {
       nav_options.unshift('HSK')
-      nav_options.unshift('Idioms')
+      nav_options.unshift('Chengyu')
       nav_options.unshift('Duanyu')
     }
     if (language.match('spanish')) {
         nav_options.unshift('Prepositions')
+    }
+    if (language.match('english')) {
+        nav_options.unshift('Idioms')
     }
 
   }
@@ -98,9 +104,17 @@ export default function SearchAppBar() {
     ) {
       return;
     }
-
     setOpen(!open);
   };
+
+
+  function changeNavItem(e, value) {
+    if (value.match(/verbs/i)) {
+        dispatch(getVerbs(language))
+    }
+    toggleDrawer(e)
+  };
+
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
 
@@ -145,7 +159,7 @@ function is_selected(text) {
         <List>
           {nav_options.map((text, index) => (
             <ListItem button selected={is_selected(text)} key={text} component={Link} to={`/${text.toLowerCase()}?language=${language}`}>
-              <ListItemText primary={lookup[text]} onClick={toggleDrawer}  />
+              <ListItemText primary={lookup[text]}  onClick={(e) => changeNavItem(e, text)}  />
             </ListItem>
           ))}
         </List>
