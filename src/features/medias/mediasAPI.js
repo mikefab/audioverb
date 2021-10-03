@@ -6,7 +6,6 @@ export function fetchMedias(language) {
   return new Promise((resolve, reject) => {
     axios.get(base + 'nams/' + language.toLowerCase())
       .then(res => {
-        console.log(res.data)
         return resolve({
           data: res.data
         })
