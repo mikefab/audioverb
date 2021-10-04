@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectIdioms,
-  getIdioms,
-  getIdiomsByMedia
-} from './idiomsSlice';
+  selectChengyu,
+  getChengyu,
+  getChengyuByMedia
+} from './chengyuSlice';
 import {selectLanguage} from '../language/languageSlice';
 
 import {
@@ -13,44 +13,44 @@ import {
 } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 
-export default function Idioms(props) {
+export default function Chengyu(props) {
   const {media} = props
   const language = useSelector(selectLanguage);
   const dispatch = useDispatch();
   // const { media } = useParams();
-  const idioms = useSelector(selectIdioms);
+  const chengyu = useSelector(selectChengyu);
   useEffect(() => {
     if (media) {
-      return dispatch(getIdiomsByMedia(media))
+      return dispatch(getChengyuByMedia(media))
     }
 
-    dispatch(getIdioms(language))
+    dispatch(getChengyu())
   }, [dispatch, language, media]);
 
-  function IdiomContent() {
-    if (idioms.length > 0) {
+  function ChengyuContent() {
+    if (chengyu.length > 0) {
       return (
         <>
           <p>
             <strong>
-              Idiomatic expressions
+              成语
             </strong>
           </p>
         <Grid container spacing={1} style={{fontSize: '14px'}}>
-        {idioms.map((idiom, i) => (
+        {chengyu.map((chengyu, i) => (
           <Grid item xs={3} key={ Math.random().toString(36).substr(2, 9) }>
-            <Link to={`/search?is_idiom=true&phrase=${idiom}`}>{idiom}</Link>
+            <Link to={`/search?is_chengyu=true&phrase=${chengyu}`}>{chengyu}</Link>
           </Grid>
           ))}
         </Grid>
       </>
       )
     }
-      return (<>No idioms for {media}</>)
+      return (<>No 成语</>)
   }
   return (
     <>
-      <IdiomContent />
+      <ChengyuContent />
     </>
   );
 }

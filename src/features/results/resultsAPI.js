@@ -5,15 +5,24 @@ const base = env.REACT_APP_HOST
 
 const langs = available_languages()
 
-export function fetchResults(query) {
+function add_param(url, is_idiom) {
+  if (is_idiom) {
+    url = url + '?is_idiom=true'
+  }
+  return url
+}
 
+export function fetchResults(query, is_idiom) {
   const lang = localStorage.getItem('language')
   if (query === undefined) {
     console.log('ending path')
     return
   }
+
   return new Promise((resolve, reject) => {
-    axios.get(base + 'search/' + langs[lang] + '/' + query)
+  let url = base + 'search/' + langs[lang] + '/' + query;
+  url = add_param(url, is_idiom)
+    axios.get(url)
       .then(res => {
         if (res.data.children.length === 0) {
           resolve([])
@@ -25,9 +34,11 @@ export function fetchResults(query) {
   })
 }
 
-export function fetchResultsByMedia(query, media) {
+export function fetchResultsByMedia(query, media, is_idiom) {
   return new Promise((resolve, reject) => {
-    axios.get(base + 'search/spa/' + media + '/' + query)
+    let url = base + 'search/media/' + media + '/' + query
+    url = add_param(url, is_idiom)
+    axios.get(url)
       .then(res => {
         if (res.data.children.length === 0) {
           resolve([])

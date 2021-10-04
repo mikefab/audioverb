@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import  Chengyu  from './features/chengyu/Chengyu';
 import  Grams  from './features/grams/Grams';
 import  Idioms  from './features/idioms/Idioms';
 import  Duanyu  from './features/duanyu/Duanyu';
@@ -56,6 +57,7 @@ function App(props) {
       <Container maxWidth="sm" justify="center" >
       <Nav/>
         <Switch>
+          <Route path={`/chengyu`} component={Chengyu}/>
           <Route path={`/settings`} component={Settings} />
           <Route path={`/language`} component={Language} />
           <Route path={`/HSK`} component={Grams}/>

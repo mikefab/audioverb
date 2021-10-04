@@ -34,6 +34,7 @@ export function Results(props) {
   let query = useQuery();
   const phrase = query.get('phrase') ? query.get('phrase').split('?')[0] : null
   const is_chengyu = query.get('is_chengyu')
+  const is_idiom = query.get('is_idiom')
   // if (phrase) {
   //   phrase = phrase.toLowerCase()
   // }
@@ -52,7 +53,11 @@ export function Results(props) {
   useEffect(() => {
     if (!!phrase) {
       if (phrase.length > 0) {
-        return dispatch(getResults({query: phrase, media: media}))
+        return dispatch(getResults({
+          query: phrase,
+          is_idiom: is_idiom,
+          media: media
+        }))
       }
     }
     dispatch(getResults({query: conjugation, media: media}))

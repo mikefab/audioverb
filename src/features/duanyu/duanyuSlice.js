@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   fetchYu,
   fetchYuByMedia
-} from '../idioms/idiomsAPI';
+} from '../chengyu/chengyuAPI';
 
 const initialState = {
   duanyu: [],
@@ -17,7 +17,7 @@ const initialState = {
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
 export const getDuanyu = createAsyncThunk(
-  'media/fetchYu',
+  'yu/fetchYu',
   async () => {
     const response = await fetchYu('duanyu');
     // The value we return becomes the `fulfilled` action payload
@@ -26,7 +26,7 @@ export const getDuanyu = createAsyncThunk(
 );
 
 export const getDuanyuByMedia = createAsyncThunk(
-  'media/fetchYuByMedia',
+  'yu/fetchYuByMedia',
   async (media) => {
     const response = await fetchYuByMedia('duanyu', media);
     // The value we return becomes the `fulfilled` action payload

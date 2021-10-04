@@ -45,7 +45,7 @@ export default function Duanyu(props) {
         </>
       )
     }
-      return (<>No 词汇 for {media}</>)
+      return (<>No 词汇</>)
   }
   return (
     <>

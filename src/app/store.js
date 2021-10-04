@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import chengyuReducer from '../features/chengyu/chengyuSlice';
 import gramsReducer from '../features/grams/gramsSlice';
 import mediaReducer from '../features/media/mediaSlice';
 import mediasReducer from '../features/medias/mediasSlice';
@@ -15,6 +16,7 @@ import duanyuReducer from '../features/duanyu/duanyuSlice';
 import prepositionsReducer from '../features/prepositions/prepositionsSlice';
 export const store = configureStore({
   reducer: {
+    chengyu: chengyuReducer,
     grams: gramsReducer,
     idioms: idiomsReducer,
     duanyu: duanyuReducer,
