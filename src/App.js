@@ -28,6 +28,8 @@ import {
 import {  Route, Switch } from "react-router-dom";
 import useGaTracker from './useGaTracker'
 import './App.css';
+
+
 import available_languages from './features/language/available_languages'
 
 function useQuery() {

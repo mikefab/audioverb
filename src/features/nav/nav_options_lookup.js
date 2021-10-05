@@ -1,5 +1,5 @@
 // For google translate
-export default function nav_options_lookup() {
+export function nav_options_lookup() {
   return {
     'Chengyu': '成语',
     'Duanyu': '词汇',
@@ -12,5 +12,15 @@ export default function nav_options_lookup() {
     'Settings': 'Settings',
     'Tenses': 'Tenses',
     'Verbs': 'Verbs',
+  }
+}
+
+// For google translate
+export function nav_options() {
+  return {
+    'chinese': ['Chengyu', 'Duanyu', 'HSK'],
+    'english': ['Idioms', 'Verbs', 'Tenses'],
+    'french': ['Verbs', 'Tenses'],
+    'spanish': ['Prepositions', 'Verbs', 'Tenses']
   }
 }

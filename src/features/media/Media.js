@@ -14,9 +14,11 @@ import Box from '@material-ui/core/Box';
 import  Captions  from './captions/Captions';
 import  Idioms  from '../../features/idioms/Idioms';
 import  Duanyu  from '../../features/duanyu/Duanyu';
+import  Chengyu  from '../../features/chengyu/Chengyu';
 import  Prepositions  from '../../features/prepositions/Prepositions';
 import  Verbs  from '../../features/verbs/Verbs';
 import  Grams  from '../../features/grams/Grams';
+import {nav_options} from '../nav/nav_options_lookup'
 import {
   selectCapsByMedia,
   selectCapsByMediaStatus,
@@ -103,19 +105,11 @@ export function Media() {
     setValue(newValue);
   };
 
-  function tabChinese() {
-    if (language) {
-      return language.match(/chinese/) ? 'inline' : 'none'
+  function displayTab(item) {
+    if (item.match('Tenses')) {
+      return 'none'
     }
-  }
-  function tabNotChinese(flag) {
-    if (flag === 0) {
-      return 'none';
-    }
-
-    if (language) {
-      return language.match(/chinese/) ? 'none' : 'inline'
-    }
+    return nav_options()[language].includes(item) ? 'inline' : 'none'
   }
 
   return (
@@ -135,34 +129,38 @@ export function Media() {
           aria-label="scrollable auto tabs example"
         >
         <Tab label="Captions" {...a11yProps(0)} />
-        <Tab style={{display: tabChinese()}} label="词汇" {...a11yProps(1)} />
-        <Tab style={{display: tabChinese()}} label="成语" {...a11yProps(2)} />
-        <Tab style={{display: tabChinese()}} label="HSK" {...a11yProps(3)} />
-        <Tab style={{display: tabNotChinese(0)}} label="Tenses" {...a11yProps(4)} />
-        <Tab style={{display: tabNotChinese()}} label="Verbs" {...a11yProps(5)} />
-        <Tab style={{display: tabNotChinese()}} label="Prepositions" {...a11yProps(6)} />
+        <Tab style={{display: displayTab('Duanyu')}} label="词汇" {...a11yProps(1)} />
+        <Tab style={{display: displayTab('Chengyu')}} label="成语" {...a11yProps(2)} />
+        <Tab style={{display: displayTab('HSK')}} label="HSK" {...a11yProps(3)} />
+        <Tab style={{display: displayTab('Tenses')}} label="Tenses" {...a11yProps(4)} />
+        <Tab style={{display: displayTab('Verbs')}} label="Verbs" {...a11yProps(5)} />
+        <Tab style={{display: displayTab('Prepositions')}} label="Prepositions" {...a11yProps(6)} />
+        <Tab style={{display: displayTab('Idioms')}} label="Idioms" {...a11yProps(7)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <Captions media={media} caps={caps} status={status} cuts={cuts} language={language}/>
       </TabPanel>
-      <TabPanel style={{display: tabChinese()}}  value={value} index={1}>
+      <TabPanel style={{display: displayTab('Duanyu')}}  value={value} index={1}>
         <Duanyu media={media} language={language} />
       </TabPanel>
-      <TabPanel style={{display: tabChinese()}}  value={value} index={2}>
-        <Idioms media={media} language={language} />
+      <TabPanel style={{display: displayTab('Chengyu')}}  value={value} index={2}>
+        <Chengyu media={media} language={language} />
       </TabPanel>
-      <TabPanel style={{display: tabChinese()}}  value={value} index={3}>
+      <TabPanel style={{display: displayTab('HSK')}}  value={value} index={3}>
         <Grams media={media} language={language}/>
       </TabPanel>
-      <TabPanel style={{display: tabNotChinese(0)}}  value={value} index={4}>
-        Tenses
+      <TabPanel style={{display: displayTab('Tenses')}}  value={value} index={4}>
+      Tenses
       </TabPanel>
-      <TabPanel style={{display: tabNotChinese()}}  value={value} index={5}>
+      <TabPanel style={{display: displayTab('Verbs')}}  value={value} index={5}>
         <Verbs media={media} language={language}/>
       </TabPanel>
-      <TabPanel style={{display: tabNotChinese()}}  value={value} index={6}>
+      <TabPanel style={{display: displayTab('Prepositions')}}  value={value} index={6}>
         <Prepositions media={media} language={language}/>
+      </TabPanel>
+      <TabPanel style={{display: displayTab('Idioms')}}  value={value} index={7}>
+        <Idioms media={media} language={language}/>
       </TabPanel>
     </div>
     </>

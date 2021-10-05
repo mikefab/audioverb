@@ -20,7 +20,7 @@ import  Spinner  from '../spinner/Spinner';
 import {
     getVerbs
   } from '../verbs/verbsSlice';
-import nav_options_lookup from './nav_options_lookup'
+import {nav_options, nav_options_lookup} from './nav_options_lookup'
 const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,31 +67,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
   const lookup = nav_options_lookup()
+  const nav_options_obj = nav_options()
   const dispatch = useDispatch();
   const location = useLocation()
   const classes = useStyles();
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
   const language = useSelector(selectLanguage);
-  let nav_options = language ? ['Favorites', 'History', 'Settings'] : []
-  if (nav_options.length > 0) {
-    nav_options.unshift('Medias')
-    if (!language.match(/Chinese/i)) {
-      nav_options.unshift('Tenses')
-      nav_options.unshift('Verbs')
-    } else {
-      nav_options.unshift('HSK')
-      nav_options.unshift('Chengyu')
-      nav_options.unshift('Duanyu')
-    }
-    if (language.match('spanish')) {
-        nav_options.unshift('Prepositions')
-    }
-    if (language.match('english')) {
-        nav_options.unshift('Idioms')
-    }
+  let options = language ? ['Medias', 'Favorites', 'History', 'Settings'] : []
 
-  }
+  Array.apply(null, nav_options_obj[language]).map(o => {
+    options.unshift(o)
+  })
   useEffect(() => {
 
   }, [language]);
@@ -157,7 +144,7 @@ function is_selected(text) {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {nav_options.map((text, index) => (
+          {options.map((text, index) => (
             <ListItem button selected={is_selected(text)} key={text} component={Link} to={`/${text.toLowerCase()}?language=${language}`}>
               <ListItemText primary={lookup[text]}  onClick={(e) => changeNavItem(e, text)}  />
             </ListItem>

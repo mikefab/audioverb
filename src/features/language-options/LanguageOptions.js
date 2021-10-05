@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
+import {nav_options, nav_options_lookup} from '../nav/nav_options_lookup'
 
 export function LanguageOptions(props) {
   const {language} = props
@@ -10,18 +11,18 @@ export function LanguageOptions(props) {
         </>
       )
     }
-    if (language.match(/Chinese/i)) {
+    console.log(nav_options()[language])
       return (
-        <span>
-          Explore <Link to='/hsk' >compound expressions</Link> or <Link to='/medias' >captions</Link> from <b>{language}</b> movies.
-        </span>
+          <>
+          Explore &nbsp;
+          {nav_options()[language].sort().map((option, i) => (
+            <>
+              <Link to={`/${option}`} >{nav_options_lookup()[option].toLowerCase()}</Link>,&nbsp;
+            </>
+            ))}
+            or <Link to='/medias' >captions</Link> from {language} movies.
+          </>
       )
-    }
-    return (
-      <span>
-          Explore <Link to='/tenses' >tenses</Link> or <Link to='/medias' >captions </Link> from <b>{language}</b> movies.
-      </span>
-    )
   }
   return (
     <>
@@ -30,3 +31,8 @@ export function LanguageOptions(props) {
 
   );
 }
+
+
+//         <span>
+//          Explore <Link to='/hsk' >compound expressions</Link> or <Link to='/medias' >captions</Link> from <b>{language}</b> movies.
+//        </span>
