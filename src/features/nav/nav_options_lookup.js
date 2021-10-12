@@ -1,6 +1,7 @@
 // For google translate
 export function nav_options_lookup() {
   return {
+    'About': 'About',
     'Chengyu': '成语',
     'Duanyu': '词汇',
     'Favorites': 'Favorites',

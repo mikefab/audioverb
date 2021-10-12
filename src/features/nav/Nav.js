@@ -74,7 +74,7 @@ export default function SearchAppBar() {
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
   const language = useSelector(selectLanguage);
-  let options = language ? ['Medias', 'Favorites', 'History', 'Settings'] : []
+  let options = language ? [ 'Medias', 'Favorites', 'Settings', 'About'] : []
 
   Array.apply(null, nav_options_obj[language]).map(o => {
     options.unshift(o)
