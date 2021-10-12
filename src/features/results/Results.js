@@ -18,6 +18,7 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
     fontSize: 14,
+    paddingBottom: 40
   },
 
   title: {
@@ -140,7 +141,7 @@ export function Results(props) {
 
                   {result.children.map((cap, i2) => (
                     <div key={i2+1000} >
-                        <Grid container>
+                        <Grid container style={{paddingBottom:'2px'}}>
                           <Grid item xs={1} onClick={() => handlePlay(cap)}>
                             *
                           </Grid>
