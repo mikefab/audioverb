@@ -20,7 +20,7 @@ export function nav_options() {
   return {
     'chinese': ['Chengyu', 'Duanyu', 'HSK'],
     'english': ['Idioms', 'Verbs', 'Tenses'],
-    'french': ['Verbs', 'Tenses'],
+    'french': ['Prepositions', 'Verbs', 'Tenses'],
     'spanish': ['Prepositions', 'Verbs', 'Tenses']
   }
 }
