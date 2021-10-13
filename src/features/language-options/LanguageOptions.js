@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import {nav_options, nav_options_lookup} from '../nav/nav_options_lookup'
 
@@ -11,7 +11,6 @@ export function LanguageOptions(props) {
         </>
       )
     }
-    console.log(nav_options()[language])
       return (
           <>
           Explore &nbsp;

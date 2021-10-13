@@ -20,14 +20,12 @@ import  Spinner  from '../spinner/Spinner';
 
 import {
   Link,
-  useLocation,
   useParams,
 } from "react-router-dom";
 
 function Verbs(props) {
   const {media} = props
   const status = useSelector(selectVerbsStatus);
-  const location = useLocation()
   const language = useSelector(selectLanguage);
   const dispatch = useDispatch();
   const verbs = useSelector(selectVerbs);

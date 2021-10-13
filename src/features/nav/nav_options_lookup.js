@@ -10,7 +10,7 @@ export function nav_options_lookup() {
     'Medias': 'Movies',
     'Idioms': 'Idioms',
     'Prepositions': 'Prepositions',
-    'Settings': 'Settings',
+    'Language': 'Language',
     'Tenses': 'Tenses',
     'Verbs': 'Verbs',
   }

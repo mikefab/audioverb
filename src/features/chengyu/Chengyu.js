@@ -8,8 +8,7 @@ import {
 import {selectLanguage} from '../language/languageSlice';
 
 import {
-  Link,
-  useParams
+  Link
 } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 
@@ -17,7 +16,6 @@ export default function Chengyu(props) {
   const {media} = props
   const language = useSelector(selectLanguage);
   const dispatch = useDispatch();
-  // const { media } = useParams();
   const chengyu = useSelector(selectChengyu);
   useEffect(() => {
     if (media) {

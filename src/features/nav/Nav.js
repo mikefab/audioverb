@@ -16,7 +16,7 @@ import List from "@material-ui/core/List";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Drawer from "@material-ui/core/Drawer";
 import {selectLanguage} from '../language/languageSlice';
-import  Spinner  from '../spinner/Spinner';
+
 import {
     getVerbs
   } from '../verbs/verbsSlice';
@@ -74,7 +74,7 @@ export default function SearchAppBar() {
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
   const language = useSelector(selectLanguage);
-  let options = language ? [ 'Medias', 'Favorites', 'Settings', 'About'] : []
+  let options = language ? [ 'Medias', 'Favorites', 'Language', 'About'] : []
 
   Array.apply(null, nav_options_obj[language]).map(o => {
     options.unshift(o)

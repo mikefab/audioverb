@@ -21,7 +21,6 @@ const initialState = {
       "pretérito": "The pretérito is the Spanish simple past tense, used to talk about things that were completed in the past.",
       "pretérito perfecto": "Pretérito perfecto (perfect tense) is used for actions completed in the recent past that have a connection to the present. This tense is similar to the English present perfect tense and is conjugated with the auxiliary verb haber + past participle.",
     },
-  language: 'spanish',
   status: 'idle',
 };
 

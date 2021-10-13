@@ -9,11 +9,11 @@ import {
 } from "react-router-dom";
 import Container from '@material-ui/core/Container'
 import Translate from '@material-ui/icons/Translate';
-import Star from '@material-ui/icons/Star';
 import Grid from '@material-ui/core/Grid';
 import {PrevNextLink} from './helpers/PrevNextLink'
 import {CrumbLink} from './helpers/SuperLink'
 import {ShowFavorite} from './helpers/ShowFavorite'
+import track_history from '../../helper'
 
 import '../..//App.css';
 export function Result() {
@@ -65,6 +65,7 @@ export function Result() {
     )
   }
   function handlePlay(cap) {
+    track_history(media, cap.num)
     setNum(cap.num)
     dispatch(getAudio({record: cap, trim_or_extend: false}))
   }
@@ -100,7 +101,7 @@ export function Result() {
       <span>
       {cap.cap.split('').map((cap, i4) => (
         <span key={i4+10000}>
-           <a href={`http://www.strokeorder.info/mandarin.php?q=${cap}`} target="_blank">{cap}</a>
+           <a href={`http://www.strokeorder.info/mandarin.php?q=${cap}`} target="_blank" rel="noreferrer">{cap}</a>
            </span>
         ))}
       </span>
