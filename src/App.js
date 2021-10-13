@@ -22,6 +22,7 @@ import {SeachHistory} from './features/search-history/SearchHistory';
 import  {Result} from './features/result/Result';
 import  {Settings} from './features/settings/Settings';
 import Container from '@material-ui/core/Container'
+import track_history from './helper'
 import {
   useHistory,
   useLocation
@@ -46,6 +47,12 @@ function App(props) {
   const languages = available_languages()
 
   const language = languages[query.get("language")] ? query.get("language") : localStorage.getItem("language")
+  const media_view = location.pathname.match(/^\/(medias)\/(.+)\/(\d+)$/)
+
+  // If visiting a result, log it so we can visualize what they've already heard
+  if (media_view) {
+    track_history(media_view)
+  }
   if (!language && !location.pathname.match(/\/language/)) {
     history.push('/language');
     return (<></>)

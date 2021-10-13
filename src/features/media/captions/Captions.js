@@ -18,7 +18,13 @@ export default function Captions(props) {
   }, [status]);
 
   function color_balls(num) {
-    return cuts[parseInt(num)] ? 'primary' : 'error'
+    // User is admin so show what results have already been synced
+    if (localStorage.getItem('user_code')) {
+      return cuts[parseInt(num)] ? 'primary' : 'error'
+    } else {
+      // User is not admin, show what results they've seen already
+      return localStorage.getItem(`/medias/${media}/${num}`) ? 'primary' : 'error'
+    }
   }
   function Lines() {
     return (
