@@ -4,6 +4,7 @@ import {nav_options, nav_options_lookup} from '../nav/nav_options_lookup'
 
 export function LanguageOptions(props) {
   const {language} = props
+  const options = nav_options()[language] || []
   function content() {
     if (!language) {
       return (
@@ -14,7 +15,7 @@ export function LanguageOptions(props) {
       return (
           <>
           Explore &nbsp;
-          {nav_options()[language].sort().map((option, i) => (
+          {options.sort().map((option, i) => (
             <>
               <Link to={`/${option}`} >{nav_options_lookup()[option].toLowerCase()}</Link>,&nbsp;
             </>

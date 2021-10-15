@@ -85,6 +85,7 @@ export function Media() {
   const cuts = useSelector(selectCutsByMedia);
   const status = useSelector(selectCapsByMediaStatus);
   const prev_media = useSelector(selectPrevMedia);
+  const options = nav_options()[language] || []
   useEffect(() => {
     if (prev_media !== media) {
       localStorage.setItem('media_tab_index', 0)
@@ -109,7 +110,7 @@ export function Media() {
     if (item.match('Tenses')) {
       return 'none'
     }
-    return nav_options()[language].includes(item) ? 'inline' : 'none'
+    return options.includes(item) ? 'inline' : 'none'
   }
 
   return (
