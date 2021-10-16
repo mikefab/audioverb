@@ -5,6 +5,20 @@ import {nav_options, nav_options_lookup} from '../nav/nav_options_lookup'
 export function LanguageOptions(props) {
   const {language} = props
   const options = nav_options()[language] || []
+  function SubContent() {
+    if (options.length > 0) {
+      return (
+        <>
+        or&nbsp;
+        </>
+      )
+    }
+    return(
+      <></>
+    )
+
+  }
+
   function content() {
     if (!language) {
       return (
@@ -20,7 +34,8 @@ export function LanguageOptions(props) {
               <Link to={`/${option}`} >{nav_options_lookup()[option].toLowerCase()}</Link>,&nbsp;
             </>
             ))}
-            or <Link to='/medias' >captions</Link> from {language} movies.
+            <SubContent />
+            <Link to='/medias' >captions</Link> from {language} movies.
           </>
       )
   }
