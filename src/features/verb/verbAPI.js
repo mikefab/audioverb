@@ -6,11 +6,10 @@ export function fetchConjugations(verb, tense, language) {
   return new Promise((resolve, reject) => {
     let url = base
     if (tense) {
-      base += 'tense/' + tense + '/verb/' + verb
+      url += 'tense/' + tense + '/verb/' + verb
     } else {
       url += 'conjugations/' + verb + '/' + language
     }
-
     axios.get(url)
       .then(res => {
         return resolve({
