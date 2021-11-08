@@ -37,26 +37,39 @@ export function Tenses() {
     }
   });
 
-  function Lines() {
+  function Hyphen(props) {
+    const {mood, tenses} = props
+    if (!tenses) {
+      return (
+        <></>
+      )
+    }
+    if (tenses.length === 1 && mood === tenses[0]) {
+      return (
+        <></>
+      )
+    }
     return (
-      <>
-        <Grid container spacing={12}>
-        {Object.keys(tenses).map((mood, i) => (
-        <Grid container spacing={12}>
-          <Grid item xs={1} key={ Math.random().toString(36).substr(2, 9) }>
-          {mood}
-          </Grid>
-          <Grid item>
-          {tenses[mood].map((tense, i) => (
-            <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
-              <Link to={`/tenses/${tense}?language=${language}`} >{tense}</Link>
-            </Grid>
-            ))}
-            </Grid>
-          </Grid>
-          ))}
-        </Grid>
-      </>
+      <>-</>
+    )
+  }
+
+  function Mood(props) {
+    const {mood, tenses} = props
+
+    if (!tenses) {
+      return (
+        <>...</>
+      )
+    }
+
+    if (tenses.length === 1 && mood === tenses[0]) {
+      return (
+        <></>
+      )
+    }
+    return (
+      <><b>{mood}</b></>
     )
   }
 
@@ -68,11 +81,11 @@ export function Tenses() {
         {Object.keys(tenses).map((mood, i) => (
           <Grid item xs={6} key={ i }>
             <p>
-              <b>{mood}</b>
+              <b><Mood mood={mood} tenses={tenses[mood]} /></b>
               <br/>
               {tenses[mood].map((tense, i) => (
-                <Grid item xs={12} key={ Math.random().toString(36).substr(2, 9) }>
-                  - <Link to={`/tenses/${tense}?language=${language}`} >{tense}</Link>
+                <Grid item xs={12} key={ Math.random().toString(36).substr(2, 9)} style={{fontSize: '14px'}}>
+                  <Hyphen mood={mood} tenses={tenses[mood]} /> <Link to={`/tenses/${tense}?language=${language}`} >{tense}</Link>
                 </Grid>
               ))}
             </p>
