@@ -22,7 +22,7 @@ export const getLanguages = createAsyncThunk(
   async () => {
     const response = await fetchLanguages();
     // The value we return becomes the `fulfilled` action payload
-    return response.data
+    return response.data.sort()
   }
 );
 

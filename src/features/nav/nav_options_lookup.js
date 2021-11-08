@@ -22,6 +22,10 @@ export function nav_options() {
     'chinese': ['Chengyu', 'Duanyu', 'HSK'],
     'english': ['Idioms', 'Verbs', 'Tenses'],
     'french': ['Prepositions', 'Verbs', 'Tenses'],
-    'spanish': ['Prepositions', 'Verbs', 'Tenses']
+    'korean': ['Prepositions', 'Verbs', 'Tenses'],
+    'spanish': ['Prepositions', 'Verbs', 'Tenses'],
+    'portuguese': ['Verbs', 'Tenses', 'Prepositions'],
+    'turkish': ['Verbs', 'Tenses', 'Prepositions'],
+    'japanese': ['Verbs', 'Tenses', 'Prepositions']
   }
 }

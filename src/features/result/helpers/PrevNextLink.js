@@ -19,26 +19,23 @@ export function PrevNextLink(props) {
 
 
     if (!!phrase)  {
-      const amount = direction === 'prev' ? parseInt(num) - 1 : parseInt(num) + 1
       if (direction === 'prev') {
-        return (<Link to={`/search/${media}/${amount}${addPharse()}`}><NavigateBefore /></Link>)
+        return (<Link to={`/search/${media}/${num}${addPharse()}`}><NavigateBefore /></Link>)
       }
-      return (<Link to={`/search/${media}/${amount}${addPharse()}`}><Next /></Link>)
+      return (<Link to={`/search/${media}/${num}${addPharse()}`}><Next /></Link>)
     } else if (location.pathname.match('favorite')) {
-      const amount = direction === 'prev' ? parseInt(num) - 1 : parseInt(num) + 1
       if (direction === 'prev') {
-        return (<Link to={`/favorite/${media}/${amount}${addPharse()}`}><NavigateBefore /></Link>)
+        return (<Link to={`/favorite/${media}/${num}${addPharse()}`}><NavigateBefore /></Link>)
       }
-      return (<Link to={`/favorite/${media}/${amount}${addPharse()}`}><Next /></Link>)
+      return (<Link to={`/favorite/${media}/${num}${addPharse()}`}><Next /></Link>)
     } else if (location.pathname.match('medias')) {
-      const amount = direction === 'prev' ? parseInt(num) - 1 : parseInt(num) + 1
       if (direction === 'prev') {
-        return (<Link to={`/medias/${media}/${amount}${addPharse()}`}><NavigateBefore /></Link>)
+        return (<Link to={`/medias/${media}/${num}${addPharse()}`}><NavigateBefore /></Link>)
       }
-      return (<Link to={`/medias/${media}/${amount}${addPharse()}`}><Next /></Link>)
+      return (<Link to={`/medias/${media}/${num}${addPharse()}`}><Next /></Link>)
     }
     if (direction === 'prev') {
-      return (<Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num) - 1}?language=${language}`}> <NavigateBefore/> </Link>)
+      return (<Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num)}?language=${language}`}> <NavigateBefore/> </Link>)
     }
-    return (<Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num) + 1}?language=${language}`}> <Next/> </Link>)
+    return (<Link to={`/media/${media}/${verb}/${conjugation}/${parseInt(num)}?language=${language}`}> <Next/> </Link>)
 }

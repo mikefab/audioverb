@@ -25,6 +25,7 @@ export function Result() {
     'french': 'fr',
     'english': 'en',
     'italian': 'it',
+    'korean': 'ko',
     'thai': 'th',
     'turkish': 'tr'
   }
@@ -39,8 +40,9 @@ export function Result() {
   const result = useSelector(selectResult);
 
   const [num, setNum] = useState(useParams().num)
+  const [num_previous, setNumPrevious] = useState(0)
+  const [num_next, setNumNext] = useState(0)
   const [sparkDirection, setDirection] = useState(0)
-
 
   let { tense, verb, conjugation, media} = useParams();
 
@@ -54,11 +56,16 @@ export function Result() {
   })
 
   useEffect(() => {
-    dispatch(getResult(`${media}^${num}`))
+    const obj = {
+      media,
+      num
+    }
+    dispatch(getResult(obj))
   }, [dispatch, media, sparkDirection]);
 
 
   function handleTranslate(cap) {
+    console.log(language)
     window.open(
       `https://translate.google.com/?sl=${google_languages[language]}&tl=${localStorage.getItem('my_language') || 'en'}&text=${cap.cap}&op=translate`,
       '_blank'
@@ -70,9 +77,29 @@ export function Result() {
     dispatch(getAudio({record: cap, trim_or_extend: false}))
   }
 
-  function handlePrevNext(num) {
+  function thing(num, direction) {
+    let prev = 0
+    let next = 0
+    if (result.length > 0) {
+      result.forEach((r, i) => {
+        if (parseInt(num) === parseInt(r.num)) {
+          if (i > 0) {
+            prev = result[i-1].num
+          }
+          if (i < (result.length -1)) {
+            next = result[i+1].num
+          }
+        }
+      })
+    }
+
+    return direction.match('prev') ? prev : next
+  }
+
+
+  function handlePrevNext(num, direction) {
     setDirection(sparkDirection + 1)
-    setNum(num)
+    setNum(thing(num, direction))
   }
   function isMainCap(cap_num) {
     if (parseInt(num) === parseInt(cap_num)) {
@@ -117,16 +144,16 @@ export function Result() {
           <Player />
         </Grid>
         <Grid item xs={4}>
-          <span onClick = {() => { handlePrevNext(parseInt(num) -1)}}>
-          <PrevNextLink direction='prev' conjugation={conjugation} phrase={phrase} media={media} num={num} verb={verb} language={language}/>
+          <span onClick = {() => { handlePrevNext(parseInt(num), 'prev')}}>
+          <PrevNextLink direction='prev' conjugation={conjugation} phrase={phrase} media={media} num={thing(num, 'prev')} verb={verb} language={language}/>
           </span>
         </Grid>
         <Grid item xs={4}>
           <ShowFavorite media={media} num={num} result={result} />
         </Grid>
         <Grid item xs={4}>
-          <span onClick = {() => { handlePrevNext(parseInt(num) +1)}}>
-          <PrevNextLink  direction='next' conjugation={conjugation} phrase={phrase} media={media} num={num} verb={verb} language={language}/>
+          <span onClick = {() => { handlePrevNext(parseInt(num), 'next')}}>
+          <PrevNextLink  direction='next' conjugation={conjugation} phrase={phrase} media={media} num={thing(num, 'next')} verb={verb} language={language}/>
           </span>
         </Grid>
         <br/>
