@@ -2,13 +2,11 @@ import React, {useEffect} from 'react';
 
 import  Spinner  from '../../spinner/Spinner';
 import {
-  Link,
-  useParams
+  Link
 } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import { green } from '@material-ui/core/colors';
 
 export default function Captions(props) {
   const {media, caps, cuts, status, language} = props

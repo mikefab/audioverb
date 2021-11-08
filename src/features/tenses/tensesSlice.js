@@ -4,7 +4,7 @@ import {
 } from './tensesAPI';
 
 const initialState = {
-  tenses: [],
+  tenses: {},
   tense: '',
   language: null,
   explanations: {

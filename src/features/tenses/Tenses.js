@@ -26,7 +26,7 @@ export function Tenses() {
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // Update the document title using the browser API
-    if (tenses.length === 0) {
+    if (Object.keys(tenses).length === 0) {
       dispatch(getTenses(language))
       dispatch(setTenseLanguage(language))
     } else {
@@ -40,22 +40,56 @@ export function Tenses() {
   function Lines() {
     return (
       <>
-        <Grid container spacing={1}>
-        {tenses.map((tense, i) => (
-          <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
-            <Link to={`/tenses/${tense}?language=${language}`} >{tense}</Link>
+        <Grid container spacing={12}>
+        {Object.keys(tenses).map((mood, i) => (
+        <Grid container spacing={12}>
+          <Grid item xs={1} key={ Math.random().toString(36).substr(2, 9) }>
+          {mood}
+          </Grid>
+          <Grid item>
+          {tenses[mood].map((tense, i) => (
+            <Grid item xs={6} key={ Math.random().toString(36).substr(2, 9) }>
+              <Link to={`/tenses/${tense}?language=${language}`} >{tense}</Link>
+            </Grid>
+            ))}
+            </Grid>
           </Grid>
           ))}
         </Grid>
       </>
     )
   }
+
+  function Lines2() {
+    return (
+      <>
+      <Container>
+        <Grid container spacing={12}>
+        {Object.keys(tenses).map((mood, i) => (
+          <Grid item xs={6} key={ i }>
+            <p>
+              <b>{mood}</b>
+              <br/>
+              {tenses[mood].map((tense, i) => (
+                <Grid item xs={12} key={ Math.random().toString(36).substr(2, 9) }>
+                  - <Link to={`/tenses/${tense}?language=${language}`} >{tense}</Link>
+                </Grid>
+              ))}
+            </p>
+          </Grid>
+          ))}
+        </Grid>
+      </Container>
+      </>
+    )
+  }
+
   return (
     <Container>
     <p>
-      Tenses ...
+      Tenses
     </p>
-      {status.match('idle') ? <Lines/> : <Spinner />}
+      {status.match('idle') ? <Lines2/> : <Spinner />}
 
     </Container>
   );

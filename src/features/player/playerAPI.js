@@ -41,12 +41,10 @@ export function fetchAudio(obj) {
   const cut_key = 'cut-' + name + '-' + r.num
   if (!trim_or_extend) {
     if (r.cuts.length > 0) {
-      console.log('Using cut')
       start = r.cuts[0].start
       stop = r.cuts[0].stop
     }
     if (localStorage[cut_key]) {
-      console.log('Using local storage')
       start = localStorage[cut_key].split('-')[0]
       stop = localStorage[cut_key].split('-')[1]
     }

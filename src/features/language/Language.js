@@ -61,20 +61,23 @@ export function Language() {
       <Grid item xs={12}>
       Language you wish to practice:&nbsp;
       <p>
-      {languages.map((lang, i) => (
-          <span key={'lang' + i}>
-            <span>
-              <Chip
-                variant={handleVariant(lang)}
-                size="small"
-                onClick={() => handleSelectLangauge(lang)}
-                label={lang}
-                clickable
-                color="primary"
-              />
-            </span> &nbsp;
-          </span>
-        ))}
+      <Grid container spacing={12} style={{height: '90px'}}>
+        {languages.map((lang, i) => (
+          <Grid item xs={4} key={ i }>
+            <span key={'lang' + i} >
+                <Chip
+                  variant={handleVariant(lang)}
+                  size="small"
+                  onClick={() => handleSelectLangauge(lang)}
+                  label={lang}
+                  clickable
+                  color="primary"
+                  style={{minWidth:'80px'}}
+                />
+            </span>
+          </Grid>
+          ))}
+        </Grid>
         </p>
         </Grid>
         <Grid item xs={12} className='casual'>

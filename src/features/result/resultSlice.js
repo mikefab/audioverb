@@ -17,11 +17,8 @@ const initialState = {
 // typically used to make async requests.
 export const getResult = createAsyncThunk(
   'result/fetchResult',
-  async (query) => {
-    const [name, num] = query.split('^')
-    const response = await fetchResult(name, num);
-    console.log(response)
-    console.log('rr')
+  async (obj) => {
+    const response = await fetchResult(obj);
     // The value we return becomes the `fulfilled` action payload
     return response.data || {};
   }
