@@ -37,41 +37,6 @@ export function Tenses() {
     }
   });
 
-  function Hyphen(props) {
-    const {mood, tenses} = props
-    if (!tenses) {
-      return (
-        <></>
-      )
-    }
-    if (tenses.length === 1 && mood === tenses[0]) {
-      return (
-        <></>
-      )
-    }
-    return (
-      <>-</>
-    )
-  }
-
-  function Mood(props) {
-    const {mood, tenses} = props
-
-    if (!tenses) {
-      return (
-        <>...</>
-      )
-    }
-
-    if (tenses.length === 1 && mood === tenses[0]) {
-      return (
-        <></>
-      )
-    }
-    return (
-      <><b>{mood}</b></>
-    )
-  }
 
   function Lines2() {
     return (
@@ -81,11 +46,11 @@ export function Tenses() {
         {Object.keys(tenses).map((mood, i) => (
           <Grid item xs={6} key={ i }>
             <p>
-              <b><Mood mood={mood} tenses={tenses[mood]} /></b>
+              <b>{mood}</b>
               <br/>
               {tenses[mood].map((tense, i) => (
-                <Grid item xs={12} key={ Math.random().toString(36).substr(2, 9)} style={{fontSize: '14px'}}>
-                  <Hyphen mood={mood} tenses={tenses[mood]} /> <Link to={`/tenses/${tense}?language=${language}`} >{tense}</Link>
+                <Grid item xs={12} key={ Math.random().toString(36).substr(2, 9) }>
+                  - <Link to={`/tenses/${tense}?language=${language}`} >{tense}</Link>
                 </Grid>
               ))}
             </p>
