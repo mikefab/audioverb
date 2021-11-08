@@ -8,7 +8,7 @@ export default function About() {
       </p>
 <br/>
       <p>
-        <img src="/audioverb_diagram.jpg" width='400' alt='diagram'/>
+        <img src="/audioverb_diagram.jpg" width='370' alt='diagram'/>
       </p>
     </div>
   );
