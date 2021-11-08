@@ -81,6 +81,7 @@ export function Result() {
     let prev = 0
     let next = 0
     if (result.length > 0) {
+
       result.forEach((r, i) => {
         if (parseInt(num) === parseInt(r.num)) {
           if (i > 0) {

@@ -16,7 +16,9 @@ export function PrevNextLink(props) {
       }
       return ''
     }
-
+    if (num===0) {
+      return(<span></span>)
+    }
 
     if (!!phrase)  {
       if (direction === 'prev') {
