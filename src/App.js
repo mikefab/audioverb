@@ -93,7 +93,7 @@ function App(props) {
           <Route path={`/tenses/:tense/:verb`} component={Verb}/>
           <Route path={`/verbs`} component={Verbs}/>
           <Route path={`/verb/:verb/:conjugation`} component={Verb}/>
-          <Route path={`/tenses/:tense`} component={Verbs}/>
+          <Route path={`/mood/:mood/:tense/:tense`} component={Verbs}/>
           <Route path="/tenses" component={Tenses} />
         </Switch>
       </Container>

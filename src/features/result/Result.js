@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getResult, selectResult } from '../result/resultSlice';
+import { getResult, selectResult, getNeighborNums, selectNeighborNums } from '../result/resultSlice';
 import { getAudio } from '../player/playerSlice';
 import { Player } from '../player/Player';
 import {
@@ -38,10 +38,10 @@ export function Result() {
   const is_chengyu = !!location.pathname.match(/\/is_chengyu/)
   const dispatch = useDispatch();
   const result = useSelector(selectResult);
+  const {num_prev, num_next} = useSelector(selectNeighborNums);
 
   const [num, setNum] = useState(useParams().num)
-  const [num_previous, setNumPrevious] = useState(0)
-  const [num_next, setNumNext] = useState(0)
+  console.log(num_prev, num_next, 'nnn', num)
   const [sparkDirection, setDirection] = useState(0)
 
   let { tense, verb, conjugation, media} = useParams();
@@ -74,33 +74,13 @@ export function Result() {
   function handlePlay(cap) {
     track_history(media, cap.num)
     setNum(cap.num)
+    dispatch(getNeighborNums({num: cap.num, media}))
     dispatch(getAudio({record: cap, trim_or_extend: false}))
   }
 
-  function thing(num, direction) {
-    let prev = 0
-    let next = 0
-    if (result.length > 0) {
-
-      result.forEach((r, i) => {
-        if (parseInt(num) === parseInt(r.num)) {
-          if (i > 0) {
-            prev = result[i-1].num
-          }
-          if (i < (result.length -1)) {
-            next = result[i+1].num
-          }
-        }
-      })
-    }
-
-    return direction.match('prev') ? prev : next
-  }
-
-
   function handlePrevNext(num, direction) {
+    setNum(direction.match('prev') ? num_prev : num_next)
     setDirection(sparkDirection + 1)
-    setNum(thing(num, direction))
   }
   function isMainCap(cap_num) {
     if (parseInt(num) === parseInt(cap_num)) {
@@ -146,7 +126,7 @@ export function Result() {
         </Grid>
         <Grid item xs={4}>
           <span onClick = {() => { handlePrevNext(parseInt(num), 'prev')}}>
-          <PrevNextLink direction='prev' conjugation={conjugation} phrase={phrase} media={media} num={thing(num, 'prev')} verb={verb} language={language}/>
+          <PrevNextLink direction='prev' conjugation={conjugation} phrase={phrase} media={media} num={num_prev} verb={verb} language={language}/>
           </span>
         </Grid>
         <Grid item xs={4}>
@@ -154,7 +134,7 @@ export function Result() {
         </Grid>
         <Grid item xs={4}>
           <span onClick = {() => { handlePrevNext(parseInt(num), 'next')}}>
-          <PrevNextLink  direction='next' conjugation={conjugation} phrase={phrase} media={media} num={thing(num, 'next')} verb={verb} language={language}/>
+          <PrevNextLink  direction='next' conjugation={conjugation} phrase={phrase} media={media} num={num_next} verb={verb} language={language}/>
           </span>
         </Grid>
         <br/>

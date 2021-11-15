@@ -31,8 +31,8 @@ export const getVerbs = createAsyncThunk(
 
 export const getVerbsByTense = createAsyncThunk(
   'verbs/fetchVerbsByTense',
-  async (tense) => {
-    const response = await fetchVerbsByTense(tense);
+  async (obj) => {
+    const response = await fetchVerbsByTense(obj);
     // The value we return becomes the `fulfilled` action payload
     return response.data
   }

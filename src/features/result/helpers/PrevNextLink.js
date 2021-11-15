@@ -11,10 +11,11 @@ export function PrevNextLink(props) {
     const location = useLocation();
 
     function addPharse() {
+      let querystring = `?`
       if (!!phrase) {
-        return `?phrase=${phrase}&language=${language}`
+        return `${querystring}phrase=${phrase}&language=${language}`
       }
-      return ''
+      return querystring
     }
     if (num===0) {
       return(<span></span>)

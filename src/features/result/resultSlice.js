@@ -1,10 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
-  fetchResult
+  fetchResult,
+  fetchNeighborNums
 } from './resultAPI';
 
 const initialState = {
   result: [],
+  neighborNums: {
+    num_prev: null,
+    num_next: null
+  },
   status: 'idle',
 };
 
@@ -24,6 +29,16 @@ export const getResult = createAsyncThunk(
   }
 );
 
+export const getNeighborNums = createAsyncThunk(
+  'result/fetchNeighborNums',
+  async (obj) => {
+    const response = await fetchNeighborNums(obj);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data || {};
+  }
+);
+
+
 export const resultSlice = createSlice({
   name: 'result',
   initialState,
@@ -36,11 +51,21 @@ export const resultSlice = createSlice({
       })
       .addCase(getResult.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.result = action.payload;
+        state.result = action.payload.caps;
+        state.neighborNums = action.payload.neighborNums;
       })
+      .addCase(getNeighborNums.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getNeighborNums.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.neighborNums = action.payload.neighborNums;
+      })
+
   },
 
 });
 
 export const selectResult = (state) => state.result.result;
+export const selectNeighborNums = (state) => state.result.neighborNums;
 export default resultSlice.reducer;

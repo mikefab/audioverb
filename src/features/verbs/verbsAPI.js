@@ -13,9 +13,12 @@ export function fetchVerbs(lng) {
   })
 }
 
-export function fetchVerbsByTense(tense) {
+export function fetchVerbsByTense(obj) {
+  const {mood, tense, language} = obj
+  const url = base + 'mood/' + mood + '/tense/' + tense + '?language=' + language
+  console.log(url)
   return new Promise((resolve, reject) => {
-    axios.get(base + 'tense/' + tense)
+    axios.get(url)
       .then(res => {
         return resolve({
           data: res.data

@@ -31,7 +31,7 @@ function Verbs(props) {
   const verbs = useSelector(selectVerbs);
   //const verbsLanguage = useSelector(selectKind);
 
-  const { tense } = useParams();
+  const { mood, tense } = useParams();
 
   const tense_explanation = useSelector(selectExplanations);
   const verb_language = useSelector(selectVerbLanguage)
@@ -42,7 +42,7 @@ function Verbs(props) {
     // Update the document title using the browser API
     if (tense) {
         dispatch(setTense(tense))
-        dispatch(getVerbsByTense(tense))
+        dispatch(getVerbsByTense({mood, tense, language}))
     } else if (media) {
         if (media !== verb_media) {
           dispatch(getVerbsByMedia(media))
