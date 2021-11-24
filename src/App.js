@@ -89,7 +89,7 @@ function App(props) {
           <Route path='/search' component = {Results} />}
           <Route exact path="/" component = {Explorer} />
           <Route path={`/tenses/:tense/:verb/:conjugation/:media/:num`} component={Result}/>
-          <Route path={`/tenses/:tense/:verb/:conjugation`} component={Verb}/>
+          <Route path={`/mood/:mood/tense/:tense/:verb/:conjugation`} component={Verb}/>
           <Route path={`/tenses/:tense/:verb`} component={Verb}/>
           <Route path={`/verbs`} component={Verbs}/>
           <Route path={`/verb/:verb/:conjugation`} component={Verb}/>

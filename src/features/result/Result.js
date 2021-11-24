@@ -41,7 +41,6 @@ export function Result() {
   const {num_prev, num_next} = useSelector(selectNeighborNums);
 
   const [num, setNum] = useState(useParams().num)
-  console.log(num_prev, num_next, 'nnn', num)
   const [sparkDirection, setDirection] = useState(0)
 
   let { tense, verb, conjugation, media} = useParams();
@@ -65,7 +64,6 @@ export function Result() {
 
 
   function handleTranslate(cap) {
-    console.log(language)
     window.open(
       `https://translate.google.com/?sl=${google_languages[language]}&tl=${localStorage.getItem('my_language') || 'en'}&text=${cap.cap}&op=translate`,
       '_blank'

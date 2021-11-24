@@ -20,8 +20,8 @@ const initialState = {
 export const getConjugations = createAsyncThunk(
   'conjugation/fetchConjugations',
   async (obj) => {
-    const {verb, tense, language} = obj
-    const response = await fetchConjugations(verb, tense, language);
+    const {mood, tense, verb, language} = obj
+    const response = await fetchConjugations(mood, tense, verb, language);
     // The value we return becomes the `fulfilled` action payload
     return response.data
   }

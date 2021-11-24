@@ -17,8 +17,7 @@ import Container from '@material-ui/core/Container'
 export function Verb() {
   const language = useSelector(selectLanguage);
   let history = useHistory();
-
-  let { tense, verb, conjugation } = useParams();
+  let { mood, tense, verb, conjugation } = useParams();
 
   const dispatch = useDispatch();
 
@@ -29,8 +28,9 @@ export function Verb() {
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     dispatch(getConjugations({
-      verb,
+      mood,
       tense,
+      verb,
       language
     }))
 
@@ -39,7 +39,7 @@ export function Verb() {
 
   function handleClick(instance) {
     if (tense) {
-      history.push(`/tenses/${tense}/${verb}/${instance}?language=${language}`)
+      history.push(`/mood/${mood}/tense/${tense}/${verb}/${instance}?language=${language}`)
     } else {
       history.push(`/verb/${verb}/${instance}?language=${language}`)
     }
@@ -54,7 +54,7 @@ export function Verb() {
   function SmartLink() {
       if (tense && tense !== 'undefined') {
         return (
-          <span className='crumbs'><Link to={`/tenses/`}>tenses</Link> / <Link to={`/tenses/${tense}`}>{tense}</Link> / <b>{verb}</b> / <b>{conjugation}</b></span>
+          <span className='crumbs'><Link to={`/mood/${mood}/tense/`}>tenses</Link> / <Link to={`/mood/${mood}/tense/${tense}`}>{tense}</Link> / <b>{verb}</b> / <b>{conjugation}</b></span>
         )
       }
       return (

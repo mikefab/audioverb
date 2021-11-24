@@ -86,7 +86,7 @@ function Verbs(props) {
     if (tense) {
       return (
         <>
-          <Link to={`/tenses/${tense}/${verb}/${verbs[verb][0]}?language=${language}`}>{verb}</Link>
+          <Link to={`/mood/${mood}/tense/${tense}/${verb}/${verbs[verb][0]}?language=${language}`}>{verb}</Link>
         </>
       )
     }
